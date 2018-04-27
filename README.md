@@ -93,5 +93,5 @@ I will try my best to provide a solution to your question.
 
 ## Licenses
 
-The code uses [GPL v3.0](https://www.gnu.org/licenses/gpl.html)
-and the content uses [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+The code follows [GPL v3.0](https://www.gnu.org/licenses/gpl.html)
+and the content follows [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
