@@ -14,6 +14,17 @@ You can use the following command to compile this document
 latexmk -lualatex main.tex
 ```
 
+Notice, `lualatex` is required to produce all the graphs in this paper.
+If you remove dependency to following package:
+```latex
+% for graphics
+\usepackage{tikz}
+\usetikzlibrary[graphs, graphdrawing, graphs.standard]
+\usegdlibrary{circular, layered, trees}
+```
+You may be able to compile this document using `xelatex` or `pdflatex`.
+However, I recommend you to use `xelatex` or `lualatex` to compile your documents.
+
 # Development Environment
 I uses [`vscode`](https://github.com/Microsoft/vscode) with [`LaTeX-Workshop`](https://github.com/James-Yu/LaTeX-Workshop) to build my documents.
 
