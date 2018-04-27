@@ -79,6 +79,7 @@ My `LaTeX-WorkShop` set up is like this:
 Notice, you need to install `synctex` to use the `synctex`
 feature in  [`LaTeX-Workshop`](https://github.com/James-Yu/LaTeX-Workshop).
 See https://github.com/James-Yu/LaTeX-Workshop#requirements.
+
 You can install `synctex` on windows using [chocolatey](https://chocolatey.org/):
 ```console
 choco install synctex
@@ -86,7 +87,7 @@ choco install synctex
 
 ## Disclaimer
 
-All the instruction may not be up to date.
+All the instruction may not be up-to-date.
 if you encounter any difficulty building this document,
 please create a issue.
 I will try my best to provide a answer to your question.
