@@ -1,7 +1,7 @@
 # Honor-Thesis
 My Honor Thesis in Graph Theory
 
-# Compile
+## Compile
 I personally use `miktex`, `latexmk` (with `strawberry perl`) to build my document.
 
 On Windows, you can install all the build tools using [chocolatey](https://chocolatey.org/):
@@ -25,7 +25,7 @@ If you remove dependency to following package:
 You may be able to compile this document using `xelatex` or `pdflatex`.
 However, I recommend you to use `xelatex` or `lualatex` to compile your documents.
 
-# Development Environment
+## Development Environment
 I uses [`vscode`](https://github.com/Microsoft/vscode) with [`LaTeX-Workshop`](https://github.com/James-Yu/LaTeX-Workshop) to build my documents.
 
 My `LaTeX-WorkShop` set up is like this:
@@ -79,14 +79,14 @@ You can install `synctex` on windows using [chocolatey](https://chocolatey.org/)
 choco install synctex
 ```
 
-# Disclaimer
+## Disclaimer
 
 All the instruction may not be up to date.
 if you encounter any difficulty building this document,
 please create a issue.
 I will try my best to provide a solution to your question.
 
-# Licenses
+## Licenses
 
 The code uses [GPL v3.0](https://www.gnu.org/licenses/gpl.html)
 and the content uses [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
