@@ -31,7 +31,7 @@ You may be able to compile this document using `xelatex` or `pdflatex`.
 However, I recommend you to use `xelatex` or `lualatex` to compile your documents.
 
 ## Development Environment
-I uses [`vscode`](https://github.com/Microsoft/vscode) with [`LaTeX-Workshop`](https://github.com/James-Yu/LaTeX-Workshop) to build my documents.
+I uses [`vscode`](https://github.com/Microsoft/vscode) with [`LaTeX-Workshop`](https://github.com/James-Yu/LaTeX-Workshop) to write this document.
 
 My `LaTeX-WorkShop` set up is like this:
 ```json
