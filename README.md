@@ -89,7 +89,7 @@ choco install synctex
 All the instruction may not be up to date.
 if you encounter any difficulty building this document,
 please create a issue.
-I will try my best to provide a solution to your question.
+I will try my best to provide a answer to your question.
 
 ## Licenses
 
