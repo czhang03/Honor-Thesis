@@ -1,0 +1,294 @@
+\section{Ties and Tie Paths}
+
+Property of ties in quasi-transitive digraph is
+vastly important in this paper.
+
+\begin{lemma}\label{the: arrow direction lemma}
+  In a quasi-transitive oriented graph,
+  if vertex \(a\) ties vertex \(b\),
+  then for all vertex \(v\) that is adjacent to both \(a\) and \(b\),
+  either \(v\) beats both \(a\) and \(b\),
+  or \(v\) is beaten by both \(a\) and \(b\)
+  (\(\set{a, b} \to v\) or \(v \to \set{a, b}\)).
+\end{lemma}
+
+\begin{proof}
+  assume that there exists one vertex \(v\)
+  such that this lemma does not hold.
+
+  Because \(v\) is adjacent to both \(a\) and \(b\),
+  see \cref{fig: possible beating between v and a b}
+  therefore only possible beating relations left are
+  \(a \to v \to b\) and \(b \to v \to a\).
+  However, according to the definition of
+  quasi-transitive oriented graph,
+  if \(a \to v \to b\) and \(b \to v \to a\),
+  then \(a\) and \(b\) have to be adjacent.
+  But \(a\) ties with \(b\). Contradiction.
+\end{proof}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.2\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+      v -> {a, b};
+      a --[dashed] b;
+    };
+    \caption{\(v \to \set{a, b}\)}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.2\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+      v <- {a, b};
+      a --[dashed] b
+    };
+    \caption{\(\set{a, b} \to v\)}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.2\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+      v <- a;
+      v -> b;
+      a --[dashed] b
+    };
+    \caption{\(a \to v \to b\)}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.2\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+      v -> a;
+      v <- b;
+      a --[dashed] b
+    };
+    \caption{\(b \to v \to a\)}
+  \end{subfigure}
+  \caption{all the possible beating relation between
+    vertex \(v\) and vertices \(a, b\)}
+  \label{fig: possible beating between v and a b}  % chktex 24
+\end{figure}
+
+\cref{fig: arrow direction lemma: uncondensed} shows a nice
+visualization of \cref{the: arrow direction lemma}.
+If we only draw out all the vertices that are adjacent to both
+\(a\) and \(b\), represented by
+\(d_1, d_2, d_3, s_1, s_2, s_3, s_4\) in this graph,
+then \(a\) and \(b\) are either beaten by them or beat them.
+The behavior of \(\set{a, b}\) is somewhat like a vertex,
+see \cref{fig: arrow direction lemma: condensed}.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[layered layout, grow=right, math nodes, level sep=2cm] {
+      d_1 -> {a, b} -> s_1;
+      d_2 -> {a, b} -> s_2;
+      d_3 -> {a, b} -> s_3;
+      {a, b} -> s_4;
+      / [draw] // {a, b};
+    };
+    \caption{all the vertices are adjacent to \(a, b\)}
+    \label{fig: arrow direction lemma: uncondensed}  % chktex 24
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[layered layout, grow=right, math nodes, level sep=2cm] {
+      d_1 -> v -> s_1;
+      d_2 -> v -> s_2;
+      d_3 -> v -> s_3;
+      v -> s_4;
+    };
+    \caption{the set \(\set{a, b}\) behaves like \(v\)}
+    \label{fig: arrow direction lemma: condensed}  % chktex 24
+  \end{subfigure}
+  \label{fig: arrow direction lemma}  % chktex 24
+\end{figure}
+
+However, this nice visualization in
+\cref{fig: arrow direction lemma} has a very strong prerequisite,
+that is, all the vertices need to be adjacent to
+both \(a\) and \(b\).
+What will happen when we add another vertex that
+ties either \(a\) or \(b\) but is adjacent to \(v\)?
+We will then create a visualization for this problem.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=2cm] {
+      v <- {a, b};
+      a --[dashed] b --[dashed] c;
+    };
+    \caption{add a vertex \(c\) ties \(b\), but not \(v\)}
+    \label{fig: add tie to arrow direction lemma: start} % chktex 24
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=2cm] {
+      v <- {a, b};
+      a --[dashed] b --[dashed] c;
+      v <- c;
+    };
+    \caption{by \cref{the: arrow direction lemma}, \(c \to v\)}
+    \label{fig: add tie to arrow direction lemma: finish} % chktex 24
+  \end{subfigure}
+  \caption{ties are ``transmitting'' arrow directions}
+  \label{fig: add tie to arrow direction lemma}  % chktex 24
+\end{figure}
+
+In \cref{fig: add tie to arrow direction lemma: start}
+we add a vertex \(c\) that ties \(b\),
+but needs to be adjacent to \(v\).
+We then try to figure out the edge directed
+between \(v\) and \(c\).
+Because \(b\), \(c\) are both adjacent to \(v\),
+and \(c\) ties \(b\),
+therefore either \(\set{b, c} \to v\) or \(v \to \set{b, c}\).
+However, in the graph, \(b \to v\), therefore \(c \to v\).
+Thus, we get \cref{fig: add tie to arrow direction lemma: finish}.
+
+We find out that because of the ties between \(a, b, c\)
+the arrows direction between \(v, a\) and \(v, b\),
+got ``transmitted'' to \(v, c\)
+via the \cref{the: arrow direction lemma}.
+We formalize this ``arrow transmission'' idea:
+
+\begin{definition}
+  In a digraph, a \keyword{tie path} from vertex \(a_0\) to \(a_n\),
+  or a tie path between vertex \(a_0\) and \(a_n\),
+  is a sequence of vertices
+  \([a_0, a_1, a_2, \ldots, a_{n-1}, a_n]\),
+  such that for all \(0 \leq k < n\), \(a_k\) ties \(a_{k + 1}\).
+  If there is \(n + 1\) vertices in that sequence,
+  we will say \keyword{the length of the tie path} is \(n\).
+\end{definition}
+
+A tie path is pretty similar to a path in undirected graph;
+just substitute all the edges in a path with ties.
+See \cref{fig: tie path and path}.
+
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[layered layout, math nodes, level sep=1cm] {
+      a --b --c --d
+    };
+    \caption{a path from \(a\) to \(d\)}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[layered layout, math nodes, level sep=1cm] {
+      a --[dashed] b --[dashed] c --[dashed] d
+    };
+    \caption{a tie path from \(a\) to \(d\)}
+  \end{subfigure}
+  \caption{tie paths are just like paths}
+  \label{fig: tie path and path}  % chktex 24
+\end{figure}
+
+We first prove some general properties of digraph,
+these lemmas will be useful later:
+
+\begin{lemma}\label{the: tie path connection lemma}
+  In a digraph,
+  if there exists a tie path from vertex \(a\) to vertex \(b\)
+  and there exists a tie path from vertex \(b\) to vertex \(c\),
+  then there exists a tie path from \(a\) to \(c\).
+\end{lemma}
+\begin{proof}
+  Write the tie path from \(a\) to \(b\) as:
+  \([a, a_0, a_1, \ldots, a_n, b]\),
+  and the tie path from \(b\) to \(c\) as:
+  \([b, b_0, b_1, \ldots, b_m, c]\).
+  Then there exists a tie path
+  \([a, a_0, a_1, \ldots, a_n, b, b_0, b_1, \ldots, b_m, c]\)
+  from \(a\) to \(c\).
+  See \cref{fig: tie path connection}.
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a --[dashed] a_0 --[dashed] a_1 --[dashed] dots_a [as=\ldots]
+      --[dashed] a_n --[dashed] b --[dashed] b_0 --[dashed]
+      b_1 --[dashed] dots_b [as=\ldots] --[dashed] b_m  --[dashed] c;
+    };
+    \caption{tie path from \(a\) to \(b\), and from \(b\) to \(c\)}
+    \label{fig: tie path connection}  % chktex 24
+  \end{figure}
+\end{proof}
+
+\begin{lemma}\label{the: tie path division lemma}
+  In a digraph,
+  if there exists a tie path \([a_0, a_1, \ldots, a_{n-1}, a_n]\),
+  then for all \(0 \leq p \leq n\) and \(0 \leq q \leq n\),
+  and \(p\) does not equal \(q\),
+  then there exists a tie path between \(p\) and \(q\).
+\end{lemma}
+\begin{proof}
+  Without loss of generality, assume \(p < q\).
+
+  Then we can find a tie path
+  \([a_p, a_{p+1}, \ldots, a_{q-1}, a_q]\),
+  see \cref{fig: tie path division}.
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a_0 --[dashed] a_1 --[dashed] dots_a[as=\ldots]
+      --[dashed] a_{p-1} --[dashed] a_p --[dashed]
+      a_{p+1} --[dashed] dots_b[as=\ldots] --[dashed] a_{q-1}
+      --[dashed] a_q --[dashed] a_{q+1} --[dashed] dots_c[as=\ldots]
+      --[dashed] a_{n-1} --[dashed] a_{n};
+      / [label = left:tie path from \(a_p\) to \(a_q\), draw] //
+        {a_p, a_{p+1}, dots_b, a_{q-1}, a_q};
+    };
+    \caption{the tie path from \(a_0\) to \(a_n\)}
+    \label{fig: tie path division}  % chktex 24
+  \end{figure}
+\end{proof}
+
+We then focus on the intuition of tie transmitting
+arrow directions in quasi-transitive oriented graph to
+prove some theorems that are specific to quasi-transitive
+oriented graph.
+
+\begin{lemma}\label{the: tie transimission}
+  For every tie path in a quasi-transitive oriented graph,
+  take a vertex \(v\) that is adjacent to all the vertex
+  on the tie path,
+  then \(v\) beats every vertex on the tie path,
+  or \(v\) is beaten by every vertex on the tie path.
+\end{lemma}
+
+\begin{proof}
+  We can prove this lemma via induction,
+  just like we did in
+  \cref{fig: add tie to arrow direction lemma}.
+
+  Start with tie path of length 1,
+  then we only have \(a_0\) ties \(a_1\) in this tie path,
+  and \(v\) that is adjacent to both of them.
+  The lemma holds because \cref{fig: arrow direction lemma}.
+
+  Assume this lemma holds for any tie path of length \(n\),
+  then we need to prove this theorem holds for
+  tie path of length \(n + 1\).
+  Take a tie path \([a_0, a_1, \ldots, a_n, a_{n - 1}]\).
+  because this lemma holds for tie path of length \(n\),
+  then it is true for tie path \([a_0, a_1, \ldots, a_n]\).
+  Because \(a_n\) ties \(a_{n-1}\), and
+  \(v\) is adjacent to both of them.
+  Therefore, \(a_n \to v \implies a_{n+1} \to v\) and
+  \(v \to a_n \implies v \to a_{n+1}\).
+  Therefore this lemma still holds for tie path of length \(n + 1\).
+
+  Therefore this lemma is always true.
+\end{proof}
+
+\cref{the: tie transimission} generalizes
+\cref{the: arrow direction lemma},
+however, it is still far from elegant,
+because we still requires an vertex \(v\) that is adjacent to
+the whole tie path.

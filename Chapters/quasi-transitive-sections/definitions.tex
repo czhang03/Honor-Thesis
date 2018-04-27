@@ -1,0 +1,47 @@
+\section{Definitions}
+
+\cref{chap: general oriented graph}
+is a rather short chapter,
+because the behavior of oriented graph is
+so unpredictable that it is hard to produce theorems about them.
+Therefore we decided to focus on a special case of oriented graph,
+which is called ``quasi-transitive oriented graph'':
+
+\begin{definition}
+  a \keyword{quasi-transitive oriented graph} \(G\) is
+  an oriented graph such that,
+  for all vertices \(a, b, c \in V(G)\), if \(a \to b \to c\),
+  then \(a\) is adjacent to \(c\).
+  See \cref{fig: quasi-transitive oriented graph}
+\end{definition}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=2cm] {
+      b <- a;
+      b -> c;
+      a -> c;
+    };
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=2cm] {
+      b <- a;
+      b -> c;
+      a <- c;
+    };
+  \end{subfigure}
+  \caption{if \(a \to b \to c\) then \(a\) is adjacent to \(c\)}
+  \label{fig: quasi-transitive oriented graph}  %chktex 24
+\end{figure}
+
+Because every vertex is adjacent to each other in tournaments,
+therefore tournaments is a special case of
+quasi-transitive oriented graph.
+
+Although quasi-transitive oriented graph can be quite strange
+(for example, graphs with no edges are quasi-transitive oriented graphs),
+there are many connections between quasi-transitive oriented graphs
+and tournaments~\cite{bangjensen_quasitransitive_1995}.

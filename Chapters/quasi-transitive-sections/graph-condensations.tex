@@ -1,0 +1,566 @@
+\section{Graph Condensations}
+
+\begin{definition}
+  A \keyword{condensation} is a function \(f: G \to H\),
+  where \(G\) and \(H\) are oriented graphs,
+  and \(f\) maps \(V(G)\) to \(V(H)\) surjectively,
+  such that
+  \begin{itemize}
+    \item for any two vertices \(a, b \in V(G)\),
+      if \(f(a) \to f(b)\) in \(H\)
+      then \(a \to b\) in \(G\).
+    \item for any two vertices \(a, b \in V(G)\),
+      if \(f(a)\) ties \(f(b)\) in \(H\)
+      then \(a\) ties \(b\) in \(G\).
+  \end{itemize}
+  We call \(G\) the \keyword{uncondensed graph},
+  and \(H\) the \keyword{condensed graph}.
+\end{definition}
+
+Two examples of condensations are identity condensation
+and trivial condensation.
+
+Identity condensation \(i\) maps an oriented graph \(G\) to itself,
+such that \(i\) maps every vertex to itself,
+and \(f(a) \to f(b)\) if \(a \to b\)
+and \(f(a)\) ties \(f(b)\) if \(a\) ties \(b\).
+The identity condensation preserves all the edges
+and ties, and did not add any ties.
+We can see that this map is a condensation by definition.
+
+Another example is trivial condensation \(t\),
+which maps any oriented graph \(G\) into a single point.
+Because for any two vertices \(a, b \in G\),
+\(t(a) = t(b)\), therefore by definition,
+\(t(a)\) does not tie or beat \(t(b)\).
+Therefore, this mapping also satisfy the definition of condensation.
+
+\begin{definition}
+  Given oriented graph \(G\) as the uncondensed graph of
+  condensation \(f\),
+  A \keyword{component} of vertex \(a \in V(G)\)
+  is the pre-image of \(f(a)\),
+  in other words, the component of \(a\) is
+  \(\set{x \in V(G) \mid f(x) = f(a)}\).
+\end{definition}
+
+A component of vertex \(a\) is a set of vertices
+that are condensed into the same vertex as \(a\).
+For example, the component of vertex \(a\) in oriented graph \(G\)
+identity condensation is a set that only contains \(a\) itself,
+and the component of a vertex \(a\) in oriented graph \(G\)
+is set of all the vertices,
+because every vertex in \(G\) are all mapped onto a single vertex,
+therefore all the vertices in \(G\) are
+condensed into the same vertex as \(a\).
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a; b;
+      a --[dashed] {c, d, e};
+      b --[dashed] {c, d, e};
+      {c, d, e} -> f;
+      {a, b} -> f;
+      j -> {c, d, e};
+      {a, b} -> j;
+      f -> j;
+      c -> d -> e --[dashed] c;
+      a -> b;
+    };
+    \caption{an oriented graph \(G\)}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a; b; c; d; e; f; j;
+      d -> e --[dashed] c;
+      a -> b;
+      / [label = left:\(A\), draw, circle] // {a, b};
+      / [label = left:\(B\), draw] // {d, e, c};
+      / [label = right:\(C\), draw, circle] // {f};
+      / [label = right:\(D\), draw, circle] // {j};
+    };
+    \caption{components of \(G\) in this condensation}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      A [draw, circle, minimum size=1.5cm] --[dashed]
+      B [draw, circle, minimum size=1.75cm] ->
+      C [draw, circle, minimum size=1cm] ->
+      D [draw, circle, minimum size=1cm];
+      A -> D -> B
+    };
+    \caption{find the relationship between components}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      A' --[dashed] B' -> C' -> D';
+      A' -> D' -> B';
+    };
+    \caption{condensed graph \(H\)}
+  \end{subfigure}
+  \caption{an example of graph condensation}
+  \label{fig: condensation example}  % chktex 24
+\end{figure}
+
+In \cref{fig: condensation example},
+we show a general example of condensation.
+In this example,
+the distinct components in \(G\) are \(A\), \(B\), \(C\) and \(D\),
+and they are condensed into vertices
+\(A'\), \(B'\), \(C'\) and \(D'\) respectively.
+The component of \(a\) is \(A\),
+the component of \(d\) is \(B\),
+and the component of \(c\) is also \(B\),
+because both \(c\) and \(d\) are mapped into vertex
+\(B'\) in oriented graph \(G\).
+
+We proof couple theorem to help the understanding of
+condensation and components:
+
+\begin{theorem}\label{the: condensation component partition}
+  Given any oriented graph \(G\) and condensation \(f\),
+  distinct components in \(G\) partitions \(V(G)\).
+\end{theorem}
+
+\begin{proof}
+  Prove distinct components disjoint:
+  take any two vertices \(a, b \in V(G)\),
+  find component of \(a\): \(A\),
+  and component of \(b\): \(B\).
+  Assume there exists \(v \in A\) and \(v \in B\).
+  Therefore \(f(v) = f(a)\), and \(f(v) = f(b)\),
+  therefore \(f(b) = f(a)\),
+  and \(B
+  = \set{x \in V(G) \mid f(x) = f(b)}
+  = \set{x \in V(G) \mid f(x) = f(a)}
+  = A\).
+  Therefore, \(A\) and \(B\) are not distinct.
+  Contradiction.
+
+  Prove every vertex are in a component:
+  for every vertex \(v \in V(G)\),
+  \(v\) is in the component of \(v\) by definition.
+\end{proof}
+
+\begin{lemma}\label{the: vertex force image beating}
+  Given any oriented graph \(G\) and condensation \(f\),
+  for any two distinct components \(A\) and \(B\),
+  \begin{itemize}
+    \item
+      for all \(a \in A, b \in B\), if \(a\) ties \(b\),
+      then \(f(a)\) ties \(f(b)\).
+    \item
+      for all \(a \in A, b \in B\), if \(a \to b\),
+      then \(f(a) \to f(b)\)
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  Because \(A\) and \(B\) are distinct components,
+  then by \cref{the: condensation component partition},
+  \(A\) and \(B\) are disjoint,
+  therefore for any vertex \(a \in A\),
+  and any vertex \(b \in B\), \(f(a) \neq f(b)\).
+
+  Given vertex \(a \in A\) ties vertex \(b \in B\).
+  Then \(f(a)\) cannot beat \(f(b)\),
+  otherwise \(a\) should beat \(b\), by definition of condensation.
+  Also, \(f(b)\) cannot beat \(f(a)\),
+  otherwise \(b\) should beat \(a\),
+  therefore \(f(a)\) ties \(f(b)\).
+
+  Given vertex \(a \in A\) beats vertex \(b \in B\).
+  Then \(f(a)\) cannot tie \(f(b)\),
+  otherwise \(a\) should tie \(b\)
+  Also \(f(b)\) cannot beat \(f(a)\),
+  otherwise \(b\) should beat \(a\).
+  Therefore \(f(a) \to f(b)\).
+\end{proof}
+
+\begin{theorem}\label{the: vertex force beating relation in condensation}
+  Given any oriented graph \(G\) and condensation \(f\),
+  for any two distinct components \(A\) and \(B\),
+  \begin{itemize}
+    \item
+      if any vertex \(a \in A\) ties any vertex \(b \in B\),
+      then \(A\) ties \(B\).
+    \item
+      if any vertex \(a \in A\) beats any vertex \(b \in B\),
+      then \(A \to B\).
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  Because \(A\) and \(B\) are distinct components,
+  then by \cref{the: condensation component partition},
+  \(A\) and \(B\) are disjoint,
+  therefore for any vertex \(a \in A\),
+  and any vertex \(b \in B\), \(f(a) \neq f(b)\).
+
+  Given vertex \(a \in A\) ties vertex \(b \in B\),
+  by \cref{the: vertex force image beating},
+  \(f(a)\) ties \(f(b)\).
+  Thus, for every vertex \(a' \in A\),
+  and every vertex \(b' \in B\),
+  because \(f(a') = f(a)\) and \(f(b') = f(b)\),
+  and \(f(a)\) ties \(f(b)\), therefore \(f(a')\) ties \(f(b')\),
+  then \(a'\) ties \(b'\).
+  Therefore, \(A\) ties \(B\).
+
+  Given vertex \(a \in A\) beats vertex \(b \in B\).
+  by \cref{the: vertex force image beating},
+  \(f(a) \to f(b)\).
+  Thus for every vertex \(a' \in A\),
+  and every vertex \(b' \in B\),
+  because \(f(a') = f(a)\) and \(f(b') = f(b)\),
+  and \(f(a) \to f(b)\), therefore \(f(a') \to f(b')\),
+  then \(a' \to b'\).
+  Therefore, \(A\) ties \(B\).
+\end{proof}
+
+\begin{corollary}\label{the: components are vertex in condensation}
+  Given any oriented graph \(G\) and condensation \(f\),
+  for any two distinct components \(A\) and \(B\),
+  either \(A \to B\), or \(B \to A\), or \(A\) ties \(B\).
+\end{corollary}
+
+\begin{proof}
+  Because components are not empty
+  (component of \(v\) always contains \(v\) itself),
+  we can take \(a \in A\), and \(b \in B\).
+  Because \(G\) is an oriented graph,
+  then either \(a \to b\), \(b \to a\), or \(a\) ties \(b\).
+
+  According to \cref{the: vertex force beating relation in condensation},
+  if \(a \to b\), then \(A \to B\);
+  if \(b \to a\), then \(B \to A\);
+  if \(a\) ties \(b\), then \(A\) ties \(B\).
+\end{proof}
+
+We first see \cref{fig: behaves like a vertex example},
+we show an example of a set of vertices \(\set{b, c, d}\)
+behaves like the vertex \(v\).
+We then try to visualize \cref{the: components are vertex in condensation},
+with the help of \cref{fig: condensation example},
+we find out that graph condensation just takes the idea
+in \cref{fig: behaves like a vertex example}
+to the next level: all the components behaves likes a vertex.
+A condensation is just to find out those sets of vertices
+that behave like a single vertex (components),
+and then condense them into a single vertex.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[layered layout, math nodes, level sep=1cm] {
+      a -> {b, c, d};
+      {b, c, d} -> f;
+      {b, c, d} -> e;
+      / [draw] // {b, c, d};
+    };
+    \caption{every vertex either beats \(\set{b, c, d}\)
+      or is beaten by them}
+    \label{fig: behaves like a vertex example: uncondensed} % chktex 24
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[layered layout, math nodes, level sep=1cm] {
+      a -> v;
+      v -> f;
+      v -> e;
+    };
+    \caption{vertices \(\set{b, c, d}\) in
+      \cref{fig: behaves like a vertex example: uncondensed}
+     behaves exactly like \(v\) in this graph}
+  \end{subfigure}
+  \caption{\(\set{b, c, d}\)
+    behaves like a vertex}
+  \label{fig: behaves like a vertex example}  % chktex 24
+\end{figure}
+
+Notice although we can define identity condensation
+and trivial condensation on all the oriented graphs,
+not all the oriented graphs have other condensations
+defined on them.
+
+\begin{figure}
+  \centering
+  \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+      a -> b -> c -> a;
+  };
+  \caption{an oriented graph with only
+    identity condensation and trivial condensation}
+  \label{fig: no condensation example} % chktex 24
+\end{figure}
+
+For example, graph in \cref{fig: no condensation example}
+cannot have any condensation defined on them
+except for identity condensation and trivial condensation,
+because we cannot find any components that is not the whole
+graph or a single vertex.
+For example, if we find a set \(\set{a, c}\),
+vertex \(b\) both beats a vertex in the set (\(b\) beats \(a\)),
+and are beaten by a vertex in the set (\(c\) is beaten by\(b\)).
+Therefore the set \(\set{a, c}\) is not a component.
+
+Condensation is a relatively strong transformation,
+because it preserves many properties of the graph.
+We will only prove some theorems that will be useful
+in later sections.
+
+\begin{lemma}\label{the: shortest path different components lemma}
+  Given a condensation \(f: G \to H\),
+  for all \(a_0, a_n \in V(G)\),
+  such that \(a_0\) and \(a_n\) are in two distinct components,
+  and the shortest path from \(a_0\) to \(a_n\)
+  is \(P: a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\).
+  Then vertices \(a_0, a_1, \ldots, a_{n-1}, a_n\)
+  are all in different components.
+\end{lemma}
+
+\begin{figure}
+\centering
+  \begin{subfigure}[b]{0.45\linewidth}
+  \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      dots1[as=\ldots] -> a_{p-1} -> a_p
+      -> dots2[as=\ldots] -> a_q -> dots3[as=\ldots];
+      / [label=left:\(C\), draw] // {a_p, a_q};
+    };
+    \caption{\(a_p\) and \(a_q\) are in the same component}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+        dots1[as=\ldots] -> a_{p-1} -> a_p
+        -> dots2[as=\ldots] -> a_q -> dots3[as=\ldots];
+        a_{p-1} -> a_q;
+        / [label=left:\(C\), draw] // {a_p, a_q};
+      };
+      \caption{by \cref{the: vertex force beating relation in condensation},
+        \(a_{p-1} \to a_q\)}
+    \end{subfigure}
+
+  \caption{the path took a ``detour'' at \(a_p\)}
+  \label{fig: same component the not the shortest path}  % chktex 24
+\end{figure}
+
+\begin{proof}
+  Take the first \(a_p\) such that
+  there exists \(a_q\) are in the same component \(C\) as \(a_p\)
+  where \(p < q \leq n\).
+
+  We then show that \(a_{p-1} \in C\):
+  assume \(a_{p-1} \notin C\), then because \(a_{p-1} \to a_p\)
+  and \cref{the: vertex force beating relation in condensation},
+  \(a_{p-1} \to C\).
+  Thus \(a_{p-1} \to a_q\), and path
+  \(a_0 \to a_1 \to \cdots
+  \to a_{p-2} \to a_{p-1} \to a_q \to a_{q+1} \to \cdots
+  \to a_{n-1} \to a_n\) exists and shorter than \(P\).
+  See \cref{fig: same component the not the shortest path}.
+  Contradiction.
+\end{proof}
+
+\begin{theorem}\label{the: condensation preserves shortest path}
+  Given a condensation \(f: G \to H\),
+  for any \(a_0, a_n \in V(G)\),
+  such that \(a_0\) and \(a_n\) are in two distinct components.
+  The shortest path from \(a_0\) to \(a_n\) is
+  \(a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\) in \(G\)
+  if and only if the shortest path from \(f(a_0)\) to \(f(a_n)\) is
+  \(f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\)
+  in \(H\).
+\end{theorem}
+
+\begin{proof}
+  Prove \(\Rightarrow \):
+  assume \(P: f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\)
+  is not the shortest path,
+  then there exists another path \(P'\)
+  from \(f(a_0)\) to \(f(a_n)\): \(f(a_0)
+    \to f(b_1) \to f(b_2) \to \cdots \to f(b_{m-1}) \to f(b_m)
+    \to f(a_n)\).
+  Because \(a_0\) and \(a_n\) are in distinct components,
+  then the path \(P'\) does not have length 0.
+  If \(P'\) is shorter than \(P\), the path
+  \(a_0 \to b_1 \to b_2 \to \cdots \to b_{m-1} \to b_m \to a_n\)
+  exists (by definition of condensation) and will be shorter than
+  \(a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\).
+  Since \(a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\)
+  is the shortest path from \(a_0\) to \(a_n\),
+  contradiction.
+
+  Prove \(\Leftarrow \):
+  assume the shortest path is
+  \(a_0 \to b_1 \to b_2 \to \cdots \to b_m \to a_n\).
+  Because of \cref{the: shortest path different components lemma},
+  \(\set{a_0, b_1, b_2, \ldots, b_m, a_n}\)
+  are all in different components.
+  Then by \cref{the: vertex force image beating},
+  \(f(a_0) \to f(b_1) \to f(b_2) \to \cdots \to f(b_m) \to f(a_n)\)
+  exists and will be shorter than
+  \(f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\).
+  Because \(f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\)
+  is the shortest path, contradiction.
+\end{proof}
+
+\begin{corollary}\label{the: condensation preserves beating in distinct components}
+  Given a condensation \(f: G \to H\),
+  for all \(a_0, a_n \in G\),
+  such that \(a_0\) and \(a_n\) are in two distinct components,
+  \(a_0\) beats \(a_n\) by \(n\) steps in \(G\) if and only if
+  \(f(a_0)\) beats \(f(a_n)\) by \(n\) steps in \(H\)
+\end{corollary}
+
+\begin{proof}
+  Result of \cref{the: condensation preserves shortest path}.
+\end{proof}
+
+\begin{corollary}\label{the: condensation preserves king}
+  Given a condensation \(f: G \to H\),
+  vertex \(k\) is a king in \(G\) if and only if
+  \begin{itemize}
+    \item \(k\) is a king in the
+      induced subgraph of the component of \(k\).
+    \item \(f(k)\) is a king in \(H\).
+  \end{itemize}
+\end{corollary}
+
+\begin{proof}
+  Denote component of \(k\) as \(C\).
+  Denote the induced subgraph of \(C\) as \(G_c\).
+
+  Prove \(\Rightarrow \):
+  If \(k\) is a king, then it beats every vertex in \(V(G)\)
+  by 1 or 2 steps.
+  First, if \(k\) beats every vertex outside of \(C\) by
+  1 or 2 steps,
+  because of \cref{the: condensation preserves beating in distinct components},
+  then \(f(k)\) beats every vertex in \(H\) in 1 or 2 steps,
+  therefore \(f(k)\) is a king in \(H\).
+  Then if \(k\) beats every vertex \(v \in C\)
+  in 1 or 2 steps in \(G\), we split into 2 cases:
+  \begin{itemize}
+    \item if \(k\) beats \(v\) by 1 step, then
+      \(k\) beats \(v\) by 1 step in \(G_c\).
+    \item if \(k\) beats \(v\) by 2 steps, then
+      there exists \(a\) such that \(k \to a \to v\).
+      \(a \in C\), because of
+      \cref{the: vertex force beating relation in condensation}.
+      Therefore, \(k\) beats \(v\) by 2 steps in \(G_c\).
+  \end{itemize}
+  Then \(k\) is a king in \(G_c\),
+  and \(f(k)\) is a king in \(H\).
+
+  Prove \(\Leftarrow \):
+  If \(f(k)\) is a king in \(H\),
+  then \(f(k)\) beats every other vertex \(f(v)\) in \(H\),
+  then \(k\) beats every other vertex that is not in \(C\)
+  by 1 or 2 steps, by \cref{the: condensation preserves beating in distinct components}.
+  If \(k\) is a king in \(G_c\),
+  then \(k\) beats every vertex in \(C\) by 1 or 2 steps.
+  Therefore, \(k\) beats every vertex in \(V(G)\) by 1 or 2 steps,
+  then \(k\) is a king in \(G\).
+\end{proof}
+
+Although condensation is a very strong transformation,
+some information in the graph does get lost via this transformation.
+For example, the beating relationships between all the vertices
+in the same components are lost.
+
+
+\begin{figure}
+\centering
+  \begin{subfigure}[b]{0.45\linewidth}
+  \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a_1; a_2;
+      a_1 -> {b_1, b_2};
+      a_2 -> {b_1, b_2};
+      {b_1, b_2} -> c_1;
+      {b_1, b_2} -> d_1;
+      {a_1, a_2} -> c_1;
+      c_1 -> d_1;
+      b_1 -> b_2;
+      / [label=left:\(a\), draw] // {a_1, a_2};
+      / [label=left:\(b\), draw] // {b_1, b_2};
+      / [label=right:\(c\), draw] // {c_1};
+      / [label=right:\(d\), draw] // {d_1};
+    };
+    \label{fig: condensation lost information: uncondensed}  % chktex 24
+    \caption{the uncondensed graph}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+  \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b -> {c, d};
+      a -> c -> d;
+    };
+    \caption{the condensed graph}
+    \label{fig: condensation lost information: condensed}  % chktex 24
+  \end{subfigure}
+  \caption{information lost during condensation}
+  \label{fig: condensation lost information}  % chktex 24
+\end{figure}
+
+In \cref{fig: condensation lost information},
+we show an example of condensation,
+where the vertices \(a_1, a_2\) are condensed into \(a\),
+\(b_1, b_2\) are condensed into \(b\),
+\(c_1\) is condensed into \(c\),
+and \(d_1\) is condensed into \(d\).
+If we just look at the condensed graph,
+we noticed that we cannot recreate the beating relationship
+of \(a_1\) and \(a_2\),
+therefore the information about the beating relationship
+is lost.
+This fact is true for all the vertices in the same component.
+Another example in this graph is that
+we cannot know the beating relationship between \(b_1\) and \(b_2\)
+just by the uncondensed graph.
+
+Notice the beating relationship between components
+are not lost.
+For example, if we want to know the beating relationship
+between \(b_1\) and \(a_2\),
+we first observed that \(a \to b\) in the condensed graph,
+then by definition of a condensation,
+\(a_2\) have to beat \(b_1\) in the uncondensed graph.
+Another example is that we can know that \(a_1\) ties \(d_1\)
+because \(a\) ties \(d\) in the condensed graph.
+
+Therefore, a ``efficient condensation'' should keep as many
+vertices as possible.
+One of the most ``efficient'' condensation is the
+identity condensation, because it does not lose any information
+about this graph.
+However, identity condensation also do not mutate the graph
+at all, therefore it is not very practical.
+
+\begin{definition}
+  Given a set of condensation \(F = \set{f_0, f_1, \ldots, f_n}\)
+  where \(f_k: G_k \to H_k\)
+  and all the \(V(G_k)\) are of the same size for \(0 \leq k \leq n\),
+  an \keyword{efficient condensation} \(f: G \to H\) in \(F\)
+  is a condensation such that
+  \(H\) has largest vertex set in
+  \(\set{H_0, H_1, H_2, \ldots H_n}\)
+\end{definition}
+
+Notice in this definition,
+all the \(G_k\)'s where \(0 \leq k \leq n\) are not
+necessarily distinct.
+One example of efficient condensation is
+given a graph \(G\) and all the condensation defined on \(G\),
+that is  \(\set{f_0, f_1, \ldots, f_n}\) where \(f_k: G \to H_k\).
+Then the identity condensation,
+is an efficient condensation in this set,
+since it keeps all the vertices.

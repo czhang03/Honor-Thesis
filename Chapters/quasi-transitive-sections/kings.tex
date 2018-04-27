@@ -1,0 +1,266 @@
+\section{Kings}
+
+Kings in quasi-transitive oriented graph have very nice property,
+because these two definitions are deeply connected.
+The definition of king states that it can beats every vertex
+by one or two steps,
+and the definition of quasi-transitive oriented graph states that
+if a vertex beats another vertex by two steps,
+then they are adjacent.
+
+After a brief looking that we can came up with the following
+lemma:
+
+\begin{lemma}\label{the: king adjacent}
+  In a quasi-transitive oriented graph,
+  king is adjacent to every vertex.
+\end{lemma}
+
+\begin{proof}
+  Given a king \(k\), and another vertex \(v\),
+  then there are two possibilities:
+
+  Case 1, \(k\) beats \(v\) by one step:
+  therefore \(k \to v\), \(k\) and \(v\) are adjacent.
+
+  Case 2, \(k\) beats \(v\) by two steps:
+  therefore exists vertex \(a\), such that \(k \to a \to v\).
+  Then by definition of quasi-transitive oriented graph,
+  \(k\) needs to be adjacent to \(v\)
+\end{proof}
+
+\begin{lemma}
+  In a quasi-transitive oriented graph,
+  for any king \(k\), \(\set{D_k, S_k, \set{k}}\)
+  partitions the graph.
+\end{lemma}
+
+\begin{proof}
+  Proof disjoint: pretty obvious.
+  \(D_k, S_k\) disjoint because we are working in oriented graph.
+  \(D_k, S_k\) disjoint with \(\set{k}\)
+  because a vertex cannot beat itself.
+
+  Proof the union is the whole vertex set:
+  by \cref{the: king adjacent}
+\end{proof}
+
+\begin{lemma}
+  In a quasi-transitive oriented graph,
+  for any king \(k\), \(D_k, S_k\) are adjacent.
+\end{lemma}
+
+\begin{proof}
+  By definition of quasi-transitive oriented graph,
+  because every vertex in \(D_k\) beats \(k\)
+  and then beats every vertex in \(S_k\),
+  every vertex in \(D_k\) is adjacent to every vertex in \(S_k\).
+\end{proof}
+
+\begin{theorem}
+  In a quasi-transitive oriented graph,
+  if we have a king \(k\), then
+  \begin{itemize}
+    \item \({D_k, S_k, \set{k}}\) partitions the vertex set.
+    \item \(D_k\) and \(S_k\) is adjacent.
+  \end{itemize}
+\end{theorem}
+
+\begin{figure}
+  \centering
+  \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+      D_k [draw, circle, minimum size=2cm] ->
+      k ->
+      S_k [draw, circle, minimum size=2cm];
+      ""; % chktex 18
+      D_k --[bend left] S_k;
+  };
+  \caption{the rich structure of a king in quasi-transitive oriented graph}
+  \label{fig: king in quasi-transitive}  % chktex 24
+\end{figure}
+
+See \cref{fig: king in quasi-transitive},
+this figure shows the rich structure of a king
+in quasi-transitive oriented graph.
+We were able to almost see the partition structure mentioned in
+\cref{chap: semi-complete digraph}, and \cref{the: graph partition lemma}.
+
+The vertex in \(D_k\) cannot ties everything out side of \(D_k\),
+and so is \(S_k\).
+Intuitively, if there is a king in quasi-transitive oriented graph,
+then this graph becomes ``very connected'',
+the only places ties can appear are inside the
+induced subgraph of \(D_k\) and \(S_k\).
+
+Since we have deduced nice structure about ties
+in quasi-transitive oriented graph,
+it is only logical to combine the property of king
+with the property of tie (tie component).
+Hence come the final theorem of this paper:
+
+\begin{theorem}\label{the: king in quasi-transitive}
+  A vertex \(k\) is a quasi-transitive oriented
+  graph if and only if
+  \begin{itemize}
+    \item \(k\) is in a trivial tie component.
+    \item \(k\) is a king in the underlying tournament.
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  By \cref{the: condensation preserves king},
+  \(k\) is a king if and only if
+  \begin{itemize}
+    \item \(k\) is a king in the induced graph of its tie component.
+    \item \(k\) is a king in the underlying tournament.
+  \end{itemize}
+
+  Show if \(k\) is a king in the induced graph of
+  its tie component,
+  then it is in a trivial tie component:
+  because of \cref{the: king adjacent},
+  \(k\) is a king in its tie component only if
+  \(k\) does not tie with any other vertex
+  in its component.
+  If \(k\) is not in a trivial tie component,
+  it has to tie at least another vertex to have
+  a tie path going to other vertices.
+  Therefore \(k\) has to be in a trivial tie component.
+
+  Show if \(k\) is is in a trivial tie component,
+  then \(k\) in a king in the induced graph of
+  its tie component:
+  true by definition of king;
+  for every graph with one vertex,
+  that vertex is a king in the graph.
+\end{proof}
+
+\begin{figure}
+\centering
+  \begin{subfigure}[b]{0.45\linewidth}
+  \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a_1 -> {b_1, b_2};
+      {b_1, b_2} -> c_1;
+      {b_1, b_2} -> c_2;
+      {c_1, c_2} -> a_1;
+      {b_1, b_2} -> d_1;
+      {c_1, c_2} -> d_1;
+      a_1 -> d_1;
+      / [label=\(a\), draw] // {a_1};
+      / [label=left:\(b\), draw] // {b_1, b_2};
+      / [label=right:\(c\), draw] // {c_1, c_2};
+      / [label=right:\(d\), draw] // {d_1};
+    };
+    \caption{quasi-transitive oriented graph \(G\)}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+  \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b -> c -> a;
+      {a, b, c} -> d;
+    };
+    \caption{the underlying tournament of \(G\)}
+  \end{subfigure}
+  \caption{a quasi-transitive digraph and its underlying tournament}
+  \label{fig: quasi-transitive king example}  % chktex 24
+\end{figure}
+
+In \cref{fig: quasi-transitive king example},
+we show a quasi-transitive oriented graph \(G\)
+and its underlying tournament.
+In the underlying tournament the kings are
+\(a, b, c\), but only \(a_1\) can be a king,
+since vertices \(b\) and \(c\) do not correspond to
+trivial tie components.
+(tie component \(\set{b_1, b_2}\) are condensed into \(b\),
+and tie component \(\set{c_1, c_2}\) are condensed into \(c\)).
+Notice, although vertex \(d_1\) is in a trivial tie component,
+\(d_1\) is not a king in \(G\),
+because in the underlying tournament, \(d\)
+(the image of \(d_1\) under tie condensation) is not a king.
+
+This theorem not only gives us an way to identify king
+in quasi-transitive oriented graph,
+but it helps us to construct a quasi-transitive oriented graph
+with certain number of kings.
+
+\begin{figure}
+\centering
+  \begin{subfigure}[b]{0.45\linewidth}
+  \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b -> c -> a;
+      {a, b, c} -> d
+    };
+    \caption{start with a tournament with 3 kings.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+  \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> {b_1, b_2} -> c -> a;
+      b_1 --[dashed] b_2;
+      {a, b_1, b_2, c} -> d;
+      / [label=left:\(b\), draw] // {b_1, b_2}
+    };
+    \caption{then change king \(b\) to \(\set{b_1, b_2}\)}
+  \end{subfigure}
+  \caption{construct a quasi-transitive oriented graph with 2 kings}
+  \label{fig: quasi-transitive 2 kings}  % chktex 24
+\end{figure}
+
+For example, if we want to construct a quasi-transitive
+oriented graph with \(k\) kings,
+we first start with a quasi-transitive graph with \(n\) kings,
+where \(n > k\),
+and then we change \(n - 2\) vertices into
+``non-trivial tie components''.
+See \cref{fig: quasi-transitive 2 kings},
+we start with a tournament with 3 kings \(\set{a, b, c}\),
+then we change the king \(b\) into a non-trivial tie component
+\(\set{b_1, b_2}\).
+Then the only kings left are \(a\) and \(c\).
+
+This way of constructing quasi-transitive oriented graphs
+is very useful,
+since we can control the number of ties in the graph.
+For a tie components with \(n\) vertices,
+the number of ties in the component can be any number
+between \(n - 1\)
+(ties forms a spanning tree of the component)
+and \(\frac{n(n+1)}{2}\)
+(there exists a tie between every two vertices).
+And there is no tie between different tie components.
+
+Another significant usage of \cref{the: king in quasi-transitive}
+is to use the properties of kings in tournaments to prove
+properties of kings in quasi-transitive oriented graphs.
+
+\begin{definition}
+  a \keyword{great king} \(k\) in a digraph \(G\),
+  is the only king in graph \(G\), and \(k\) is not an emperor.
+\end{definition}
+
+\begin{corollary}
+  If there exists a great king in a
+  quasi-transitive oriented graph \(G\),
+  then there exists at least two ties in \(G\).
+\end{corollary}
+
+\begin{proof}
+  Assume \(k\) is the great king in \(G\),
+  then there exists a vertex \(v \to k\).
+  denote the underlying tournament of \(G\) as \(T\),
+  and the tie component condensation of \(G\) as \(f\).
+
+  By \cref{the: vertex force image beating}, \(f(v) \to f(k)\).
+  Therefore, by \cref{the: king in quasi-transitive}
+  \(f(k)\) is a king, but not an emperor in \(T\).
+  Because of \cref{the: one king iff emperor} and
+  \cref{the: no 2 kings},
+  there exists at least 3 kings in \(T\),
+  because \(k\) is the only king in \(G\),
+  there has to exist at least 2 non-trivial tie components.
+  Therefore, \(G\) have at least 2 ties.
+\end{proof}
+

@@ -1,0 +1,128 @@
+%% Please compile this file using LuaLatex
+\documentclass[12pt, oneside]{book}
+
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[T1]{fontenc}
+
+%% Sets page size, margins and spacing
+\usepackage[top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{setspace,caption}
+% line spacing
+\linespread{1.5}
+\selectfont
+% reduce item separation
+\usepackage{enumitem}
+\setlist[1]{itemsep=-5px}
+% set the bibliography
+\usepackage[style=numeric-comp]{biblatex}
+\addbibresource{bib_file/bib_file.bib}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+
+
+%% Additional Packages
+% for graphics
+\usepackage{tikz}
+\usetikzlibrary[graphs, graphdrawing, graphs.standard]
+\usegdlibrary{circular, layered, trees}
+% Use index
+\usepackage{makeidx}
+\makeindex
+% Use sub figure
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup[subfigure]{justification=centering}
+% better reference
+\usepackage[capitalise]{cleveref}
+% Add bibliography to table of contents
+\usepackage[nottoc,numbib]{tocbibind}
+% to reference title
+\usepackage{titling}
+% date time
+\usepackage{datetime}
+\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
+
+%% Define theorem environments
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[chapter]
+
+%% Define useful functions
+% \keyword function is used for crucial words,
+% you can both highlight and index that word.
+% Typically used in definitions.
+\newcommand{\keyword}[1]{\textbf{\boldmath{#1}}\index{\MakeLowercase{#1}}}
+
+%% Define the set notation
+\DeclarePairedDelimiter\set\{\}  %chktex 21
+
+\title{Kings in Generalized Tournaments}
+\author{Cheng Zhang}
+
+\begin{document}
+
+  %%% Preface
+  % The title page
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \doublespacing\centering
+
+    \vfill
+    \LARGE \textbf{\thetitle{}} \\
+    \large BY \\
+    \textbf{\theauthor{}} \\
+
+    \vfill
+    A Study \\
+    Presented to the Faculty \\
+    of \\
+    Wheaton College \\
+    in Partial Fulfillment of the Requirements \\
+    for \\
+    Graduation with Departmental Honors \\
+    in Mathematics \\
+    Norton, Massachusetts \\
+    \monthyeardate\today
+
+    \vfill
+  \end{titlepage}
+
+  % The menu
+  \tableofcontents
+
+  %%% The chapters
+  \include{Chapters/abstract}
+  \include{Chapters/acknowledgement}
+  \include{Chapters/introduction}
+  \include{Chapters/background}
+  \include{Chapters/semicomplete-digraph}
+  \include{Chapters/general-oriented-graph}
+  \include{Chapters/quasi-transitive}
+  \include{Chapters/further-problem}
+
+
+
+  %%% Post face
+  % figure menu
+  \listoffigures
+  % bibliography
+  \printbibliography[heading=bibintoc]
+  % \bibliography{bib_file/bib_file}
+  % index page
+  \cleardoublepage{}
+  \printindex
+
+
+\end{document}

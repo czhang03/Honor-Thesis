@@ -1,0 +1,145 @@
+\chapter{General Oriented Graph}\label{chap: general oriented graph}
+
+The properties of semi-complete digraphs basically inherit
+the properties of tournaments,
+and most of the proofs are almost the same.
+
+We then move on to another family of graphs that are less
+similar to tournaments: oriented graphs.
+We will investigate general properties of oriented graph
+in this chapter.
+In later \cref{chap: quasi-transitive}, we will focus on
+specific families of oriented graph
+
+\begin{lemma}\label{the: no (4 4) oriented graph}
+  There does not exist a \((4,4)\) general oriented graph.
+\end{lemma}
+
+\begin{lemma}\label{the: no (2 2) and (3 2) oriented graph}
+  There does not exist a \((2, 2)\) oriented graph
+  and a \((3, 2)\) oriented graph
+\end{lemma}
+
+The previous lemmas can be proved by
+listing all the oriented graph with 2, 3, and 4 vertices.
+We will not show the proofs in this thesis,
+because the proofs are too long and uninteresting.
+
+\begin{lemma}\label{the: (n 2) oriented graph}
+  There exists \((n, 2)\) oriented graph for \(n \geq 4\)
+\end{lemma}
+
+\begin{proof}
+  \begin{figure}
+    \centering
+    \tikz\graph[tree layout, grow=down, math nodes, sibling distance=1cm,level sep=1cm] {
+        a -> b -> {c_1, c_2, "\ldots", c_{n-3}, c_{n-2}};  %chktex 18
+        c_1 -> a;
+    };
+    \caption{only \(a\) and \(b\) are kings for \(n \geq 4\)}
+    \label{fig: (n 2) oriented graph}  %chktex 24
+  \end{figure}
+  We can see in \cref{fig: (n 2) oriented graph} that
+  \(c_1\) cannot dominate \(c_2\) in 2 steps.
+  and other \(c_i\) cannot dominate any other vertex,
+  because there is no edge going out of them.
+
+  \(a\) is a king because \(a \to b \to c_k\),
+  where \(k\) is a integer and \(k \leq n - 2\),
+  therefore \(a\) beats \(b\) by one step,
+  and beats all the \(c_k\) by 2 steps.
+  \(b\) beats every \(c_k\) by 2 steps,
+  where \(k\) is a positive integer and \(k \leq n - 2\),
+  and \(b\) beats \(a\) by 2 steps: \(b \to c_1 \to a\).
+\end{proof}
+
+\begin{theorem}\label{the: (n k) oriented graph}
+  There exists an \((n, k)\) oriented graph for all the \(n \geq k \geq 1\),
+  with the exception of \((2, 2)\), \((2, 3)\) and \((4, 4)\) oriented graph.
+\end{theorem}
+
+\begin{proof}
+  \cref{the: (n k) tournament exists} shows that
+  there exists \((n, k)\) tournament for all \(n \geq k \geq 1\)
+  with the exception of \((n, 2)\), and \((4, 4)\).
+
+  Because tournaments are also oriented graphs and
+  by \cref{the: (n 2) oriented graph},
+  \cref{the: no (2 2) and (3 2) oriented graph}, \cref{the: no (4 4) oriented graph},
+  we can conclude that the theorem is correct.
+\end{proof}
+
+We generalize the result from~\cite{maurer_king_1980}
+on tournaments to oriented graphs
+and show that there are only finite number of
+\((n, k)\) oriented graphs that cannot be constructed.
+
+Following the idea from \cref{chap: semi-complete digraph},
+one of the question to ask is that how can we use
+ties more ``efficiently''.
+The construction method in the proof of
+\cref{the: (n 2) oriented graph} is pretty inefficient.
+
+Here we present a better way to construct the graph.
+
+\begin{lemma}\label{the: (n 2) with one tie}
+  There exists \((n, 2)\) oriented graph
+  with only one tie, for \(n \geq 4\)
+\end{lemma}
+
+\begin{proof}
+  \begin{figure}
+    \centering
+    \tikz\graph[tree layout, math nodes, grow=down, sibling distance=2cm,level sep=0.75cm] {
+      a -> b -> {c, T_{n-3} [draw, circle]};
+      T_{n-3} -> c;
+      T_{n-3} -> [bend right] a;
+    };
+    \caption{the constructive proof for
+      \cref{the: (n 2) with one tie}}
+    \label{fig: (n 2) with one tie} %chktex 24
+  \end{figure}
+
+  See \cref{fig: (n 2) with one tie},
+  the \(T_{n - 3}\) is a tournament of \(n - 3\) vertices.
+  In this graph, the only tie is between \(a\) and \(c\)
+  and the only kings are \(a\) and \(b\).
+
+  \(a\) is a king because, \(a \to b \to c\)
+  and \(a \to b \to T_{n - 3}\),
+  therefore \(a\) beats \(b\) in 1 step
+  and \(a\) beats \(c\) and \(T_{n-3}\) in 2 steps.
+  \(b\) is a king because, \(b \to c\)
+  and \(b \to T_{n - 3} \to a\)
+  (because \(T_{n-3}\) is not empty),
+  therefore \(b\) beats \(c\) and \(T_{n - 3}\),
+  and \(b\) beats \(a\) in 2 steps.
+
+  \(c\) is not a king, because it has out-degree 0.
+  Any vertex \(v\) in \(T_{n-3}\) cannot be a king,
+  because the closest path between \(v\) and \(c\)
+  is \(v \to a \to b \to c\) which has length 3.
+\end{proof}
+
+With \cref{the: (n 2) with one tie},
+we can prove the following theorem.
+
+\begin{theorem}\label{the: (n k) oriented graph with one tie}
+  There exists an \((n, k)\) oriented graph
+  with one tie for all the \(n \geq k \geq 1\),
+  with the exception of
+  \((2, 2)\), \((2, 3)\) and \((4, 4)\) oriented graph.
+\end{theorem}
+
+\begin{proof}
+  Almost the same proof as \cref{the: (n k) oriented graph},
+  just substitute \cref{the: (n 2) oriented graph} with
+   \cref{the: (n 2) with one tie}.
+\end{proof}
+
+in other words,
+\cref{the: (n k) oriented graph with one tie},
+states that for all \((n, k)\) oriented graphs
+that can be constructed, can be constructed with only one tie.
+
+%TODO: strong and locally semi-complete

@@ -1,0 +1,526 @@
+\chapter{Background}\label{chap: background}
+
+\section{Directed Graph}
+
+  \begin{definition}
+    a \keyword{directed graph} or \keyword{digraph}
+    consists of a vertex set \(V(G)\),
+    and an edge set (ordered pair of vertices) \(E(G)\).
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        e -> a;
+        b -> c;
+        a -> b;
+        e <-> [bend left] c;
+        d;
+        a -> [loop above] a;
+    };
+    \caption{example of a directed graph}
+    \label{fig:digraph example} %chktex 24
+  \end{figure}
+
+  For example, in \cref{fig:digraph example},
+  if we call this graph \(G\), then
+  the vertex set or \(V(G)\) is \(\set{a, b, c, d, e}\),
+  and the edge set or \(E(G)\) is
+  \(\set{(a, a), (a, b), (b, c), (c, e), (e, a), (e,c)}\).
+  We sometimes will refers to ``edges'' as ``arrows''.
+
+\section{Beating Relations}
+
+  To simplify the notation, we think of an edge as a
+  \emph{beating relation}:
+
+  \begin{definition}
+    In a directed graph \(G\), if \((a, b) \in E(G)\)
+    then we say \(a\) \keyword{beats} (\keyword{dominates})
+    \(b\) or \(a \to b\).
+  \end{definition}
+
+  \begin{definition}
+    A \keyword{path} or a \keyword{walk}
+    from vertex \(a_0\) to vertex \(a_n\)
+    is a sequence of vertices \([a_0, a_1, \ldots, a_{n-1}, a_{n}]\)
+    such that \(\forall 0 \leq k < n, ~ a_k \to a_{k+1}\).
+    We will sometimes write this path as
+    \(a_0 \to a_1 \to \cdots \to a_{n - 1} \to a_n\).
+  \end{definition}
+
+  \begin{definition}
+    For a given path \(P\), if the sequence has \(n + 1\) vertices,
+    then we say the \keyword{length of path} \(P\) is \(n\).
+  \end{definition}
+
+  The length of a path measures the number of edges on this path.
+  For example, in \cref{fig:digraph example},
+  there is a path \(P = e \to a \to b \to c\).
+  And there are edges \((e, a), (a, b), (b, c)\) on this path,
+  therefore the length of this path is 3.
+  There is another path \(P' = e \to c\) goes from \(e\) to \(c\).
+  This path \(P'\) only have length \(1\).
+  Therefore, path \(P'\) is shorter than path \(P\),
+  and if we go through every possible path from \(e\) to \(c\),
+  we can find out that \(P'\) is the \emph{shortest path}
+  from \(e\) to \(c\).
+
+  \begin{definition}
+    In a directed graph \(G\), \(a\) beats (dominates) \(b\) by \(n\) steps,
+    if the shortest path from \(a\) to \(b\) has length \(n\).
+  \end{definition}
+
+  In \cref{fig:digraph example},
+  \(e \to a \to b\),
+  and \(e\) does not beat \(b\) by 1 step,
+  therefore \(e\) beats \(b\) by 2 steps.
+
+  However, although \(e \to a \to b \to c\),
+  \(e\) \emph{does not} beat \(c\) by 3 steps,
+  because the shortest path from \(e\) to \(c\) is \(e \to c\).
+  Therefore, \(e\) beats \(c\) by 1 step.
+
+  \begin{definition}
+    In a directed graph, vertex \(a\) is \keyword{adjacent} to vertex \(b\) if
+    \(a \to b\) or \(b \to a\) or both.
+  \end{definition}
+
+  \begin{definition}
+    In a directed graph, for two distinct vertices \(a, b\),
+    if \(a\) is not adjacent to \(b\),
+     then \(a\) \keyword{tie}s \(b\).
+  \end{definition}
+
+  In \cref{fig:digraph example}, \(c\) is adjacent to \(e\);
+  \(a\) is adjacent to \(b\); \(b\) is adjacent to \(c\).
+  Whereas, \(c\) ties \(a\),
+  because there is no edge \((c, a)\) and no edge \((a, c)\)
+  in this digraph.
+
+  Since we don't always know the exact structure of the graph,
+  it is sometimes useful to look at
+  the beating relationships between sets of vertices.
+  We then define beating, adjacency, and tie between vertex sets.
+
+  \begin{definition}
+    In digraph \(G\), we write \(A \to B\)
+    where \(A\) and \(B\) are disjoint subsets of \(V(G)\),
+    when every vertex in \(A\) beats every vertex in \(B\).
+    We also write \(A \to b\) as a shorthand for \(A \to \set{b}\),
+    and \(a \to B\) as a shorthand for \(\set{a} \to B\).
+  \end{definition}
+
+  \begin{definition}
+    In digraph \(G\), \(A\) is adjacent to \(B\)
+    where \(A\) and \(B\) are disjoint subsets of \(V(G)\),
+    when every vertex in \(A\) is adjacent to every vertex in \(B\).
+    We also write ``\(A\) is adjacent to \(b\)''
+    as a shorthand for ``\(A\) is adjacent to \(\set{b}\)'',
+    and ``\(a\) is adjacent to \(B\)''
+    as a shorthand for ``\(\set{a}\) is adjacent to \(B\)''.
+  \end{definition}
+
+  \begin{definition}
+    In digraph \(G\), \(A\) ties \(B\)
+    where \(A\) and \(B\) are disjoint subsets of \(V(G)\),
+    when every vertex in \(A\) ties every vertex in \(B\).
+    We also write ``\(A\) ties \(b\)''
+    as a shorthand for ``\(A\) ties \(\set{b}\)''
+    and ``\(a\) ties \(B\)''
+    as a shorthand for ``\(\set{a}\) ties \(B\)''
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        {a_1, a_2} -> b;
+        b -> {c_1, c_2};
+        a_1 -> {a_2, c_2};
+        c_1 -> c_2;
+      };
+      \subcaption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        A [draw, circle, minimum size=2cm] -> b -> C [draw, circle, minimum size=2cm];
+      };
+      \subcaption{}
+      \label{fig: condenced beating: condenced subfig} % chktex 24
+    \end{subfigure}
+    \caption{we can draw graph (a) as graph (b)}
+    \label{fig:condenced beating} % chktex 24
+  \end{figure}
+
+  In \cref{fig:condenced beating},
+  we show how we draw the beating relationship with
+  subsets \(A = \set{a_1, a_2}\) and \(C = \set{c_1, c_2}\).
+  Notice, in the \cref{fig: condenced beating: condenced subfig},
+  set \(A\) and set \(C\) are not adjacent.
+  This \emph{does not} means that
+  set \(A\) ties set \(C\);
+  it only means that we have not drawn out
+  the relationship between these 2 sets in
+  \cref{fig: condenced beating: condenced subfig}.
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        a_1 -> b;
+        b -> {c_1, c_2, a_2};
+        a_1 -> a_2;
+        c_1 -> c_2;
+      };
+      \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        A [draw, circle, minimum size=2cm] --  %chktex 8
+        b ->
+        C [draw, circle, minimum size=2cm] -- [dashed] %chktex 8
+        A;  % chktex 13
+      };
+      \caption{}
+    \end{subfigure}
+    \caption{we can draw graph (a) as graph (b)}
+    \label{fig:condenced tie and adjacency} % chktex 24
+  \end{figure}
+
+  We draw adjacency between sets
+  (for example, set \(A\) is adjacent to set \(\set{b}\))
+  using a solid edge without arrow.
+  We draw tie between sets (for example, set \(A\) ties set \(C\))
+  using a dashed edge without arrow.
+  (see \cref{fig:condenced tie and adjacency})
+
+
+  \begin{definition}
+    The \keyword{submissive set} (\keyword{dominant set})
+    of a vertices \(v\) in graph \(G\) is the set of vertices in \(G\)
+    that are beaten by \(v\) (beat \(v\)),
+    formally it is \(\set{e \in V(G) \mid v \to e}\)
+    (or \(\set{e \in V(G) \mid e \to v}|\)).
+    We will denote the submissive set of \(v\) as \(S_v\),
+    and the dominant set of \(v\) as \(D_v\).
+    (See \cref{fig: dominate and submissive set example})
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[layered layout, math nodes, grow=right, sibling distance=2cm,level sep=0.75cm] {
+        D_v [draw, circle, minimum size=2cm] ->
+        v ->
+        S_v [draw, circle, minimum size=2cm]
+    };
+    \caption{\(D_v\) is the dominant set of \(v\);
+       \(S_v\) is the submissive set of \(v\)}
+    \label{fig: dominate and submissive set example}  % chktex 24
+  \end{figure}
+
+  \begin{definition}
+    \keyword{Out-degree} (\keyword{in-degree}) of a vertex \(v\) in graph \(G\) is
+    the size of the submissive set (dominant set) of \(v\).
+  \end{definition}
+
+  For example, in \cref{fig:digraph example},
+  \(S_a = \set{a, b}\), therefore vertex \(a\) has out-degree 2;
+  \(D_a = \set{e, a}\), therefore vertex \(a\) has in-degree 2.
+  Vertex \(d\) has in-degree 0, and out-degree 0
+  because \(d\) is not adjacent to any other vertex in the graph.
+  Therefore, \(D_d\) and \(S_d\) are both empty sets.
+
+  Notice it is very natural to relate
+  out-degree and in-degree with the ``power'' or ``strength''
+   of a vertex.
+  However, we will discuss in later sections and chapters
+  that having larger out-degree does not guarantee
+  a vertex will be a ``king'' (defined in \cref{sec:kings}),
+  However, this property is true in some nice families of graphs
+  (see \cref{sec:kings} and
+  \cref{sec: semi-complete properties}).
+
+
+  \begin{definition}
+    A \keyword{induced subgraph} or \keyword{vertex-induced subgraph}
+    \(H\) of digraph \(G\) is a subgraph of \(G\) such that:
+    for all pairs of vertices \(a, b \in V(H)\),
+    if \((a, b) \in E(G)\), then \((a, b) \in E(H)\).
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        a -> b;
+        b -> {c, d, e};
+        a -> c;
+        d -> e;
+      };
+      \caption{start with graph \(G\)}
+    \end{subfigure}
+    \begin{subfigure}[b]{.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        a; b; c; ""; "";  %chktex 18
+      };
+      \caption{let \(V(H) = \set{a, b, c}\)}
+    \end{subfigure}
+    \begin{subfigure}[b]{.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        a -> {b, c};
+        b -> c;
+        ""; "";  %chktex 18
+      };
+      \caption{induced subgraph \(H\)}
+    \end{subfigure}
+    \caption{the process to create a induced subgraph.}
+    \label{fig:induced subgraph example} % chktex 24
+  \end{figure}
+
+  In \cref{fig:induced subgraph example},
+  we show the process of creating a induced subgraph.
+  We redraw the vertices in \(V(H)\), that is \(a, b, c\),
+  and then simply copy the edges between those vertices,
+  that is, \((a, b), (b, c), (a, c)\) from \(G\) to get \(H\).
+
+  This definition can be viewed in 2 ways:
+  \begin{itemize}
+    \item
+      Take the vertices \(a, b, c\)
+      together with the edges between them
+      to form subgraph \(H\).
+    \item
+      Take away vertices \(e, d\)
+      together with all the edges
+      having \(e\) or \(d\) as an end point,
+      the rest of the graph is the subgraph \(H\).
+  \end{itemize}
+
+  For all the families of graphs discussed in this paper
+  (oriented graph, semi-complete digraph,
+  tournament,quasi-transitive oriented graph),
+  induced subgraphs preserve the property of the original graphs.
+
+\section{Oriented Graph and Tournament}
+
+  \begin{definition}\label{def:oriented graph}
+    An \keyword{oriented graph} is a digraph, such that:
+    \begin{enumerate}
+      \item for all vertices \(a\), \(a\) does not beat itself.
+      \item for all pairs of adjacent vertices \(a, b\),
+        if \(a\) beats \(b\), then \(b\) does not beats \(a\).
+    \end{enumerate}
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[layered layout, math nodes, grow=right, sibling distance=2cm,level sep=0.75cm] {
+      {a, c}
+      -> [bend right] d
+      -> b
+      -> [bend right] c;
+      a -> [bend left] b;
+    };
+    \caption{example of an oriented graph}
+    \label{fig:oriented graph example} %chktex 24
+  \end{figure}
+
+  We show an oriented graph in \cref{fig:oriented graph example}.
+  This definition of oriented graph can be viewed as
+  a mathematical model of a round-robin tournament with ties allowed.
+  A team cannot compete with itself, therefore property 1 holds;
+  each pair of teams \(a\) and \(b\) competes exactly once,
+  either \(a\) beats \(b\), \(b\) beats \(a\),
+  or there is a tie between \(a\) and \(b\).
+  therefore property 2 holds.
+
+  Therefore, it is very natural to view an edge
+  going from \(a\) to \(b\) as \(a\) ``beats'' \(b\),
+  and two non-adjacent vertices \(a\), \(b\) as
+  a tie between \(a\) and \(b\).
+
+  \begin{definition}
+    A \keyword{tournament}
+    (sometimes called \keyword{semi-complete oriented graph})
+    is an oriented graph without ties.
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        e -> {a, b};
+        b -> c -> d -> e;
+        a -> d -> b;
+        c -> a -> b;
+        e -> c
+    };
+    \caption{example of a tournament}
+    \label{fig:tournament example} % chktex 24
+  \end{figure}
+
+  We give a simple example of a tournament
+  in \cref{fig:tournament example}.
+  A tournament can be interpreted as,
+  what we call in the real world, a round-robin tournament,
+  where every pair of vertices compete
+  and the competition results in exactly one winner and one loser.
+
+  In~\cite{maurer_king_1980},
+  the author uses tournament to model a flock of chicken,
+  between every two chickens there is a ``pecking relation''
+  (we call it the ``beating relation'').
+  Given two chickens,
+  one chicken has to peck the other chicken,
+  or be pecked by the other chicken.
+
+
+\section{Kings}\label{sec:kings}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+        e -> {a, b, c};
+        b -> c -> d -> e;
+        a -> d;
+        b -> a;
+    };
+    \caption{a more complicated example of kings}
+    \label{fig:complicated king example} % chktex 24
+  \end{figure}
+
+  \begin{definition}
+    a \keyword{king} in a digraph is a vertex that
+    beats every other vertex by 1 or 2 steps.
+  \end{definition}
+
+  In \cref{fig:complicated king example},
+  the kings in this graph are vertices \(e\) and \(d\).
+  Vertex \(e\) beats \(a, b, c\) by one step,
+  and beats \(d\) by 2 steps, so \(e\) is a king.
+  Vertex \(d\) beats \(e\) by one step,
+  and \(e\) beats \(a, b, c\),
+  so \(d\) beats \(a, b, c\) by 2 steps,
+  which makes \(d\) a king.
+
+  The other vertices (\(a, b, c\)) are not kings,
+  because \(a\) cannot beat \(c\) by one or two steps
+  (\(a \to d \to e \to c\) is the shortest path);
+  \(b\) cannot beat \(e\) by one or two steps
+  (\(b \to c \to d \to e\) is the shortest path);
+  \(c\) cannot beat \(b\) by one or two steps
+  (\(c \to d \to e \to b\) is the shortest path).
+
+  There are two points to note in this example:
+  \begin{itemize}
+    \item
+      \cref{fig:complicated king example} shows that
+      larger out-degree does not associate with
+      more ``power'' or ``strength''.
+      Vertex \(d\) only has out-degree 1, and \(d\) is a king.
+      Whereas vertex \(b\) has out-degree 2,
+      but \(b\) is not a king.
+      Vertex \(d\) is more ``powerful'' than \(b\),
+      even though \(d\) has smaller out-degree.
+      (trying to understand this phenomenon will be a interesting practice)
+
+    \begin{itemize}
+      \item
+        A vertex with the \emph{highest} out-degree
+        in a digraph may not be a king.
+        In \cref{fig: largest out-degree is not king},
+        vertex \(a\) has out-degree 3,
+        which is the highest out-degree in this graph.
+        However, it is not a king,
+        since it cannot beats \(k\) by 1 or 2 steps
+
+      \item
+        Also, a vertex with \emph{lowest} out-degree
+        in a digraph may be a king.
+        In \cref{fig: largest out-degree is not king},
+        the vertex \(k\) has the smallest out-degree in the graph,
+        however it is the only king in this graph.
+    \end{itemize}
+
+    \item
+      \cref{fig:complicated king example} shows that
+      a digraph may have more than one king.
+      In fact,~\cite{maurer_king_1980} proved the probability
+      that every vertex in a random tournament is a king approaches 1
+      as the number of vertices in the graph approaches \(\infty \).
+  \end{itemize}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[tree layout, grow=down, math nodes, sibling distance=2cm,level sep=0.75cm] {
+        k -> a;
+        a -> {b, c, d};
+        c <-> b;
+        c <-> d;
+        d <-> [bend left] b;
+    };
+    \caption{the vertex with smallest out-degree is the only king}
+    \label{fig: largest out-degree is not king}  % chktex 24
+  \end{figure}
+
+  \begin{definition}
+    An \keyword{emperor} in a digraph is a vertex that beats every other vertex.
+    (see \cref{fig: emperor example})
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[tree layout, math nodes, grow=down, sibling distance=2cm,level sep=0.75cm] {
+        e -> {s_1, s_2, s_3, "\ldots", s_n};  %chktex 18
+    };
+    \caption{the vertex \(e\) is the emperor of this graph}
+    \label{fig: emperor example}  % chktex 24
+  \end{figure}
+
+  \begin{definition}
+    an \keyword{\((n, k)\) digraph}
+    (\keyword{\((n, k)\) oriented graph},
+    \keyword{\((n, k)\) tournament}, etc.)
+    is a digraph (oriented graph, tournament, etc.)
+    with \(n\) vertices and \(k\) kings.
+  \end{definition}
+
+  The following work has been done on kings in tournaments.
+  These theorems will be useful when we investigate
+  properties of kings in generalized tournaments in later chapters.
+
+  \begin{theorem}\label{the: one king iff emperor}
+    A tournament has only one king
+    if and only if that king is an emperor.~\cite{maurer_king_1980}
+  \end{theorem}
+
+  \begin{theorem}\label{the: no 2 kings}
+    A tournament cannot have exactly 2 kings.~\cite{maurer_king_1980}
+  \end{theorem}
+
+  \begin{theorem}\label{the: largest out-degree is king}
+    In a tournament, a vertex with largest out-degree is a king.~\cite{maurer_king_1980}
+  \end{theorem}
+
+  \begin{corollary}\label{the: king exists}
+    In a tournament, there always exists at least 1 king.~\cite{maurer_king_1980}
+  \end{corollary}
+
+  \begin{theorem}\label{the: (n k) tournament exists}
+    for all integers \(n \geq k \geq 1\),
+    \((n, k)\)-tournaments exist with following exception:
+    \((n, 2)\) with any \(n \geq 2\) and  \((4, 4)\).~\cite{maurer_king_1980}
+  \end{theorem}
+
+
+
+
+
+
