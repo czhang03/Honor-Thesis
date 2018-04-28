@@ -21,6 +21,7 @@
 \addbibresource{bib_file/bib_file.bib}
 
 %% Useful packages
+\usepackage{xparse} % define commands
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{mathtools}
@@ -63,7 +64,11 @@
 % \keyword function is used for crucial words,
 % you can both highlight and index that word.
 % Typically used in definitions.
-\newcommand{\keyword}[1]{\textbf{\boldmath{#1}}\index{\MakeLowercase{#1}}}
+\NewDocumentCommand\keyword{mo}{ %'mo' means #1 is 'm'andatory and #2 is 'o'ptional
+  \IfNoValueTF{#2}
+   {\textbf{\boldmath{#1}}\index{\MakeLowercase{#1}}}
+   {\textbf{\boldmath{#1}}\index{\MakeLowercase{#2}}}
+}
 
 %% Define the set notation
 \DeclarePairedDelimiter\set\{\}  %chktex 21
