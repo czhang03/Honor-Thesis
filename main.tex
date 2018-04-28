@@ -67,7 +67,7 @@
 \NewDocumentCommand\keyword{mo}{ %'mo' means #1 is 'm'andatory and #2 is 'o'ptional
   \IfNoValueTF{#2}
    {\textbf{\boldmath{#1}}\index{\MakeLowercase{#1}}}
-   {\textbf{\boldmath{#1}}\index{\MakeLowercase{#2}}}
+   {\textbf{\boldmath{#1}}\index{#2}}
 }
 
 %% Define the set notation
