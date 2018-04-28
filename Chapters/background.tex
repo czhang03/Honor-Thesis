@@ -67,9 +67,9 @@
   we can find out that \(P'\) is the \emph{shortest path}
   from \(e\) to \(c\).
 
-  \begin{definition}\index{beat by \(n\) steps}
+  \begin{definition}
     In a directed graph \(G\),
-    \keyword{\(a\) beats (dominates) \(b\) by \(n\) steps},
+    \keyword{\(a\) beats (dominates) \(b\) by \(n\) steps}[beat by \(n\) steps],
     if the shortest path from \(a\) to \(b\) has length \(n\).
   \end{definition}
 
@@ -160,7 +160,7 @@
   In \cref{fig:condenced beating},
   we show how we draw the beating relationship with
   subsets \(A = \set{a_1, a_2}\) and \(C = \set{c_1, c_2}\).
-  Notice, in the \cref{fig: condenced beating: condenced subfig},
+  Notice, in \cref{fig: condenced beating: condenced subfig},
   set \(A\) and set \(C\) are not adjacent.
   This \emph{does not} means that
   set \(A\) ties set \(C\);
@@ -241,9 +241,10 @@
   out-degree and in-degree with the ``power'' or ``strength''
    of a vertex.
   However, we will discuss in later sections and chapters
-  that having larger out-degree does not guarantee
-  a vertex will be a ``king'' (defined in \cref{sec:kings}),
-  However, this property is true in some nice families of graphs
+  that a vertex with larger out-degree does not necessarily
+  have more power, by our definition of ``king'' (defined in \cref{sec:kings}),
+  However, the property that ``vertices with largest out-degree
+  are kings'' is true in some nice families of graphs
   (see \cref{sec:kings} and
   \cref{sec: semi-complete properties}).
 
@@ -283,12 +284,12 @@
       };
       \caption{induced subgraph \(H\)}
     \end{subfigure}
-    \caption{the process to create a induced subgraph.}
+    \caption{the process to create an induced subgraph.}
     \label{fig:induced subgraph example} % chktex 24
   \end{figure}
 
   In \cref{fig:induced subgraph example},
-  we show the process of creating a induced subgraph.
+  we show the process of creating an induced subgraph.
   We redraw the vertices in \(V(H)\), that is \(a, b, c\),
   and then simply copy the edges between those vertices,
   that is, \((a, b), (b, c), (a, c)\) from \(G\) to get \(H\).
@@ -318,7 +319,7 @@
     \begin{enumerate}
       \item for all vertices \(a\), \(a\) does not beat itself.
       \item for all pairs of adjacent vertices \(a, b\),
-        if \(a\) beats \(b\), then \(b\) does not beats \(a\).
+        if \(a\) beats \(b\), then \(b\) does not beat \(a\).
     \end{enumerate}
   \end{definition}
 
@@ -381,7 +382,7 @@
   (we call it the ``beating relation'').
   Given two chickens,
   one chicken has to peck the other chicken,
-  or be pecked by the other chicken.
+  or be pecked by the other chicken, but not both.
 
 
 \section{Kings}\label{sec:kings}
@@ -394,7 +395,7 @@
         a -> d;
         b -> a;
     };
-    \caption{a more complicated example of kings}
+    \caption{an example of kings}
     \label{fig:complicated king example} % chktex 24
   \end{figure}
 
@@ -414,11 +415,11 @@
 
   The other vertices (\(a, b, c\)) are not kings,
   because \(a\) cannot beat \(c\) by one or two steps
-  (\(a \to d \to e \to c\) is the shortest path);
+  (\(a \to d \to e \to c\) is a shortest path);
   \(b\) cannot beat \(e\) by one or two steps
-  (\(b \to c \to d \to e\) is the shortest path);
+  (\(b \to c \to d \to e\) is a shortest path);
   \(c\) cannot beat \(b\) by one or two steps
-  (\(c \to d \to e \to b\) is the shortest path).
+  (\(c \to d \to e \to b\) is a shortest path).
 
   There are two points to note in this example:
   \begin{itemize}
@@ -431,7 +432,7 @@
       but \(b\) is not a king.
       Vertex \(d\) is more ``powerful'' than \(b\),
       even though \(d\) has smaller out-degree.
-      (trying to understand this phenomenon will be a interesting practice)
+      (trying to understand this phenomenon will be an interesting practice)
 
     \begin{itemize}
       \item
@@ -441,7 +442,7 @@
         vertex \(a\) has out-degree 3,
         which is the highest out-degree in this graph.
         However, it is not a king,
-        since it cannot beats \(k\) by 1 or 2 steps
+        since it cannot beat \(k\) by 1 or 2 steps
 
       \item
         Also, a vertex with \emph{lowest} out-degree
@@ -517,7 +518,7 @@
 
   \begin{theorem}\label{the: (n k) tournament exists}
     for all integers \(n \geq k \geq 1\),
-    \((n, k)\)-tournaments exist with following exception:
+    \((n, k)\)-tournaments exist with the following exceptions:
     \((n, 2)\) with any \(n \geq 2\) and  \((4, 4)\).~\cite{maurer_king_1980}
   \end{theorem}
 
