@@ -3,8 +3,8 @@
 \section{Directed Graph}
 
   \begin{definition}
-    a \keyword{directed graph} or \keyword{digraph}
-    consists of a vertex set \(V(G)\),
+    a \keyword{directed graph}, \keyword{digraph} or
+    \keyword{graph} consists of a vertex set \(V(G)\),
     and an edge set (ordered pair of vertices) \(E(G)\).
   \end{definition}
 
@@ -23,11 +23,11 @@
   \end{figure}
 
   For example, in \cref{fig:digraph example},
-  if we call this graph \(G\), then
+  if we call this digraph \(G\), then
   the vertex set or \(V(G)\) is \(\set{a, b, c, d, e}\),
   and the edge set or \(E(G)\) is
   \(\set{(a, a), (a, b), (b, c), (c, e), (e, a), (e,c)}\).
-  We sometimes will refers to ``edges'' as ``arrows''.
+  We sometimes refer to ``edges'' as ``arrows''.
 
 \section{Beating Relations}
 
@@ -60,14 +60,15 @@
   And there are edges \((e, a), (a, b), (b, c)\) on this path,
   therefore the length of this path is 3.
   There is another path \(P' = e \to c\) goes from \(e\) to \(c\).
-  This path \(P'\) only have length \(1\).
+  This path \(P'\) only has length \(1\).
   Therefore, path \(P'\) is shorter than path \(P\),
   and if we go through every possible path from \(e\) to \(c\),
   we can find out that \(P'\) is the \emph{shortest path}
   from \(e\) to \(c\).
 
-  \begin{definition}
-    In a directed graph \(G\), \(a\) beats (dominates) \(b\) by \(n\) steps,
+  \begin{definition}\index{beat by \(n\) steps}
+    In a directed graph \(G\),
+    \keyword{\(a\) beats (dominates) \(b\) by \(n\) steps},
     if the shortest path from \(a\) to \(b\) has length \(n\).
   \end{definition}
 
