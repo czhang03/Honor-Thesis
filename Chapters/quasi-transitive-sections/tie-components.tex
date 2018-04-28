@@ -43,7 +43,7 @@ in undirected graph.
     \(\set{a, b}, \set{c, d, e}, \set{f}\)}
     \label{fig: connected component example} %chktex 24
   \end{subfigure}
-  \caption{the tie component in (a) is the connected component in (b)}
+  \caption{the tie component in (a) is the connected component in (b).}
   \label{fig: tie components and connected components}  % chktex 24
 \end{figure}
 
@@ -172,7 +172,7 @@ for a visualization.
       b <- a;
       / [label = left:\(C\), draw] // {a};
     };
-    \caption{\(a\) beats \(b\)}
+    \caption{\(a\) beats \(b\).}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -181,7 +181,7 @@ for a visualization.
       {a, c} -> b;
       / [label = left:\(C\), draw] // {a, c};
     };
-    \caption{direction transmitted from \(a\) to \(c\)}
+    \caption{direction transmitted from \(a\) to \(c\).}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -193,7 +193,7 @@ for a visualization.
       d -> b;
       / [label = left:\(C\), draw] // {a, c, d};
     };
-    \caption{transmitted from \(a\) to \(c\) to \(d\)}
+    \caption{transmitted from \(a\) to \(c\) to \(d\).}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -207,9 +207,9 @@ for a visualization.
       e -> b;
       / [label = left:\(C\), draw] // {a, c, d, e};
     };
-    \caption{transmitted from \(a\) to \(c\) to \(e\)}
+    \caption{transmitted from \(a\) to \(c\) to \(e\).}
   \end{subfigure}
-  \caption{the arrow direction to \(b\) was transmitted in tie component \(C\)}
+  \caption{the arrow direction to \(b\) was transmitted in tie component \(C\).}
   \label{fig: transmitting arrow direction in tie component}  % chktex 24
 \end{figure}
 
@@ -269,7 +269,7 @@ We then formalize and generalize this idea into two theorems:
       ""; ""; % chktex 18
       / [label = 45:\(C(a)\), draw] // {a, b, "\ldots", c, d, e};  % chktex 18
     };
-    \caption{a single vertex in \(C(a)\) beats \(f\)}
+    \caption{a single vertex in \(C(a)\) beats \(f\).}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -281,10 +281,10 @@ We then formalize and generalize this idea into two theorems:
       ""; ""; % chktex 18
       / [label = 45:\(C(a)\), draw] // {a, b, "\ldots", c, d, e};  % chktex 18
     };
-    \caption{component \(C(a)\) has to beat \(f\)}
+    \caption{component \(C(a)\) has to beat \(f\).}
   \end{subfigure}
   \caption{a vertex \(b\) beats \(f\)
-    will force the component \(C(a)\) to beats \(f\)}
+    will force the component \(C(a)\) to beats \(f\).}
   \label{fig: vertex force component beating}  % chktex 24
 \end{figure}
 
@@ -349,7 +349,7 @@ then try to understand it visually.
       c -> d --[dashed] e --[dashed] c;
       a --[dashed] b;
     };
-    \caption{a quasi-transitive oriented graph}
+    \caption{a quasi-transitive oriented graph.}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -362,7 +362,7 @@ then try to understand it visually.
       / [label = right:\(C\), draw, circle] // {f};
       / [label = right:\(D\), draw, circle] // {j};
     };
-    \caption{find its tie components}
+    \caption{find its tie components.}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -371,7 +371,7 @@ then try to understand it visually.
       -> C [draw, circle, minimum size=1cm] -> D [draw, circle, minimum size=1cm];
       A -> D -> B
     };
-    \caption{components beats each other}
+    \caption{components beats each other.}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -379,9 +379,9 @@ then try to understand it visually.
       A' -> B' -> C' -> D';
       A' -> D' -> B';
     };
-    \caption{components are just like vertex}
+    \caption{components are just like vertex.}
   \end{subfigure}
-  \caption{condense the tie components and get a tournament}
+  \caption{condense the tie components and get a tournament.}
   \label{fig: tie components condensation}  % chktex 24
 \end{figure}
 

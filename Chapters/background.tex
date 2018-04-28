@@ -18,7 +18,7 @@
         d;
         a -> [loop above] a;
     };
-    \caption{example of a directed graph}
+    \caption{example of a directed graph.}
     \label{fig:digraph example} %chktex 24
   \end{figure}
 
@@ -153,7 +153,7 @@
       \subcaption{}
       \label{fig: condenced beating: condenced subfig} % chktex 24
     \end{subfigure}
-    \caption{we can draw graph (a) as graph (b)}
+    \caption{we can draw graph (a) as graph (b).}
     \label{fig:condenced beating} % chktex 24
   \end{figure}
 
@@ -190,7 +190,7 @@
       };
       \caption{}
     \end{subfigure}
-    \caption{we can draw graph (a) as graph (b)}
+    \caption{we can draw graph (a) as graph (b).}
     \label{fig:condenced tie and adjacency} % chktex 24
   \end{figure}
 
@@ -266,14 +266,14 @@
         a -> c;
         d -> e;
       };
-      \caption{start with graph \(G\)}
+      \caption{start with graph \(G\).}
     \end{subfigure}
     \begin{subfigure}[b]{.3\linewidth}
       \centering
       \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
         a; b; c; ""; "";  %chktex 18
       };
-      \caption{let \(V(H) = \set{a, b, c}\)}
+      \caption{let \(V(H) = \set{a, b, c}\).} % chktex 44
     \end{subfigure}
     \begin{subfigure}[b]{.3\linewidth}
       \centering
@@ -282,7 +282,7 @@
         b -> c;
         ""; "";  %chktex 18
       };
-      \caption{induced subgraph \(H\)}
+      \caption{induced subgraph \(H\).}
     \end{subfigure}
     \caption{the process to create an induced subgraph.}
     \label{fig:induced subgraph example} % chktex 24
@@ -332,7 +332,7 @@
       -> [bend right] c;
       a -> [bend left] b;
     };
-    \caption{example of an oriented graph}
+    \caption{example of an oriented graph.}
     \label{fig:oriented graph example} %chktex 24
   \end{figure}
 
@@ -350,7 +350,7 @@
   and two non-adjacent vertices \(a\), \(b\) as
   a tie between \(a\) and \(b\).
 
-  \begin{definition}
+  \begin{definition}\label{def: tournaments}
     A \keyword{tournament}
     (sometimes called \keyword{semi-complete oriented graph})
     is an oriented graph without ties.
@@ -365,7 +365,7 @@
         c -> a -> b;
         e -> c
     };
-    \caption{example of a tournament}
+    \caption{example of a tournament.}
     \label{fig:tournament example} % chktex 24
   \end{figure}
 
@@ -395,7 +395,7 @@
         a -> d;
         b -> a;
     };
-    \caption{an example of kings}
+    \caption{an example of kings.}
     \label{fig:complicated king example} % chktex 24
   \end{figure}
 
@@ -469,7 +469,7 @@
         c <-> d;
         d <-> [bend left] b;
     };
-    \caption{the vertex with smallest out-degree is the only king}
+    \caption{the vertex with smallest out-degree is the only king.}
     \label{fig: largest out-degree is not king}  % chktex 24
   \end{figure}
 
@@ -483,7 +483,7 @@
     \tikz\graph[tree layout, math nodes, grow=down, sibling distance=2cm,level sep=0.75cm] {
         e -> {s_1, s_2, s_3, "\ldots", s_n};  %chktex 18
     };
-    \caption{the vertex \(e\) is the emperor of this graph}
+    \caption{the vertex \(e\) is the emperor of this graph.}
     \label{fig: emperor example}  % chktex 24
   \end{figure}
 

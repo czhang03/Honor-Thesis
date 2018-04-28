@@ -35,7 +35,7 @@ vastly important in this paper.
       v -> {a, b};
       a --[dashed] b;
     };
-    \caption{\(v \to \set{a, b}\)}
+    \caption{\(v \to \set{a, b}\).}  % chktex 44
   \end{subfigure}
   \begin{subfigure}[b]{0.2\linewidth}
     \centering
@@ -43,7 +43,7 @@ vastly important in this paper.
       v <- {a, b};
       a --[dashed] b
     };
-    \caption{\(\set{a, b} \to v\)}
+    \caption{\(\set{a, b} \to v\).} % chktex 44
   \end{subfigure}
   \begin{subfigure}[b]{0.2\linewidth}
     \centering
@@ -52,7 +52,7 @@ vastly important in this paper.
       v -> b;
       a --[dashed] b
     };
-    \caption{\(a \to v \to b\)}
+    \caption{\(a \to v \to b\).}
   \end{subfigure}
   \begin{subfigure}[b]{0.2\linewidth}
     \centering
@@ -61,7 +61,7 @@ vastly important in this paper.
       v <- b;
       a --[dashed] b
     };
-    \caption{\(b \to v \to a\)}
+    \caption{\(b \to v \to a\).}
   \end{subfigure}
   \caption{all the possible beating relation between
     vertex \(v\) and vertices \(a, b\)}
@@ -88,7 +88,7 @@ see \cref{fig: arrow direction lemma: condensed}.
       {a, b} -> s_4;
       / [draw] // {a, b};
     };
-    \caption{all the vertices are adjacent to \(a, b\)}
+    \caption{all the vertices are adjacent to \(a, b\).}
     \label{fig: arrow direction lemma: uncondensed}  % chktex 24
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
@@ -99,7 +99,7 @@ see \cref{fig: arrow direction lemma: condensed}.
       d_3 -> v -> s_3;
       v -> s_4;
     };
-    \caption{the set \(\set{a, b}\) behaves like \(v\)}
+    \caption{the set \(\set{a, b}\) behaves like \(v\).}  %chktex 44
     \label{fig: arrow direction lemma: condensed}  % chktex 24
   \end{subfigure}
   \caption{only look at all the vertices adjacent
@@ -125,7 +125,7 @@ We will then create a visualization for this problem.
       a --[dashed] b --[dashed] c;
       v --c;
     };
-    \caption{add a vertex \(c\) ties \(b\), but not \(v\)}
+    \caption{add a vertex \(c\) ties \(b\), but not \(v\).}
     \label{fig: add tie to arrow direction lemma: start} % chktex 24
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
@@ -135,10 +135,10 @@ We will then create a visualization for this problem.
       a --[dashed] b --[dashed] c;
       v <- c;
     };
-    \caption{by \cref{the: arrow direction lemma}, \(c \to v\)}
+    \caption{by \cref{the: arrow direction lemma}, \(c \to v\).}
     \label{fig: add tie to arrow direction lemma: finish} % chktex 24
   \end{subfigure}
-  \caption{ties are ``transmitting'' arrow directions}
+  \caption{ties are ``transmitting'' arrow directions.}
   \label{fig: add tie to arrow direction lemma}  % chktex 24
 \end{figure}
 
@@ -182,16 +182,16 @@ See \cref{fig: tie path and path}.
     \tikz\graph[layered layout, math nodes, level sep=1cm] {
       a --b --c --d
     };
-    \caption{a path from \(a\) to \(d\)}
+    \caption{a path from \(a\) to \(d\).}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
     \tikz\graph[layered layout, math nodes, level sep=1cm] {
       a --[dashed] b --[dashed] c --[dashed] d
     };
-    \caption{a tie path from \(a\) to \(d\)}
+    \caption{a tie path from \(a\) to \(d\).}
   \end{subfigure}
-  \caption{tie paths are just like paths}
+  \caption{tie paths are just like paths.}
   \label{fig: tie path and path}  % chktex 24
 \end{figure}
 
@@ -220,7 +220,7 @@ these lemmas will be useful later:
       --[dashed] a_n --[dashed] b --[dashed] b_0 --[dashed]
       b_1 --[dashed] dots_b [as=\ldots] --[dashed] b_m  --[dashed] c;
     };
-    \caption{tie path from \(a\) to \(b\), and from \(b\) to \(c\)}
+    \caption{tie path from \(a\) to \(b\), and from \(b\) to \(c\).}
     \label{fig: tie path connection}  % chktex 24
   \end{figure}
 \end{proof}
@@ -249,7 +249,7 @@ these lemmas will be useful later:
       / [label = left:tie path from \(a_p\) to \(a_q\), draw] //
         {a_p, a_{p+1}, dots_b, a_{q-1}, a_q};
     };
-    \caption{the tie path from \(a_0\) to \(a_n\)}
+    \caption{the tie path from \(a_0\) to \(a_n\).}
     \label{fig: tie path division}  % chktex 24
   \end{figure}
 \end{proof}
@@ -286,7 +286,7 @@ See \cref{fig: tie path transmit arrow}.
     \caption{the arrow direction is
       ``transmitted'' through the tie path}
   \end{subfigure}
-  \caption{tie path transmits the arrow direction}
+  \caption{tie path transmits the arrow direction.}
   \label{fig: tie path transmit arrow}  % chktex 24
 \end{figure}
 
@@ -310,7 +310,7 @@ See \cref{fig: tie path transmit arrow}.
       a_{n+1} --v;
       ""; ""; % chktex 18
     };
-    \caption{\(a_{n+1}\) is adjacent to \(v\).}
+    \caption{\(a_{n+1}\) is adjacent to \(v\).}  % chktex 44
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -321,7 +321,7 @@ See \cref{fig: tie path transmit arrow}.
       {a_1, a_2, "\ldots", a_n, a_{n+1}} <- v;  % chktex 18
       ""; ""; % chktex 18
     };
-    \caption{then \(a_{n+1}\) has to be beaten by \(v\).}
+    \caption{then \(a_{n+1}\) has to be beaten by \(v\).}  % chktex 44
   \end{subfigure}
   \caption{the induction step of the proof of
     \cref{the: tie transimission}}
