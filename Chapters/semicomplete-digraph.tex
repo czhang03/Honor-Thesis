@@ -41,27 +41,33 @@
       d -> {a, e};
       e -> {a, b};
     };
-    \caption{an example of semi-complete digraph}
+    \caption{an example of semi-complete digraph.}
     \label{fig:semi-complete digraph example} % chktex 24
   \end{figure}
 
   \begin{definition}
     In a semi-complete digraph,
     if \(a \to b\) and \(b\) does not beat \(a\),
-    then vertex \(a\) \textbf{strictly beat}s vertex \(b\).
+    then vertex \(a\) \keyword{strictly beats}[strictly beat]
+    vertex \(b\).
   \end{definition}
 
   Tournaments are a special case of semi-complete digraphs.
-  In tournaments, between vertex always strictly beats
-  another vertex, or be strictly beaten by another vertex.
+  In tournaments, for each pair of vertices \(a, b\)
+  \(a\) always strictly beats \(b\)
+  or \(b\) strictly beaten by \(b\).
   We can view a tournament as a semi-complete digraph
   that only has strict beatings; no double tie allowed.
+  In other words, tournaments is an oriented graph
+  that is also a semi-complete digraph,
+  hence the name ``semi-complete oriented graph''
+  (see \cref{def: tournaments})
 
   \begin{definition}
     In a semi-complete digraph,
-    the \keyword{double tie set} of vertex \(v\)
+    the \keyword{double tie set of vertex \(v\)}[double tie set of vertex]
     is the set of vertices that double ties \(v\).
-    We denote the double tie set of \(v\) as \(T_v\).
+    We denote the double tie set of \(v\) as \(DT_v\).
   \end{definition}
 
   For example, in \cref{fig:semi-complete digraph example},
@@ -83,7 +89,7 @@
 
 \section{Properties}\label{sec: semi-complete properties}
 
-  Although tournaments are just a special case of semi-complete digraphs,
+  Although tournaments are a special case of semi-complete digraphs,
   many useful properties of tournaments
   are also true for semi-complete digraphs.
 
@@ -102,17 +108,20 @@
       "S_v - T_v"[draw, circle, minimum size = 2cm];  %chktex 18 %chktex 8
       v <-> T_v [draw, circle, minimum size = 2cm];
     };
-    \caption{illustration of \cref{the: graph partition lemma}}
+    \caption{illustration of \cref{the: graph partition lemma}.}
     \label{fig: graph partition lemma} % chktex 24
   \end{figure}
 
   \begin{proof}
-    \(D_v - T_v\) is the set of vertices that strict beat \(v\),
-    \(S_v - T_v\) is the set of vertices that are strict beaten by \(v\),
+    \(D_v - T_v\) is the set of vertices that strictly beat \(v\),
+    \(S_v - T_v\) is the set of vertices that are strictly beaten by \(v\),
     \(T_v\) is all the vertices that double tie with \(v\).
     They are clearly disjoint by definition,
-    and they include all the vertices in the graph,
-    because every vertex needs to be adjacent to \(v\).
+    and all of them are disjoint to \(\set{v}\) by definition.
+
+    Every vertex in \(V(G)\) needs to be in one of
+    the sets \(S_v - T_v, T_v, D_v - T_v, \set{v}\),
+    because every other vertex needs to be adjacent to \(v\).
   \end{proof}
 
   See \cref{fig: graph partition lemma} for a visualization
@@ -126,7 +135,7 @@
   the lack of this property in oriented graphs will make the
   structure of oriented graphs harder to work with.
 
-  \begin{theorem}\label{maximum out-degree theorem}
+  \begin{theorem}\label{the: largest out-degree is a king in semi-compelete digraph}
     All vertices with the maximum out-degree
     in a semi-complete digraph are kings.
   \end{theorem}
@@ -137,14 +146,14 @@
 
     Suppose \(v\) is not a king in \(G\).
     Since \(v\) is not a king and
-    \(v\) beats every vertex in \(S_v\) by exactly 1 step.
+    \(v\) beats every vertex in \(S_v\) by exactly 1 step,
     then by \cref{the: graph partition lemma},
-    there exists vertex
+    there exists a vertex
     \(d \in D_v - T_v = V(G) - S_v - \set{v}\)
     that is not beaten by \(v\) by 1 or 2 steps.
     Therefore there cannot be any vertex in \(S_v\) that beats \(d\).
     Because \(d\) is adjacent to every vertex in \(S_v\)
-    \(d\) strictly dominates \(v\), and \(S_v\).
+    \(d\) strictly dominates \(v\) and \(S_v\).
     Hence \(|S_d| \geq 1 + |S_v|\).
     Therefore \(|S_d| > |S_v|\),
     that is, \(d\) has larger out-degree than \(v\).
@@ -160,7 +169,7 @@
       d -> {b, a, c};
       e -> {a, d, c};
     };
-    \caption{every vertex has the same out-degree}
+    \caption{every vertex has the same out-degree.}
     \label{fig: multiple max out-degree} % chktex 24
   \end{figure}
 
@@ -169,8 +178,8 @@
   In fact, in this graph,
   every vertex has the same out-degree 3,
   therefore all of the vertices have the maximum out-degree.
-  By \cref{the: largest out-degree is king},
-  all vertices in this graph is a king.
+  By \cref{the: largest out-degree is a king in semi-compelete digraph},
+  all vertices in this graph are kings.
 
   \begin{corollary}\label{the: existence theorem}
     For any non-empty semi-complete digraph \(G\),
@@ -178,33 +187,31 @@
   \end{corollary}
 
   \begin{proof}
-    This corollary is an result of \cref{maximum out-degree theorem}.
+    This corollary is a result of \cref{the: largest out-degree is a king in semi-compelete digraph}.
     because out-degrees are non-negative integers,
     and \(V(G)\) is not empty.
     Thus there exists at least one vertex with maximum out degree.
   \end{proof}
 
   \begin{theorem}\label{the: beaten by king theorem}
-    In a semi-complete digraph,
-    every vertex with a non-empty dominate set
+    In a semi-complete digraph \(G\),
+    every vertex with a non-empty dominant set
     is beaten by a king.
   \end{theorem}
 
   \begin{proof}
-    Let \(v\) be a vertex in a semi-complete digraph \(G\),
-    such that \(D_v\) is not empty.
-
-    consider the subgraph induced by the vertices in \(D_v\),
-    we can show that this subgraph is also a semi-complete digraph.
+    Let \(v\) be a vertex in \(G\), such that \(D_v\) is not empty.
+    Consider the subgraph induced by the vertices in \(D_v\);
+    this subgraph is also a semi-complete digraph.
     By \cref{the: existence theorem},
     there is a king \(k\) in the induced subgraph of \(D_v\).
     We will show that \(k\) is also a king of \(G\).
     \begin{itemize}
       \item
-        \(k\) dominate \(D_v\) by 1 or 2 steps,
+        \(k\) dominates \(D_v\) by 1 or 2 steps,
         because \(k\) is a king in \(D_v\).
       \item
-        \(k\) dominate \(v\) by exactly 1 step,
+        \(k\) dominates \(v\) by exactly 1 step,
         because \(k\) is in \(D_v\).
       \item
         \(k\) dominates \(T_v\) and \(S_v\) by 1 or 2 steps,
@@ -215,12 +222,12 @@
     Then, by \cref{the: graph partition lemma},
     we know that \(k\) dominates
     every vertex in the graph by 1 or 2 steps.
-    Therefore \(k\) in a king in \(G\) and \(k\) beats \(v\).
+    Therefore \(k\) is a king in \(G\) and \(k\) beats \(v\).
   \end{proof}
 
-  \begin{corollary}
-    if a semi-complete digraph have only one king,
-    then that king is an emperor. The converse is not true.
+  \begin{corollary}\label{the: if only king then emperor}
+    If a semi-complete digraph has only one king,
+    then that king is an emperor.
   \end{corollary}
 
   \begin{proof}
@@ -234,19 +241,21 @@
     Then by \cref{the: beaten by king theorem},
     \(k\) is beaten by another king.
     Therefore there exists more than one king. Contradiction.
-
-    \begin{figure}
-      \centering
-      \tikz\graph{
-        a <-> b;
-      };
-      \caption{then both vertices \(a\) and \(b\)
-         are emperors and kings.}
-      \label{fig:more than one emperors}  %chktex 24
-    \end{figure}
-    In \cref{fig:more than one emperors},
-    we show that the converse is not true.
   \end{proof}
+
+  \begin{figure}
+    \centering
+    \tikz\graph{
+      a <-> b;
+    };
+    \caption{both vertices \(a\) and \(b\)
+       are emperors and kings.}
+    \label{fig:more than one emperors}  %chktex 24
+  \end{figure}
+  Notice, unlike in tournaments,
+  the converse of \cref{the: if only king then emperor} is not true
+  In \cref{fig:more than one emperors},
+  we show we can have more than one kings that are emperors.
 
   \begin{theorem}\label{the: (n k) digraph exists}
     \((n, k)\) semi-complete digraphs
@@ -254,8 +263,8 @@
   \end{theorem}
 
   \begin{proof}
-    We proof this theorem via inductively construct a
-    \(n, k\) semi-complete digraph:
+    We prove this theorem by induction.
+    Construct an \((n, k)\) semi-complete digraph:
     \begin{itemize}
       \item
         When there is only one vertex in the graph
@@ -263,8 +272,8 @@
 
       \item
         See \cref{fig:add a non-king vertex}.
-        We can add one vertex that is not king by
-        add a vertex that is strictly beaten
+        We can add one vertex that is not a king by
+        adding a vertex that is strictly beaten
         by all the vertices in the original graph.
         In other words,
         we can construct
@@ -276,37 +285,37 @@
           \tikz\graph[layered layout, grow=right, level sep=1cm] {
             " \((n, k)\) digraph " [draw, circle] -> "\(v\)"; %chktex 18
           };
-          \caption{a \((n+1, k)\) semi-complete digraph by
+          \caption{an \((n+1, k)\) semi-complete digraph by
             adding a new vertex \(v\)}
           \label{fig:add a non-king vertex}  %chktex 24
         \end{figure}
 
       \item
         See \cref{fig:add a king}.
-        We can adding one king by
-        add one vertex that double ties
+        We can add one king by
+        adding one vertex that double ties
         all the vertices in the original graph.
         In other words, we can construct
-        a \((n + 1, k + 1)\) semi-complete digraph
+        an \((n + 1, k + 1)\) semi-complete digraph
         from any \((n, k)\) semi-complete digraph.
 
         \begin{figure}
           \centering
           \tikz\graph[layered layout, grow=right, level sep=1cm] {
-            " \((n, k)\) digraph " [draw, circle] <-> "\(k\)"; %chktex 18
+            " \((n, k)\) digraph " [draw, circle] <-> "\(a\)"; %chktex 18
           };
-          \caption{a \((n+1, k+1)\) semi-complete digraph by
-            adding a new king \(k\)}
+          \caption{an \((n+1, k+1)\) semi-complete digraph by
+            adding a new king \(a\).}
           \label{fig:add a king}  %chktex 24
         \end{figure}
 
     \end{itemize}
 
     Therefore, we can obtain any \((n, k)\) flock by:
-    starting with an \((1,1)\) semi-complete digraph
+    start with a \((1,1)\) semi-complete digraph
     first add \(k - 1\) kings to
-    get an \((k, k)\) semi-complete digraph;
-    then add \(n - k\) number of non-king vertex
+    get a \((k, k)\) semi-complete digraph;
+    then add \(n - k\) non-king vertices
     to get an \((n, k)\) semi-complete digraph.
   \end{proof}
 
@@ -317,14 +326,14 @@
       \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
         a;  %chktex 18
       };
-      \caption{start with \((1, 1)\) digraph}
+      \caption{start with \((1, 1)\) digraph.}
     \end{subfigure}
     \begin{subfigure}[b]{.45\linewidth}
       \centering
       \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
         a <-> b;
       };
-      \caption{add king \(b\)}
+      \caption{add king \(b\).}
     \end{subfigure}
     \begin{subfigure}[b]{.45\linewidth}
       \centering
@@ -332,7 +341,7 @@
         a <-> b;
         {a, b} -> c;
       };
-      \caption{add non-king \(c\)}
+      \caption{add non-king \(c\).}
     \end{subfigure}
     \begin{subfigure}[b]{.45\linewidth}
       \centering
@@ -341,15 +350,15 @@
         {a, b} -> c;
         {a, b, c} -> d;
       };
-      \caption{add non-king \(d\)}
+      \caption{add non-king \(d\).}
     \end{subfigure}
-    \caption{to construct a \((4, 2)\) semi-complete digraph}
+    \caption{to construct a \((4, 2)\) semi-complete digraph.}
     \label{fig: (4 2) digraph construction} % chktex 24
   \end{figure}
 
   In \cref{fig: (4 2) digraph construction},
-  we give an example how to construct a
-  \((4,2)\) semi-complete oriented graph
+  we give an example of how to construct a
+  \((4,2)\) semi-complete digraph
   using the inductive algorithm we introduced in
   \cref{the: (n k) digraph exists}:
   \begin{enumerate}
@@ -362,20 +371,21 @@
     \item
       Add a non-king \(c\),
       by letting every vertex in the
-      \((2,2)\) semi-complete digraph beats \(c\).
+      \((2,2)\) semi-complete digraph beat \(c\).
       which gives us a \((3, 2)\) semi-complete digraph.
     \item
       Add a non-king \(d\),
-      by letting every vertex in the
-      in the \((3, 2)\) semi-complete digraph beats \(d\),
+      by letting every vertex
+      in the \((3, 2)\) semi-complete digraph beat \(d\),
       which gives us a \((4, 2)\) semi-complete digraph.
   \end{enumerate}
 
   Using the method in \cref{the: (n k) digraph exists},
   when we add the \(i_{th}\) king,
   we are creating \((i - 1)\) ties,
-  so adding the \(2_{nd}\) king to the \(n_{th}\) king
-  would require \(1 + 2 + \cdots + (n - 1)\) double ties.
+  so adding the \(2_{nd}\) king to the \(k\) kings
+  would require a total of
+  \(1 + 2 + \cdots + (k - 1)\) double ties.
   The summation can be simplified to \(\frac{k(k-1)}{2}\).
   Thus, the number of double ties blows up with
   the increase of \(k\) (number of kings).
@@ -386,7 +396,7 @@
   \((n, k)\) semi-complete digraph.
 
   \begin{lemma}\label{the: (n 2) digraph with one tie}
-    All \((n, 2)\) semi-complete digraph with \(n \geq 2\)
+    All \((n, 2)\) semi-complete digraphs with \(n \geq 2\)
     can be constructed with only one double tie.
   \end{lemma}
 
@@ -394,12 +404,12 @@
     use the method described in \cref{the: (n k) digraph exists}.
 
     First add 1 king to a \((1, 1)\) semi-complete digraph
-    to get an \((2, 2)\) semi-complete digraph
+    to get a \((2, 2)\) semi-complete digraph
     (one double tie added).
-    Then add \((n - 2)\) non-king vertex to get
-    a \((n, 2)\) semi-complete digraph (no double tie added).
+    Then add \((n - 2)\) non-king vertices to get
+    an \((n, 2)\) semi-complete digraph (no double tie added).
 
-    Therefore we only adds one double tie to construct
+    Therefore we add only one double tie to construct
     any \((n, 2)\) semi-complete digraph.
   \end{proof}
 
@@ -427,19 +437,28 @@
   \end{proof}
 
   \begin{theorem}
+    for all \(n \geq k \geq 1\)
     exists an \((n, k)\) semi-complete digraph with
     at most one double tie.
   \end{theorem}
 
   \begin{proof}
     Recall \cref{the: (n k) tournament exists},
-    there exists a \((n, k)\) tournaments
-    with the exception of \(n, 2\) and \((4, 4)\)
+    there exists an \((n, k)\) tournament
+    with the exception of \((n, 2)\) and \((4, 4)\)
     Because tournaments are also semi-complete digraphs,
     therefore, we can use \cref{the: (n k) tournament exists}
     along with \cref{the: (n 2) digraph with one tie}
     and \cref{the: (4 4) digraph exists with one tie},
     to get the result.
+
+    The proofs of \cref{the: (n k) tournament exists},
+    \cref{the: (n 2) digraph with one tie},
+    and \cref{the: (4 4) digraph exists with one tie}
+    provide constructions for these semi-complete digraphs.
+    Therefore we can construct an \((n, k)\)
+    semi-complete digraph with at most one double tie,
+    for all \(n \geq k \geq 1\).
   \end{proof}
 
 
