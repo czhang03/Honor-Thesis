@@ -1,10 +1,10 @@
 \section{Ties and Tie Paths}
 
-Property of ties in quasi-transitive digraph is
+Properties of ties in quasi-transitive digraphs are
 vastly important in this paper.
 
 \begin{lemma}\label{the: arrow direction lemma}
-  In a quasi-transitive oriented graph,
+  In a quasi-transitive oriented graph \(G\),
   if vertex \(a\) ties vertex \(b\),
   then for all vertex \(v\) that is adjacent to both \(a\) and \(b\),
   either \(v\) beats both \(a\) and \(b\),
@@ -13,18 +13,18 @@ vastly important in this paper.
 \end{lemma}
 
 \begin{proof}
-  assume that there exists one vertex \(v\)
+  Assume there exists one vertex \(v\)
   such that this lemma does not hold.
 
   Because \(v\) is adjacent to both \(a\) and \(b\),
-  see \cref{fig: possible beating between v and a b}
-  therefore only possible beating relations left are
-  \(a \to v \to b\) and \(b \to v \to a\).
-  However, according to the definition of
-  quasi-transitive oriented graph,
-  if \(a \to v \to b\) and \(b \to v \to a\),
-  then \(a\) and \(b\) have to be adjacent.
-  But \(a\) ties with \(b\). Contradiction.
+  we show all the possible beating relationships
+  between \(v\) and \(a, b\) in
+  \cref{fig: possible beating between v and a b}.
+  Because \(G\) is a quasi-transitive oriented graph,
+  if \(a \to v \to b\) or \(b \to v \to a\)
+  then \(a, b\) have to be adjacent.
+  Therefore, only possible beating relationships are
+  \(\set{a, b} \to v\) or \(v \to \set{a, b}\).
 \end{proof}
 
 \begin{figure}
@@ -102,6 +102,9 @@ see \cref{fig: arrow direction lemma: condensed}.
     \caption{the set \(\set{a, b}\) behaves like \(v\)}
     \label{fig: arrow direction lemma: condensed}  % chktex 24
   \end{subfigure}
+  \caption{only look at all the vertices adjacent
+  to both \(a\) and \(b\),
+  then \(\set{a, b}\) behaves like a vertex.}
   \label{fig: arrow direction lemma}  % chktex 24
 \end{figure}
 
@@ -120,6 +123,7 @@ We will then create a visualization for this problem.
     \tikz\graph[simple necklace layout, math nodes, node sep=2cm] {
       v <- {a, b};
       a --[dashed] b --[dashed] c;
+      v --c;
     };
     \caption{add a vertex \(c\) ties \(b\), but not \(v\)}
     \label{fig: add tie to arrow direction lemma: start} % chktex 24
@@ -140,7 +144,8 @@ We will then create a visualization for this problem.
 
 In \cref{fig: add tie to arrow direction lemma: start}
 we add a vertex \(c\) that ties \(b\),
-but needs to be adjacent to \(v\).
+but needs to be adjacent to \(v\)
+(we use an edge without arrow to denote adjacency).
 We then try to figure out the edge directed
 between \(v\) and \(c\).
 Because \(b\), \(c\) are both adjacent to \(v\),
@@ -249,10 +254,41 @@ these lemmas will be useful later:
   \end{figure}
 \end{proof}
 
-We then focus on the intuition of tie transmitting
-arrow directions in quasi-transitive oriented graph to
-prove some theorems that are specific to quasi-transitive
-oriented graph.
+After looking at
+\cref{fig: add tie to arrow direction lemma},
+we can hypothesize that tie paths can transmit
+arrow directions across the whole path
+in quasi-transitive oriented graph.
+See \cref{fig: tie path transmit arrow}.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a --[dashed] b --[dashed] "\ldots" --[dashed] c --[dashed] d;  % chktex 18
+      ""; % chktex 18
+      a <- f;
+      {b, "\ldots", c, d} --f;  % chktex 18
+      ""; ""; % chktex 18
+    };
+    \caption{\(a\) is beaten by \(f\),
+      and other vertices adjacent to \(f\)}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a --[dashed] b --[dashed] "\ldots" --[dashed] c --[dashed] d;  % chktex 18
+      ""; % chktex 18
+      {a, b, "\ldots", c, d} <- f;  % chktex 18
+      ""; ""; % chktex 18
+    };
+    \caption{the arrow direction is
+      ``transmitted'' through the tie path}
+  \end{subfigure}
+  \caption{tie path transmits the arrow direction}
+  \label{fig: tie path transmit arrow}  % chktex 24
+\end{figure}
 
 \begin{lemma}\label{the: tie transimission}
   For every tie path in a quasi-transitive oriented graph,
@@ -262,6 +298,36 @@ oriented graph.
   or \(v\) is beaten by every vertex on the tie path.
 \end{lemma}
 
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a_1 --[dashed] a_2 --[dashed] "\ldots" % chktex 18
+       --[dashed] a_n --[dashed] a_{n+1};
+      ""; % chktex 18
+      {a_1, a_2, "\ldots", a_n} <- v;  % chktex 18
+      a_{n+1} --v;
+      ""; ""; % chktex 18
+    };
+    \caption{\(a_{n+1}\) is adjacent to \(v\).}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a_1 --[dashed] a_2 --[dashed] "\ldots" % chktex 18
+       --[dashed] a_n --[dashed] a_{n+1};
+      ""; % chktex 18
+      {a_1, a_2, "\ldots", a_n, a_{n+1}} <- v;  % chktex 18
+      ""; ""; % chktex 18
+    };
+    \caption{then \(a_{n+1}\) has to be beaten by \(v\).}
+  \end{subfigure}
+  \caption{the induction step of the proof of
+    \cref{the: tie transimission}}
+  \label{fig: tie transimission proof}  % chktex 24
+\end{figure}
+
 \begin{proof}
   We can prove this lemma via induction,
   just like we did in
@@ -270,18 +336,20 @@ oriented graph.
   Start with tie path of length 1,
   then we only have \(a_0\) ties \(a_1\) in this tie path,
   and \(v\) that is adjacent to both of them.
-  The lemma holds because \cref{fig: arrow direction lemma}.
+  The lemma holds because \cref{the: arrow direction lemma}.
 
   Assume this lemma holds for any tie path of length \(n\),
   then we need to prove this theorem holds for
   tie path of length \(n + 1\).
-  Take a tie path \([a_0, a_1, \ldots, a_n, a_{n - 1}]\).
+  See \cref{fig: tie transimission proof},
+  take a tie path \([a_0, a_1, \ldots, a_n, a_{n+1}]\).
   because this lemma holds for tie path of length \(n\),
   then it is true for tie path \([a_0, a_1, \ldots, a_n]\).
-  Because \(a_n\) ties \(a_{n-1}\), and
+  Because \(a_n\) ties \(a_{n+1}\), and
   \(v\) is adjacent to both of them.
-  Therefore, \(a_n \to v \implies a_{n+1} \to v\) and
-  \(v \to a_n \implies v \to a_{n+1}\).
+  Therefore,
+  if \(a_n \to v\) then \(a_{n+1} \to v\) and
+  if \(v \to a_n\) then \(v \to a_{n+1}\).
   Therefore this lemma still holds for tie path of length \(n + 1\).
 
   Therefore this lemma is always true.
@@ -290,5 +358,5 @@ oriented graph.
 \cref{the: tie transimission} generalizes
 \cref{the: arrow direction lemma},
 however, it is still far from elegant,
-because we still requires an vertex \(v\) that is adjacent to
-the whole tie path.
+because we still requires the vertex \(v\)
+to be adjacent to the whole tie path.

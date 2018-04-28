@@ -3,8 +3,8 @@
 We keep exploring the possibility of tie paths and the idea of
  ``arrow direction transmitted by ties''.
 We will be able to define the following structure with
-the intuition from ``path'', ``connected component''
-from undirected graph.
+the intuition of ``path'' and ``connected component''
+in undirected graph.
 
 \begin{definition}
   In a digraph \(G\),
@@ -13,13 +13,6 @@ from undirected graph.
   such that there exists a tie path between \(a\) and \(v\).
   \(a\) is called the \keyword{representation} of \(C(a)\)
 \end{definition}
-
-The definition relies on a vertex ``representation''
-in order to make future proofs and definitions
-more readable and concise.
-We can also define tie components in other ways,
-but we will not discuss those possible definitions
-in this thesis.
 
 \begin{figure}
   \centering
@@ -66,17 +59,12 @@ Therefore, just like tie path is similar to path
 in undirected graph,
 tie component is very similar to connected component
 in undirected graphs,
-and we can bring all the property and intuitions
+and we can bring all the properties and intuitions
 of connected component to tie component.
 
-Therefore, the definition of ``tie component''
-is almost the equivalent to ``connected component''.
-We can find the tie components using the same way
-we find connected components.
-
-We then prove some of the general properties of tie components
-in digraphs.
-Notice that theses theorem works in any digraph,
+We then prove some of these useful properties
+of tie components in digraphs.
+Notice, theses theorems work in all digraphs,
 not just in quasi-transitive oriented graphs.
 
 \begin{lemma}\label{the: component equal if tie path}
@@ -89,7 +77,7 @@ not just in quasi-transitive oriented graphs.
   Take any vertex \(v\) in \(C(a)\),
   then there exists a tie path between \(a\) and \(v\).
   Because there is a tie path between \(a\) and \(b\),
-  thus there exists a tie path between \(a\) and \(v\)
+  thus there exists a tie path between \(b\) and \(v\)
   by \cref{the: tie path connection lemma}.
   Then \(v \in C(b)\). Therefore \(C(a) \subseteq C(b)\)
 
@@ -123,7 +111,7 @@ not just in quasi-transitive oriented graphs.
   that is, \(v\) ties \(b\).
   Then there exists a tie path \([v, b]\) between \(v\) and \(b\).
   Because \(b \in C(a)\),
-  then there exists a tie python between \(a\) and \(b\).
+  then there exists a tie path between \(a\) and \(b\).
   Therefore, by \cref{the: tie path connection lemma},
   there exists a tie path between \(v\) and \(a\),
   and \(v \in C(a)\).
@@ -150,12 +138,11 @@ not just in quasi-transitive oriented graphs.
 
 \begin{theorem}\label{the: tie components partition unique}
   Given a quasi-transitive oriented graph \(Q\),
-  there only exists a unique partition formed by
-  distinct tie components.
+  the partition formed by distinct tie components is unique.
 \end{theorem}
 
-\begin{theorem}
-  Suppose there exists two different partition \(P\), \(P'\),
+\begin{proof}
+  Suppose there exists two different partition \(P\) and \(P'\),
   then there exists a tie component \(C(a) \in P\) that is
   not in \(P'\).
 
@@ -168,7 +155,7 @@ not just in quasi-transitive oriented graphs.
   therefore \(C(a) = C(a')\).
   Because the tie component \(C(a) \in P\) that is
   not in \(P'\), contradiction.
-\end{theorem}
+\end{proof}
 
 Follow our intuition that tie ``transmits'' arrow directions
 in quasi-transitive oriented graph,
@@ -244,9 +231,9 @@ We then formalize and generalize this idea into two theorems:
   and by \cref{the: tie path division lemma},
   for every vertex \(c\) on this tie path,
   there exists a tie path between \(c\) and \(a\),
-  therefore \(c \in C(a)\).
-  Thus \(v\) is adjacent to every vertex on the tie path,
-  therefore \(v \to \set{a, b}\) or \(\set{a, b} \to v\),
+  therefore \(c \in C(a)\),
+  thus \(v\) is adjacent to every vertex \(c\) on the tie path.
+  Therefore \(v \to \set{a, b}\) or \(\set{a, b} \to v\),
   by \cref{the: tie transimission}.
 
   Case 1, \(a \to v\): for any vertex \(b \in C(a)\),
@@ -305,9 +292,14 @@ We then formalize and generalize this idea into two theorems:
   Because \(v' \notin C(a)\),
   then either \(v' \to C(a)\) or \(C(a) \to v'\)
   by \cref{the: component and a single point}.
-  And because \(v \to v'\) (\(v' \to v\)) and \(v \in C(a)\),
-  then \(v'\) cannot beat (be beaten by) all of \(C(a)\).
-  Therefore \(C(a) \to v'\) (\(v' \to C(a)\)).
+
+  Case 1, \(v \to v'\): because \(v \in C(a)\),
+  then \(v'\) cannot beat all of \(C(a)\).
+  Therefore \(C(a) \to v'\).
+
+  Case 2, \(v' \to v\): because \(v \in C(a)\),
+  then \(v'\) cannot be beaten by all of \(C(a)\).
+  Therefore \(v' \to C(a)\).
 \end{proof}
 
 To further generalize \cref{the: component and a single point},
@@ -393,6 +385,7 @@ then try to understand it visually.
   \label{fig: tie components condensation}  % chktex 24
 \end{figure}
 
+See \cref{fig: tie components condensation}.
 For every quasi-transitive digraph,
 we can split it into tie components,
 and every tie component either beats another tie component
@@ -401,4 +394,3 @@ Then, tie components are kind of like vertices.
 What even more exciting is that
 there cannot be ties between tie components.
 The graph formed by tie components is a tournament.
-See \cref{fig: tie components condensation}.
