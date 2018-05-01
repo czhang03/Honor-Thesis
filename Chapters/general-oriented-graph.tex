@@ -1,61 +1,245 @@
-\chapter{General Oriented Graph}\label{chap: general oriented graph}
+\chapter{Oriented Graph}\label{chap: general oriented graph}
 
 The properties of semi-complete digraphs basically inherit
 the properties of tournaments,
 and most of the proofs are almost the same.
 
-We then move on to another family of graphs that are less
+We now move on to another family of graphs that are less
 similar to tournaments: oriented graphs.
-We will investigate general properties of oriented graph
+We will investigate general properties of oriented graphs
 in this chapter.
 In later \cref{chap: quasi-transitive}, we will focus on
-specific families of oriented graph
+specific families of oriented graphs.
+
+Recall \cref{def:oriented graph},
+a oriented graph is a digraph that doesn't
+have self-loops (a vertex beats itself)
+and double ties.
+
+\begin{theorem}\label{the: emperor then only king in oriented graph}
+  If there is an emperor \(k\) in an oriented graph,
+  then \(k\) is the only king in the graph.
+\end{theorem}
+\begin{proof}
+  The emperor \(k\) beats every vertex in one step,
+  therefore it is a king.
+
+  Because there is no double ties in oriented graph,
+  if for every vertex \(k \to v\),
+  then \(v\) does not beat \(k\).
+  Therefore no vertex can beat \(k\),
+  then no vertex can beat \(k\) in one or two steps.
+  Therefore, \(k\) is the only king in the graph.
+\end{proof}
+
+\begin{corollary}\label{the: if vertex with out-degree n-1 then only one king}
+  In an oriented graph with \(n\) vertices,
+  if there exists a vertex with out-degree \(n-1\),
+  then there is only one king in the graph.
+\end{corollary}
+
+\begin{proof}
+  A vertex with out-degree \(n-1\) needs to beat every vertex
+  in the graph except itself.
+  Therefore That vertex is an emperor,
+  and because of \cref{the: emperor then only king in oriented graph},
+  there will be only one king in this graph.
+\end{proof}
+
+\begin{lemma}\label{the: add edge only add king}
+  For a oriented graph \(G\),
+  if we add a new edge into \(G\) to get \(G'\),
+  then \(G'\) will not have less kings than \(G\).
+\end{lemma}
+
+\begin{proof}
+  Need to show that for every king \(k\) in \(G\),
+  \(k\) is also a king in \(G'\).
+
+  If \(k\) beats a vertex \(v\) by one step in \(G\),
+  then \(k\) beats vertex \(v\) by one step in \(G'\),
+  because if edge \((k, v)\) in \(G\) then
+  edge \((k, v)\) in \(G'\).
+
+  If \(k\) beats a vertex \(v\) by 2 steps in \(G\),
+  then exists vertex \(a\) such that
+  \(k \to a \to v\) in \(G'\).
+  By previous reasoning, \(k \to a \to v\) in \(G\),
+  then \(k \to a \to v\) in \(G'\)
+  and \(k\) beats \(v\) by 2 steps in \(G'\).
+
+  Therefore, \(k\) is also a king in \(G'\),
+  then every king in \(G\) is preserved in \(G'\).
+  Therefore, \(G'\) have less king than \(G\).
+\end{proof}
 
 \begin{lemma}\label{the: no (4 4) oriented graph}
-  There does not exist a \((4,4)\) general oriented graph.
+  There does not exist a \((4,4)\) oriented graph.
 \end{lemma}
+\begin{proof}
+  Assume there exists a \((4, 4)\) oriented graph,
+  then according to \cref{the: add edge only add king},
+  we can keep adding edge until every edge is adjacent
+  and still remain 4 vertices and 4 kings.
+  Then there exists a \((4,4)\) tournament.
+  By \cref{the: (n k) tournament exists},
+  there do not exists \((4,4)\) tournaments.
 
-\begin{lemma}\label{the: no (2 2) and (3 2) oriented graph}
+  Therefore, there cannot exists \((4,4)\) oriented graph.
+\end{proof}
+
+\begin{lemma}\label{the: no (2 2) oriented graph}
   There does not exist a \((2, 2)\) oriented graph
-  and a \((3, 2)\) oriented graph
 \end{lemma}
 
-The previous lemmas can be proved by
-listing all the oriented graph with 2, 3, and 4 vertices.
-We will not show the proofs in this thesis,
-because the proofs are too long and uninteresting.
+\begin{proof}
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[layered layout, math nodes, grow=right, sibling distance=2cm, level sep=0.75cm] {
+      a; b;
+      };
+      \caption{2 vertices with no edge.}
+      \label{fig: all oriented graph with 2 vertices: no edge}  % chktex 24
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[layered layout, math nodes, grow=right, sibling distance=2cm, level sep=0.75cm] {
+      a -> b;
+      };
+      \caption{2 vertices with 1 edge.}
+      \label{fig: all oriented graph with 2 vertices: 1 edge}  % chktex 24
+    \end{subfigure}
+    \caption{all the oriented graph with 2 vertices.}
+    \label{fig: all oriented graph with 2 vertices}  % chktex 24
+  \end{figure}
+  \cref{fig: all oriented graph with 2 vertices}
+  shows all the possible oriented graphs with 2 vertices.
+  Notice, the oriented graph in
+  \cref{fig: all oriented graph with 2 vertices: no edge}
+  has 0 king,
+  and the oriented graph in
+  \cref{fig: all oriented graph with 2 vertices: 1 edge}
+  has only 1 king.
+  Therefore, there does not exists a \((2,2)\) oriented graph.
+\end{proof}
+\begin{lemma}\label{the: no (3 2) oriented graph}
+  There does not exist a \((3, 2)\) oriented graph
+\end{lemma}
+
+\begin{proof}
+  We consider all the oriented graph with 3 vertices.
+
+  First, consider the graph with maximum out-degree 0.
+  The graph with maximum out-degree 0 will have no edge,
+  therefore there cannot be a king,
+  since no vertex can beats other vertices by 2 steps.
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b; c;
+      };
+      \caption{3 vertices with no edge.}
+      \label{fig: 3 oriented graph with max out-degree 1: 1 edge}  % chktex 24
+    \end{subfigure}
+    \begin{subfigure}{0.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b -> c;
+      };
+      \caption{3 vertices with 1 edge.}
+      \label{fig: 3 oriented graph with max out-degree 1: 2 edge}  % chktex 24
+    \end{subfigure}
+    \begin{subfigure}{0.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b -> c -> a;
+      };
+      \caption{3 vertices with 3 edges.}
+      \label{fig: 3 oriented graph with max out-degree 1: 3 edge}  % chktex 24
+    \end{subfigure}
+    \caption{all the oriented graph with 3 vertices and maximum out-degree 1.}
+    \label{fig: 3 oriented graph with max out-degree 1}  % chktex 24
+  \end{figure}
+  Then, consider the graph with maximum out-degree 1.
+  In \cref{fig: 3 oriented graph with max out-degree 1},
+  We show every oriented graph with 3 vertices and
+  maximum out-degree 1.
+  In \cref{fig: 3 oriented graph with max out-degree 1: 1 edge},
+  there is no king;
+  in \cref{fig: 3 oriented graph with max out-degree 1: 2 edge},
+  there is 1 king;
+  in \cref{fig: 3 oriented graph with max out-degree 1: 3 edge},
+  every vertex is a king, therefore it has 3 kings.
+
+  Finally, we consider the oriented graph with maximum out-degree 2.
+  By \cref{the: if vertex with out-degree n-1 then only one king},
+  because we have 3 vertex in the graph,
+  and at least one vertex need to have degree 2,
+  there there can only be 1 king.
+
+  Therefore, there is no \((3,2)\) oriented graph.
+\end{proof}
+
+\begin{lemma}\label{the: no (1 0) oriented graph}
+  There do not exists a \((1, 0)\) oriented graph.
+\end{lemma}
+\begin{proof}
+  If any oriented graph only have 1 vertex,
+  then that vertex by definition is a king.
+  Therefore, there does not exist a \((1, 0)\) oriented graph.
+\end{proof}
+
+After investigating what kinds of oriented graph do not exist,
+we then move on to all the possible oriented graph that
+we can construct.
 
 \begin{lemma}\label{the: (n 2) oriented graph}
-  There exists \((n, 2)\) oriented graph for \(n \geq 4\)
+  There exists an \((n, 2)\) oriented graph for \(n \geq 4\).
 \end{lemma}
 
 \begin{proof}
   \begin{figure}
     \centering
     \tikz\graph[tree layout, grow=down, math nodes, sibling distance=1cm,level sep=1cm] {
-        a -> b -> {c_1, c_2, "\ldots", c_{n-3}, c_{n-2}};  %chktex 18
-        c_1 -> a;
+    a -> b -> {c_1, c_2, "\ldots", c_{n-3}, c_{n-2}};  %chktex 18
+    c_1 -> a;
     };
     \caption{only \(a\) and \(b\) are kings for \(n \geq 4\).}
     \label{fig: (n 2) oriented graph}  %chktex 24
   \end{figure}
   We can see in \cref{fig: (n 2) oriented graph} that
-  \(c_1\) cannot dominate \(c_2\) in 2 steps.
-  and other \(c_i\) cannot dominate any other vertex,
-  because there is no edge going out of them.
+  \(c_1\) cannot dominate \(c_2\) by 1 or 2 steps,
+  and other \(c_i (i \neq 1)\) cannot dominate any other vertex,
+  because the out-degree of these vertices are 0.
 
-  \(a\) is a king because \(a \to b \to c_k\),
-  where \(k\) is a integer and \(k \leq n - 2\),
+  \(a\) is a king because \(a \to b\) and \(b\) beats every \(c_i\),
   therefore \(a\) beats \(b\) by one step,
-  and beats all the \(c_k\) by 2 steps.
-  \(b\) beats every \(c_k\) by 2 steps,
-  where \(k\) is a positive integer and \(k \leq n - 2\),
+  and \(a\) beats every \(c_i\) by 2 steps.
+  \(b\) beats every \(c_i\) by 2 steps,
   and \(b\) beats \(a\) by 2 steps: \(b \to c_1 \to a\).
 \end{proof}
 
+\begin{lemma}\label{the: (n 0) oriented graph}
+  There exists \((n, 0)\) oriented graph for \(n \geq 0\)
+  except \(n = 1\)
+\end{lemma}
+
+\begin{proof}
+  For a oriented graph with \(n\) vertices with no edge,
+  every vertex cannot beat any other vertex,
+  therefore, the graph has 0 kings,
+  and the graph is a \((n, 0)\) oriented graph.
+\end{proof}
+
 \begin{theorem}\label{the: (n k) oriented graph}
-  There exists an \((n, k)\) oriented graph for all the \(n \geq k \geq 1\),
-  with the exception of \((2, 2)\), \((2, 3)\) and \((4, 4)\) oriented graph.
+  There exists an \((n, k)\) oriented graph for all \(n \geq k \geq 0\),
+  with the exception of \((2, 2)\), \((3, 2)\), \((4, 4)\)
+  and \((1, 0)\) oriented graph.
 \end{theorem}
 
 \begin{proof}
@@ -65,7 +249,11 @@ because the proofs are too long and uninteresting.
 
   Because tournaments are also oriented graphs and
   by \cref{the: (n 2) oriented graph},
-  \cref{the: no (2 2) and (3 2) oriented graph}, \cref{the: no (4 4) oriented graph},
+  \cref{the: (n 0) oriented graph},
+  \cref{the: no (2 2) oriented graph},
+  \cref{the: no (3 2) oriented graph},
+  \cref{the: no (1 0) oriented graph},
+  and \cref{the: no (4 4) oriented graph},
   we can conclude that the theorem is correct.
 \end{proof}
 
@@ -91,12 +279,12 @@ Here we present a better way to construct the graph.
   \begin{figure}
     \centering
     \tikz\graph[tree layout, math nodes, grow=down, sibling distance=2cm,level sep=0.75cm] {
-      a -> b -> {c, T_{n-3} [draw, circle]};
-      T_{n-3} -> c;
-      T_{n-3} -> [bend right] a;
+    a -> b -> {c, T_{n-3} [draw, circle]};
+    T_{n-3} -> c;
+    T_{n-3} -> [bend right] a;
     };
     \caption{the constructive proof for
-      \cref{the: (n 2) with one tie}}
+    \cref{the: (n 2) with one tie}}
     \label{fig: (n 2) with one tie} %chktex 24
   \end{figure}
 
@@ -121,20 +309,71 @@ Here we present a better way to construct the graph.
   is \(v \to a \to b \to c\) which has length 3.
 \end{proof}
 
-With \cref{the: (n 2) with one tie},
+\begin{lemma}\label{the: (n 0) oriented graph with 1 tie}
+  There exists \((n, 0)\) oriented graph where \(n \neq 1\)
+  with at most 1 tie.
+\end{lemma}
+\begin{proof}
+  First, we can see that \((0, 0)\) oriented graph exists,
+  it is just an empty graph with no vertex and edge.
+
+  \begin{figure}
+  \centering
+    \tikz\graph[layered layout, math nodes, grow=right, sibling distance=2cm, level sep=0.75cm] {
+      a; b;
+    };
+    \caption{\((2, 0)\) oriented graph.}
+    \label{fig: (2 0) oriented graph with one tie}  % chktex 24
+  \end{figure}
+  Then, in \cref{fig: (2 0) oriented graph with one tie}
+  we show that \((2, 0)\) oriented graph with one tie exists.
+
+  \begin{figure}
+  \centering
+    \tikz\graph[layered layout, grow=right, sibling distance=2cm, level sep=2cm] {
+      "\((n, 0)\) oriented graph" [draw, circle]  %chktex 18
+      -> "\(s\)";  %chktex 18
+    };
+    \caption{construct \((n+1, 0)\) oriented graph from \((n, 0)\) oriented graph.}
+    \label{fig: (n+1 0) oriented graph with one tie}  % chktex 24
+  \end{figure}
+  In \cref{fig: (n+1 0) oriented graph with one tie},
+  we give a way to construction of an \((n+1, 0)\) oriented graph
+  given an \((n, 0)\) oriented graph.
+  We denote the \((n, 0)\) oriented graph as \(G\).
+
+  We need to show the resulting graph
+  in \cref{fig: (n+1 0) oriented graph with one tie}
+  has no king:
+  first, \(s\) cannot be a king,
+  because it does not beat any vertex;
+  any vertex \(v \in V(G)\) cannot be a king too.
+  Because \(v\) is not a king in \(G\),
+  there exists a vertex \(v' \in V(G)\)
+  such that \(v\) cannot beat it in 1 or 2 steps in \(G\).
+  Then \(v\) still cannot beats \(v'\) in this graph,
+  because \(s\) is the only added vertex,
+  and \(v \to s \to v'\) do not exists.
+\end{proof}
+
+With \cref{the: (n 2) with one tie} and
+\cref{the: (n 0) oriented graph with 1 tie},
 we can prove the following theorem.
 
 \begin{theorem}\label{the: (n k) oriented graph with one tie}
   There exists an \((n, k)\) oriented graph
-  with one tie for all the \(n \geq k \geq 1\),
-  with the exception of
-  \((2, 2)\), \((2, 3)\) and \((4, 4)\) oriented graph.
+  with at most one tie for all the \(n \geq k \geq 1\),
+  with the exception of \((2, 2)\),
+  \((2, 3)\), \((1, 0)\) and \((4, 4)\) oriented graph.
 \end{theorem}
 
 \begin{proof}
   Almost the same proof as \cref{the: (n k) oriented graph},
-  just substitute \cref{the: (n 2) oriented graph} with
-   \cref{the: (n 2) with one tie}.
+  just substitute \cref{the: (n 2) oriented graph},
+  \cref{the: (n 0) oriented graph} with
+  \cref{the: (n 2) with one tie}
+  and \cref{the: (n 0) oriented graph with 1 tie},
+  respectively.
 \end{proof}
 
 in other words,
