@@ -1,21 +1,18 @@
 \section{Ties and Tie Paths}
 
 Properties of ties in quasi-transitive digraphs are
-vastly important in this paper.
+vastly important in this chapter.
 
 \begin{lemma}\label{the: arrow direction lemma}
   In a quasi-transitive oriented graph \(G\),
   if vertex \(a\) ties vertex \(b\),
-  then for all vertex \(v\) that is adjacent to both \(a\) and \(b\),
+  then for each vertex \(v\) that is adjacent to both \(a\) and \(b\),
   either \(v\) beats both \(a\) and \(b\),
   or \(v\) is beaten by both \(a\) and \(b\)
   (\(\set{a, b} \to v\) or \(v \to \set{a, b}\)).
 \end{lemma}
 
 \begin{proof}
-  Assume there exists one vertex \(v\)
-  such that this lemma does not hold.
-
   Because \(v\) is adjacent to both \(a\) and \(b\),
   we show all the possible beating relationships
   between \(v\) and \(a, b\) in
@@ -23,7 +20,7 @@ vastly important in this paper.
   Because \(G\) is a quasi-transitive oriented graph,
   if \(a \to v \to b\) or \(b \to v \to a\)
   then \(a, b\) have to be adjacent.
-  Therefore, only possible beating relationships are
+  Therefore, only the possible beating relationships are
   \(\set{a, b} \to v\) or \(v \to \set{a, b}\).
 \end{proof}
 
@@ -63,17 +60,22 @@ vastly important in this paper.
     };
     \caption{\(b \to v \to a\).}
   \end{subfigure}
-  \caption{all the possible beating relation between
+  \caption{all the possible beating relations between
     vertex \(v\) and vertices \(a, b\)}
   \label{fig: possible beating between v and a b}  % chktex 24
 \end{figure}
 
 \cref{fig: arrow direction lemma: uncondensed} shows a nice
 visualization of \cref{the: arrow direction lemma}.
-If we only draw out all the vertices that are adjacent to both
-\(a\) and \(b\), represented by
-\(d_1, d_2, d_3, s_1, s_2, s_3, s_4\) in this graph,
-then \(a\) and \(b\) are either beaten by them or beat them.
+Consider the set of vertices that are adjacent to both
+\(a\) and \(b\).
+In this figure the set is
+\( \set{d_1, d_2, d_3, s_1, s_2, s_3, s_4} \).
+This set is partitioned into 2 parts:
+those vertices that dominates both \(a\) and \(b\)
+\(\set{d_1, d_2, d_3}\),
+and those vertices that are beaten by both \(a\) and \(b\)
+\(\set{s_1, s_2, s_3, s_4}\)
 The behavior of \(\set{a, b}\) is somewhat like a vertex,
 see \cref{fig: arrow direction lemma: condensed}.
 
@@ -113,8 +115,7 @@ However, this nice visualization in
 that is, all the vertices need to be adjacent to
 both \(a\) and \(b\).
 What will happen when we add another vertex that
-ties either \(a\) or \(b\) but is adjacent to \(v\)?
-We will then create a visualization for this problem.
+ties either \(a\) or \(b\) and is adjacent to \(v\)?
 
 \begin{figure}
   \centering
@@ -125,7 +126,7 @@ We will then create a visualization for this problem.
       a --[dashed] b --[dashed] c;
       v --c;
     };
-    \caption{add a vertex \(c\) ties \(b\), but not \(v\).}
+    \caption{add a vertex that \(c\) ties \(b\), but not \(v\).}
     \label{fig: add tie to arrow direction lemma: start} % chktex 24
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
@@ -146,31 +147,31 @@ In \cref{fig: add tie to arrow direction lemma: start}
 we add a vertex \(c\) that ties \(b\),
 but needs to be adjacent to \(v\)
 (we use an edge without arrow to denote adjacency).
-We then try to figure out the edge directed
-between \(v\) and \(c\).
 Because \(b\), \(c\) are both adjacent to \(v\),
 and \(c\) ties \(b\),
 therefore either \(\set{b, c} \to v\) or \(v \to \set{b, c}\).
 However, in the graph, \(b \to v\), therefore \(c \to v\).
 Thus, we get \cref{fig: add tie to arrow direction lemma: finish}.
 
-We find out that because of the ties between \(a, b, c\)
-the arrows direction between \(v, a\) and \(v, b\),
+We find out that because of the ties between \(a, b, c\),
+the arrow direction between \(v, a\) and \(v, b\),
 got ``transmitted'' to \(v, c\)
 via the \cref{the: arrow direction lemma}.
 We formalize this ``arrow transmission'' idea:
 
 \begin{definition}
-  In a digraph, a \keyword{tie path} from vertex \(a_0\) to \(a_n\),
-  or a tie path between vertex \(a_0\) and \(a_n\),
+  In a digraph, a \keyword{tie path} from
+  vertex \(a_0\) to vertex \(a_n\),
+  or a tie path between vertices \(a_0\) and \(a_n\),
   is a sequence of vertices
   \([a_0, a_1, a_2, \ldots, a_{n-1}, a_n]\),
   such that for all \(0 \leq k < n\), \(a_k\) ties \(a_{k + 1}\).
   If there is \(n + 1\) vertices in that sequence,
   we will say \keyword{the length of the tie path} is \(n\).
+  Note that all the \(a_i\)'s do not have to be distinct.
 \end{definition}
 
-A tie path is pretty similar to a path in undirected graph;
+A tie path is similar to a path in an undirected graph;
 just substitute all the edges in a path with ties.
 See \cref{fig: tie path and path}.
 
@@ -195,8 +196,8 @@ See \cref{fig: tie path and path}.
   \label{fig: tie path and path}  % chktex 24
 \end{figure}
 
-We first prove some general properties of digraph,
-these lemmas will be useful later:
+Tie path are useful in analyzing quasi-transitive
+oriented graphs:
 
 \begin{lemma}\label{the: tie path connection lemma}
   In a digraph,
@@ -228,13 +229,11 @@ these lemmas will be useful later:
 \begin{lemma}\label{the: tie path division lemma}
   In a digraph,
   if there exists a tie path \([a_0, a_1, \ldots, a_{n-1}, a_n]\),
-  then for all \(0 \leq p \leq n\) and \(0 \leq q \leq n\),
-  and \(p\) does not equal \(q\),
-  then there exists a tie path between \(p\) and \(q\).
+  then for all \(p \neq q\) \(0 \leq p \leq n\) and \(0 \leq q \leq n\),
+  there exists a tie path between \(p\) and \(q\).
 \end{lemma}
 \begin{proof}
   Without loss of generality, assume \(p < q\).
-
   Then we can find a tie path
   \([a_p, a_{p+1}, \ldots, a_{q-1}, a_q]\),
   see \cref{fig: tie path division}.
@@ -292,7 +291,7 @@ See \cref{fig: tie path transmit arrow}.
 
 \begin{lemma}\label{the: tie transimission}
   For every tie path in a quasi-transitive oriented graph,
-  take a vertex \(v\) that is adjacent to all the vertex
+  if vertex \(v\) is adjacent to all the vertices
   on the tie path,
   then \(v\) beats every vertex on the tie path,
   or \(v\) is beaten by every vertex on the tie path.
@@ -330,29 +329,31 @@ See \cref{fig: tie path transmit arrow}.
 
 \begin{proof}
   We can prove this lemma via induction,
-  just like we did in
+  follow the intuition in
   \cref{fig: add tie to arrow direction lemma}.
 
-  Start with tie path of length 1,
-  then we only have \(a_0\) ties \(a_1\) in this tie path,
-  and \(v\) that is adjacent to both of them.
-  The lemma holds because \cref{the: arrow direction lemma}.
+  Start with a tie path of length 1,
+  then we have \(a_0\) ties \(a_1\) in this tie path,
+  and \(v\) is adjacent to both of them.
+  \cref{the: arrow direction lemma} proves the result
+  for path of length 1.
 
-  Assume this lemma holds for any tie path of length \(n\),
-  then we need to prove this theorem holds for
-  tie path of length \(n + 1\).
+  Assume the property holds for
+  any tie path of length \(n\) and vertex \(v\),
+  then we need to prove this property holds for
+  any tie path of length \(n + 1\).
   See \cref{fig: tie transimission proof},
   take a tie path \([a_0, a_1, \ldots, a_n, a_{n+1}]\).
-  because this lemma holds for tie path of length \(n\),
-  then it is true for tie path \([a_0, a_1, \ldots, a_n]\).
+  we can apply the induction hypothesis to the
+  tie path \([a_0, a_1, \ldots, a_n]\).
   Because \(a_n\) ties \(a_{n+1}\), and
   \(v\) is adjacent to both of them.
   Therefore,
-  if \(a_n \to v\) then \(a_{n+1} \to v\) and
-  if \(v \to a_n\) then \(v \to a_{n+1}\).
+  if \(v \to {a_0, \ldots, a_n}\), then \(v \to a_{n+1}\),
+  then \(v\) beats the whole tie path;
+  otherwise \({a_0, \ldots, a_n} \to v\), then \(a_{n+1} \to v\),
+  then \(v\) is beaten by the whole tie path.
   Therefore this lemma still holds for tie path of length \(n + 1\).
-
-  Therefore this lemma is always true.
 \end{proof}
 
 \cref{the: tie transimission} generalizes
