@@ -79,11 +79,11 @@
   \(d\) strictly beats \(e\), and \(b\) strictly beats \(d\).
 
   For vertex \(c\),
-  \(T_c\) (double tie set of \(c\)) is \(\set{a, d}\).
+  \(DT_c\) (double tie set of \(c\)) is \(\set{a, d}\).
   The set of vertices that strictly beat \(c\),
-  which can be expressed as \(D_c - T_c\), is \(\set{b}\).
+  which can be expressed as \(D_c - DT_c\), is \(\set{b}\).
   The set of vertices that are strictly beaten by \(c\),
-  which can be expressed as \(S_c - T_c\), is \(\set{e}\).
+  which can be expressed as \(S_c - DT_c\), is \(\set{e}\).
 
 
 
@@ -96,31 +96,31 @@
 
   \begin{lemma}\label{the: graph partition lemma}
     for every vertex \(v\) in any semi-complete digraph \(G\),
-    \(\set{S_v - T_v, T_v, D_v - T_v, \set{v}}\)
+    \(\set{S_v - DT_v, DT_v, D_v - DT_v, \set{v}}\)
     forms a partition of \(G\).
   \end{lemma}
 
   \begin{figure}
     \centering
     \tikz\graph[simple necklace layout, math nodes, node sep=2cm] {
-      "D_v - T_v" [draw, circle, minimum size = 2cm] ->  %chktex 18 %chktex 8
+      "D_v - DT_v" [draw, circle, minimum size = 2cm] ->  %chktex 18 %chktex 8
       v ->
-      "S_v - T_v"[draw, circle, minimum size = 2cm];  %chktex 18 %chktex 8
-      v <-> T_v [draw, circle, minimum size = 2cm];
+      "S_v - DT_v"[draw, circle, minimum size = 2cm];  %chktex 18 %chktex 8
+      v <-> DT_v [draw, circle, minimum size = 2cm];
     };
     \caption{illustration of \cref{the: graph partition lemma}.}
     \label{fig: graph partition lemma} % chktex 24
   \end{figure}
 
   \begin{proof}
-    \(D_v - T_v\) is the set of vertices that strictly beat \(v\),
-    \(S_v - T_v\) is the set of vertices that are strictly beaten by \(v\),
-    \(T_v\) is all the vertices that double tie with \(v\).
+    \(D_v - DT_v\) is the set of vertices that strictly beat \(v\),
+    \(S_v - DT_v\) is the set of vertices that are strictly beaten by \(v\),
+    \(DT_v\) is all the vertices that double tie with \(v\).
     They are clearly disjoint by definition,
     and all of them are disjoint to \(\set{v}\) by definition.
 
     Every vertex in \(V(G)\) needs to be in one of
-    the sets \(S_v - T_v, T_v, D_v - T_v, \set{v}\),
+    the sets \(S_v - DT_v, DT_v, D_v - DT_v, \set{v}\),
     because every other vertex needs to be adjacent to \(v\).
   \end{proof}
 
@@ -149,7 +149,7 @@
     \(v\) beats every vertex in \(S_v\) by exactly 1 step,
     then by \cref{the: graph partition lemma},
     there exists a vertex
-    \(d \in D_v - T_v = V(G) - S_v - \set{v}\)
+    \(d \in D_v - DT_v = V(G) - S_v - \set{v}\)
     that is not beaten by \(v\) by 1 or 2 steps.
     Therefore there cannot be any vertex in \(S_v\) that beats \(d\).
     Because \(d\) is adjacent to every vertex in \(S_v\)
@@ -214,9 +214,9 @@
         \(k\) dominates \(v\) by exactly 1 step,
         because \(k\) is in \(D_v\).
       \item
-        \(k\) dominates \(T_v\) and \(S_v\) by 1 or 2 steps,
+        \(k\) dominates \(DT_v\) and \(S_v\) by 1 or 2 steps,
         because \(k\) dominates \(v\),
-        which beats all vertices in \(T_v\) and \(S_v\).
+        which beats all vertices in \(DT_v\) and \(S_v\).
     \end{itemize}
 
     Then, by \cref{the: graph partition lemma},
