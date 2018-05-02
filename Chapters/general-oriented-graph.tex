@@ -73,19 +73,13 @@ and double ties.
   Therefore, \(G'\) have less king than \(G\).
 \end{proof}
 
-\begin{lemma}\label{the: no (4 4) oriented graph}
-  There does not exist a \((4,4)\) oriented graph.
+\begin{lemma}\label{the: no (1 0) oriented graph}
+  There do not exists a \((1, 0)\) oriented graph.
 \end{lemma}
 \begin{proof}
-  Assume there exists a \((4, 4)\) oriented graph,
-  then according to \cref{the: add edge only add king},
-  we can keep adding edge until every edge is adjacent
-  and still remain 4 vertices and 4 kings.
-  Then there exists a \((4,4)\) tournament.
-  By \cref{the: (n k) tournament exists},
-  there do not exists \((4,4)\) tournaments.
-
-  Therefore, there cannot exists \((4,4)\) oriented graph.
+  If any oriented graph only have 1 vertex,
+  then that vertex by definition is a king.
+  Therefore, there does not exist a \((1, 0)\) oriented graph.
 \end{proof}
 
 \begin{lemma}\label{the: no (2 2) oriented graph}
@@ -165,6 +159,7 @@ and double ties.
     \caption{all the oriented graph with 3 vertices and maximum out-degree 1.}
     \label{fig: 3 oriented graph with max out-degree 1}  % chktex 24
   \end{figure}
+
   Then, consider the graph with maximum out-degree 1.
   In \cref{fig: 3 oriented graph with max out-degree 1},
   We show every oriented graph with 3 vertices and
@@ -185,13 +180,19 @@ and double ties.
   Therefore, there is no \((3,2)\) oriented graph.
 \end{proof}
 
-\begin{lemma}\label{the: no (1 0) oriented graph}
-  There do not exists a \((1, 0)\) oriented graph.
+\begin{lemma}\label{the: no (4 4) oriented graph}
+  There does not exist a \((4,4)\) oriented graph.
 \end{lemma}
 \begin{proof}
-  If any oriented graph only have 1 vertex,
-  then that vertex by definition is a king.
-  Therefore, there does not exist a \((1, 0)\) oriented graph.
+  Assume there exists a \((4, 4)\) oriented graph,
+  then according to \cref{the: add edge only add king},
+  we can keep adding edge until every edge is adjacent
+  and still remain 4 vertices and 4 kings.
+  Then there exists a \((4,4)\) tournament.
+  By \cref{the: (n k) tournament exists},
+  there do not exists \((4,4)\) tournaments.
+
+  Therefore, there cannot exists \((4,4)\) oriented graph.
 \end{proof}
 
 After investigating what kinds of oriented graph do not exist,
@@ -238,41 +239,41 @@ we can construct.
 
 \begin{theorem}\label{the: (n k) oriented graph}
   There exists an \((n, k)\) oriented graph for all \(n \geq k \geq 0\),
-  with the exception of \((2, 2)\), \((3, 2)\), \((4, 4)\)
-  and \((1, 0)\) oriented graph.
+  with the exception of \((1, 0)\), \((2, 2)\), \((3, 2)\),
+  and \((4, 4)\) oriented graph.
 \end{theorem}
 
 \begin{proof}
   \cref{the: (n k) tournament exists} shows that
-  there exists \((n, k)\) tournament for all \(n \geq k \geq 1\)
+  there exists an \((n, k)\) tournament for all \(n \geq k \geq 1\)
   with the exception of \((n, 2)\), and \((4, 4)\).
 
   Because tournaments are also oriented graphs and
-  by \cref{the: (n 2) oriented graph},
-  \cref{the: (n 0) oriented graph},
-  \cref{the: no (2 2) oriented graph},
+  by \cref{the: no (2 2) oriented graph},
   \cref{the: no (3 2) oriented graph},
   \cref{the: no (1 0) oriented graph},
-  and \cref{the: no (4 4) oriented graph},
+  \cref{the: no (4 4) oriented graph},
+  \cref{the: (n 2) oriented graph},
+  and \cref{the: (n 0) oriented graph},
   we can conclude that the theorem is correct.
 \end{proof}
 
 We generalize the result from~\cite{maurer_king_1980}
 on tournaments to oriented graphs
-and show that there are only finite number of
-\((n, k)\) oriented graphs that cannot be constructed.
+and show that there are only 4
+\((n, k)\) oriented graphs that do not exists.
 
 Following the idea from \cref{chap: semi-complete digraph},
-one of the question to ask is that how can we use
+one of the questions to ask is how can we use
 ties more ``efficiently''.
 The construction method in the proof of
-\cref{the: (n 2) oriented graph} is pretty inefficient.
+\cref{the: (n 2) oriented graph} is very inefficient.
 
-Here we present a better way to construct the graph.
+Here we present a better way to construct these oriented graphs.
 
 \begin{lemma}\label{the: (n 2) with one tie}
-  There exists \((n, 2)\) oriented graph
-  with only one tie, for \(n \geq 4\)
+  There exists an \((n, 2)\) oriented graph
+  with only one tie, for \(n \geq 4\).
 \end{lemma}
 
 \begin{proof}
@@ -280,7 +281,7 @@ Here we present a better way to construct the graph.
     \centering
     \tikz\graph[tree layout, math nodes, grow=down, sibling distance=2cm,level sep=0.75cm] {
     a -> b -> {c, T_{n-3} [draw, circle]};
-    T_{n-3} -> c;
+    T_{n-3} <- c;
     T_{n-3} -> [bend right] a;
     };
     \caption{the constructive proof for
@@ -289,21 +290,21 @@ Here we present a better way to construct the graph.
   \end{figure}
 
   See \cref{fig: (n 2) with one tie},
-  the \(T_{n - 3}\) is a tournament of \(n - 3\) vertices.
+  \(T_{n - 3}\) is a tournament of \(n - 3\) vertices.
   In this graph, the only tie is between \(a\) and \(c\)
   and the only kings are \(a\) and \(b\).
 
   \(a\) is a king because, \(a \to b \to c\)
   and \(a \to b \to T_{n - 3}\),
-  therefore \(a\) beats \(b\) in 1 step
-  and \(a\) beats \(c\) and \(T_{n-3}\) in 2 steps.
+  therefore \(a\) beats \(b\) by 1 step
+  and \(a\) beats \(c\) and \(T_{n-3}\) by 2 steps.
   \(b\) is a king because, \(b \to c\)
   and \(b \to T_{n - 3} \to a\)
   (because \(T_{n-3}\) is not empty),
   therefore \(b\) beats \(c\) and \(T_{n - 3}\),
-  and \(b\) beats \(a\) in 2 steps.
+  and \(b\) beats \(a\) by 2 steps.
 
-  \(c\) is not a king, because it has out-degree 0.
+  \(c\) is not a king, there is no path from \(c\) to \(b\).
   Any vertex \(v\) in \(T_{n-3}\) cannot be a king,
   because the closest path between \(v\) and \(c\)
   is \(v \to a \to b \to c\) which has length 3.
@@ -362,9 +363,9 @@ we can prove the following theorem.
 
 \begin{theorem}\label{the: (n k) oriented graph with one tie}
   There exists an \((n, k)\) oriented graph
-  with at most one tie for all the \(n \geq k \geq 1\),
-  with the exception of \((2, 2)\),
-  \((2, 3)\), \((1, 0)\) and \((4, 4)\) oriented graph.
+  with at most one tie for all \(n \geq k \geq 0\),
+  with the exception of \((1, 0)\), \((2, 2)\),
+  \((3, 2)\), and \((4, 4)\) oriented graphs.
 \end{theorem}
 
 \begin{proof}
@@ -379,6 +380,6 @@ we can prove the following theorem.
 in other words,
 \cref{the: (n k) oriented graph with one tie},
 states that for all \((n, k)\) oriented graphs
-that can be constructed, can be constructed with only one tie.
+that exists, they can be constructed with only one tie.
 
 %TODO: strong and locally semi-complete
