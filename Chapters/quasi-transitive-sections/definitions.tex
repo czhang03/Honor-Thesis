@@ -1,10 +1,14 @@
 \section{Definitions}
 
-\cref{chap: general oriented graph}
-is a rather short chapter,
-because the behavior of oriented graph is
-so unpredictable that it is hard to produce theorems about them.
-Therefore we decided to focus on a special case of oriented graph,
+As mentioned in \cref{chap: general oriented graph}
+In an oriented graph, for any pair of vertices \(a, b\),
+either \(a\) beats \(b\), \(b\) beats \(a\)
+or \(a\) ties \(b\).
+So, there are \(3^{n \choose 2}\) different oriented graphs
+on n vertices.
+with no other restrictions, it is difficult to
+produce theorems about them.
+Therefore we decided to focus on another special case of oriented graph,
 which is called ``quasi-transitive oriented graph'':
 
 \begin{definition}
@@ -37,12 +41,12 @@ which is called ``quasi-transitive oriented graph'':
   \label{fig: quasi-transitive oriented graph}  %chktex 24
 \end{figure}
 
-Because every vertex is adjacent to each other in tournaments,
-therefore tournaments is a special case of
-quasi-transitive oriented graph.
+Because every vertex is adjacent to every other vertex
+ in a tournament,
+tournaments is a special case of quasi-transitive oriented graph.
 
 Although quasi-transitive oriented graph can be quite strange
 (for example, every graph with no edge is
  a quasi-transitive oriented graph),
-there are many connections between quasi-transitive oriented graphs
-and tournaments~\cite{bangjensen_quasitransitive_1995}.
+quasi-transitive oriented graphs inherits many properties of
+tournaments~\cite{bangjensen_quasitransitive_1995}.
