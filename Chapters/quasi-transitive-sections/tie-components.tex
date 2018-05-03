@@ -129,9 +129,9 @@ not just in quasi-transitive oriented graphs.
   \(v\) is adjacent to \(C(a)\).
 \end{proof}
 
-Follow our intuition that tie ``transmits'' arrow directions
+Our previous results that ties ``transmit'' arrow directions
 in quasi-transitive oriented graph,
-we can see that for a tie component \(C\)
+had us see that for a tie component \(C\)
 and a vertex \(v \notin C\), \(C \to v\) or \(v \to C\).
 See \cref{fig: transmitting arrow direction in tie component},
 for a visualization.
@@ -195,39 +195,24 @@ We then formalize and generalize this idea into two theorems:
 \end{lemma}
 
 \begin{proof}
-  Because \(v\) is not in \(C(a)\),
-  then \(v\) is adjacent to every vertex in \(C(a)\)
-  by \cref{the: adjacent if not in component}.
-  Take any vertex \(b \in C\),
-  there exists a tie path between \(a\) and \(b\),
-  and by \cref{the: tie path division lemma},
-  for every vertex \(c\) on this tie path,
-  there exists a tie path between \(c\) and \(a\),
-  therefore \(c \in C(a)\),
-  thus \(v\) is adjacent to every vertex \(c\) on the tie path.
-  Therefore \(v \to \set{a, b}\) or \(\set{a, b} \to v\),
-  by \cref{the: tie transimission}.
-
-  Case 1, \(a \to v\): for any vertex \(b \in C(a)\),
-  \(b \to v\), by above argument.
-  Therefore \(C(a) \to v\).
-
-  Case 2, \(v \to a\): then for any vertex \(b \in C(a)\),
-  \(v \to b\), by above argument.
-  Therefore \(v \to C(a)\).
-
-  Case 3, \(v\) ties \(a\):
-  \(v\) cannot tie \(a\) because \(v \notin C(a)\).
+  By \cref{the: adjacent if not in component},
+  we know that \(v\) is adjacent to \(C(a)\).
+  Let \(x, y\) be two vertices in \(C(a)\).
+  There exists a tie path between them,
+  so both \(x\) and \(y\) beats \(v\)
+  or \(v\) beats both \(x, y\).
+  Since this is true for all pairs of vertices on \(C(a)\),
+  we get \(v \to C(a)\) or \(C(a) \to v\).
 \end{proof}
 
-\begin{lemma}\label{the: vertex force component beating}
+\begin{corollary}\label{the: vertex force component beating}
   In a quasi-transitive oriented graph,
   for any tie component \(C(a)\),
   If there exists one vertex \(v \in C(a)\)
   that beats (be beaten) a vertex \(v' \notin C(a)\).
   Then \(C(a) \to v'\) (\(v' \to C(a)\)).
   See \cref{fig: vertex force component beating}
-\end{lemma}
+\end{corollary}
 
 \begin{figure}
   \centering
@@ -295,15 +280,15 @@ we prove the following theorem:
   then \(C(a) \to C(b)\).
 
   Case 2, \(C(b) \to a'\):
-  by almost the same reasoning, \(C(b) \to C(a)\).
+  by the same reasoning, \(C(b) \to C(a)\).
 \end{proof}
 
-After couple pages of theorems,
+After several pages of theorems,
 we can finally take a pause
 and understand what we are saying here.
 We combine \cref{the: tie components partition unique} and
 \cref{the: tie component beats tie component},
-then try to understand it visually.
+and try to understand it visually.
 
 \begin{figure}
   \centering
@@ -343,7 +328,7 @@ then try to understand it visually.
       -> C [draw, circle, minimum size=1cm] -> D [draw, circle, minimum size=1cm];
       A -> D -> B
     };
-    \caption{components beats each other.}
+    \caption{components beat each other.}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \centering
@@ -351,7 +336,7 @@ then try to understand it visually.
       A' -> B' -> C' -> D';
       A' -> D' -> B';
     };
-    \caption{components are just like vertex.}
+    \caption{components are just like vertices.}
   \end{subfigure}
   \caption{condense the tie components and get a tournament.}
   \label{fig: tie components condensation}  % chktex 24
@@ -361,8 +346,9 @@ See \cref{fig: tie components condensation}.
 For every quasi-transitive digraph,
 we can split it into tie components,
 and every tie component either beats another tie component
-or be beaten by another tie component.
-Then, tie components are kind of like vertices.
-What even more exciting is that
-there cannot be ties between tie components.
-The graph formed by tie components is a tournament.
+or is beaten by another tie component.
+Then, tie components behave like vertices.
+Because there are no ties between tie components,
+The graph formed by tie components is a tournament,
+which is the ``most well understood class of
+directed graphs''~\cite{bang-jensen_generalizations_1998}.
