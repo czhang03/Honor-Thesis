@@ -1,17 +1,17 @@
 \section{Tie Components}
 
-We keep exploring the possibility of tie paths and the idea of
- ``arrow direction transmitted by ties''.
-We will be able to define the following structure with
+We continue to explore the relationship between tie paths and
+arrow direction transmitted by ties.
+We to define the following structure with
 the intuition of ``path'' and ``connected component''
 in undirected graph.
 
 \begin{definition}
-  In a digraph \(G\),
-  a \keyword{tie component} of vertex \(a\): \(C(a)\)
-  contains the vertex \(a\) and all vertices \(v\)
+  In a digraph \(G\), a
+  \keyword{tie component of vertex \(a\)}[tie component of vertex]:
+  \(C(a)\), all vertices \(v\)
   such that there exists a tie path between \(a\) and \(v\).
-  \(a\) is called the \keyword{representation} of \(C(a)\)
+  \(a\) is called a \keyword{representitive} of \(C(a)\)
 \end{definition}
 
 \begin{figure}
@@ -43,7 +43,7 @@ in undirected graph.
     \(\set{a, b}, \set{c, d, e}, \set{f}\)}
     \label{fig: connected component example} %chktex 24
   \end{subfigure}
-  \caption{the tie component in (a) is the connected component in (b).}
+  \caption{the tie components in (a) are the connected components in (b).}
   \label{fig: tie components and connected components}  % chktex 24
 \end{figure}
 
@@ -52,109 +52,80 @@ we first change every tie in
 \cref{fig: tie component example} to an undirected edge
 and then remove all the directed edges
 to obtain \cref{fig: connected component example},
-and tie component in \cref{fig: tie component example}
-exactly corresponded to connected components in
+and tie components in \cref{fig: tie component example}
+exactly correspond to connected components in
 \cref{fig: connected component example}.
-Therefore, just like tie path is similar to path
-in undirected graph,
-tie component is very similar to connected component
-in undirected graphs,
+Therefore, just like a tie path is similar to a path
+in an undirected graph,
+a tie component is very similar to a connected component
+in an undirected graphs,
 and we can bring all the properties and intuitions
-of connected component to tie component.
+of connected components to tie components.
 
-We then prove some of these useful properties
-of tie components in digraphs.
-Notice, theses theorems work in all digraphs,
+We prove results about tie components in digraphs.
+Notice that theses results work in all digraphs,
 not just in quasi-transitive oriented graphs.
 
-\begin{lemma}\label{the: component equal if tie path}
-  For any two vertices \(a\) and \(b\) in a digraph \(G\)
-  if there exists a tie path between \(a\) and \(b\),
-  then \(C(a) = C(b)\).
-\end{lemma}
+\begin{theorem}\label{the: tie path equivalence relation}
+  For a digraph \(G\),
+  we define a relation \(\mathrel{R}\) on \(V(G)\) by
+  for vertices \(a, b \in V(G)\),
+  \(a\mathrel{R}b\) if there exists a tie path between \(a, b\).
+  \(\mathrel{R}\) is an equivalence relation.
+\end{theorem}
 
 \begin{proof}
-  Take any vertex \(v\) in \(C(a)\),
-  then there exists a tie path between \(a\) and \(v\).
-  Because there is a tie path between \(a\) and \(b\),
-  thus there exists a tie path between \(b\) and \(v\)
-  by \cref{the: tie path connection lemma}.
-  Then \(v \in C(b)\). Therefore \(C(a) \subseteq C(b)\)
+  Reflexive: given a vertex \(a\),
+  \([a]\) is a tie path of length 0.
+  therefore there exists a tie path from \(a\) to itself.
 
-  By symmetry, \(C(b) \subseteq C(a)\), then \(C(a) = C(b)\)
+  Symmetry: if there exists a tie path from \(a_0\) to \(a_n\):
+  \([a_0, a_1, a_2, \ldots, a_n]\),
+  then because tie do not have directions,
+  \([a_n, a_{n-1}, \ldots, a_1, a_0]\) is a tie path from
+  \(a_n\) to \(a_0\).
+
+  Transitive: by \cref{the: tie path connection lemma}.
 \end{proof}
 
-\begin{lemma}\label{the: component disjoint if no tie path}
-  In a digraph, there does not exists a tie path between
-  two vertex \(a, b\), then \(C(a)\) and \(C(b)\) disjoint.
-\end{lemma}
+\begin{corollary}\label{the: tie component equivalence class}
+  For a digraph \(G\), tie component is an equivalence class
+  on \(V(G)\).
+\end{corollary}
 \begin{proof}
-  Assume \(C(a)\) and \(C(b)\) are not disjoint.
-  Then there exists vertex \(v \in C(a)\) and \(v \in C(b)\).
-  Therefore, there exists a tie path between \(v\) and \(a\)
-  and there exists a tie path between \(v\) and \(b\).
-  Then there exists a tie path between \(a\) and \(b\)
-  by \cref{the: tie path connection lemma}.
-  Contradiction.
+  By \cref{the: tie path equivalence relation},
+  and the definition of tie component.
 \end{proof}
 
-\begin{lemma}\label{the: adjacent if not in component}
-  In a digraph, if vertex \(v\) not in tie component \(C(a)\),
+\begin{corollary}\label{the: tie components partition unique}
+  For digraph \(G\), tie components form a unique
+  partition of \(V(G)\).
+\end{corollary}
+
+\begin{proof}
+  By \cref{the: tie component equivalence class},
+  tie components form an equivalence class on \(V(G)\),
+  and equivalence classes form a unique partition
+  of the set \(V(G)\)~\cite{epp_discrete_2011}.
+\end{proof}
+
+\begin{corollary}\label{the: adjacent if not in component}
+  In a digraph, if vertex \(v\) is not in tie component \(C(a)\),
   then \(v\) is adjacent to \(C(a)\).
-\end{lemma}
-\begin{proof}
-  recall \(v\) is adjacent to \(C(a)\)
-  means \(v\) is adjacent to every vertex in \(C(a)\).
-
-  Assume there exists a vertex \(b \in C(a)\)
-  that is not adjacent to \(v\),
-  that is, \(v\) ties \(b\).
-  Then there exists a tie path \([v, b]\) between \(v\) and \(b\).
-  Because \(b \in C(a)\),
-  then there exists a tie path between \(a\) and \(b\).
-  Therefore, by \cref{the: tie path connection lemma},
-  there exists a tie path between \(v\) and \(a\),
-  and \(v \in C(a)\).
-  Contradiction.
-\end{proof}
-
-
-\begin{theorem}\label{the: tie component partition}
-  Distinct tie components of a digraph \(G\) forms a partition
-  of the \(V(G)\).
-\end{theorem}
+\end{corollary}
 
 \begin{proof}
-  Prove that distinct tie components are disjoint:
-  by \cref{the: component equal if tie path} and
-  \cref{the: component disjoint if no tie path},
-  any two tie component \(C(a), C(b)\) either equal or disjoint.
-  Because distinct tie components cannot equal each other,
-  therefore all distinct tie components are disjoint.
+  Because \(C(a)\) is an equivalence class on the relation
+  \(\mathrel{R}\) such that
+  \(a\mathrel{R}b\) if there exists a tie path between \(a\) and \(b\).
+  Because \(v\) not in the equivalence class \(C(a)\),
+  for every vertex \(a' \in C(a)\),
+  \(v\mathrel{R}a'\) is false~\cite{epp_discrete_2011}.
+  Therefore there is no tie path between \(v\) and \(a\),
+  thus \(v\) does not tie \(a'\).
 
-  Prove that every vertex \(v\) in a tie component:
-  \(v \in C(v)\) by definition of tie component.
-\end{proof}
-
-\begin{theorem}\label{the: tie components partition unique}
-  Given a quasi-transitive oriented graph \(Q\),
-  the partition formed by distinct tie components is unique.
-\end{theorem}
-
-\begin{proof}
-  Suppose there exists two different partition \(P\) and \(P'\),
-  then there exists a tie component \(C(a) \in P\) that is
-  not in \(P'\).
-
-  take a because \(P'\) partitions the graph,
-  then there exists \(C(a')\) such that \(a \in C(a')\).
-  Therefore, by \cref{the: component equal if tie path},
-  and \cref{the: component disjoint if no tie path},
-  then \(C(a)\) and \(C(a')\) either disjoint or equal.
-  Because \(a\) in both \(C(a)\) and \(C(a')\),
-  therefore \(C(a) = C(a')\).
-  Because the tie component \(C(a) \in P\) that is
-  not in \(P'\), contradiction.
+  Therefore, \(v\) is adjacent to every vertex in \(C(a)\);
+  \(v\) is adjacent to \(C(a)\).
 \end{proof}
 
 Follow our intuition that tie ``transmits'' arrow directions
@@ -313,7 +284,7 @@ we prove the following theorem:
 
 \begin{proof}
   Take any vertex \(a'\) in \(C(a)\).
-  By \cref{the: tie component partition}, \(a'\) is not in \(C(b)\).
+  By \cref{the: tie components partition unique}, \(a'\) is not in \(C(b)\).
   Then because of \cref{the: component and a single point},
   \(a' \to C(b)\) or \(C(b) \to a'\).
 
@@ -329,7 +300,7 @@ we prove the following theorem:
 After couple pages of theorems,
 we can finally take a pause
 and understand what we are saying here.
-We combine \cref{the: tie component partition} and
+We combine \cref{the: tie components partition unique} and
 \cref{the: tie component beats tie component},
 then try to understand it visually.
 
