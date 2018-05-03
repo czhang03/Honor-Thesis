@@ -22,10 +22,9 @@ and trivial condensation.
 
 Identity condensation \(i\) maps an oriented graph \(G\) to itself,
 such that \(i\) maps every vertex to itself,
-and \(f(a) \to f(b)\) if \(a \to b\)
-and \(f(a)\) ties \(f(b)\) if \(a\) ties \(b\).
+and \(f(a) \to f(b)\) if and only if \(a \to b\).
 The identity condensation preserves all the edges
-and ties, and did not add any ties.
+and ties, and do not change the graph at all.
 We can see that this map is a condensation by definition.
 
 Another example is trivial condensation \(t\),
@@ -33,7 +32,8 @@ which maps any oriented graph \(G\) into a single point.
 Because for any two vertices \(a, b \in G\),
 \(t(a) = t(b)\), therefore by definition,
 \(t(a)\) does not tie or beat \(t(b)\).
-Therefore, this mapping also satisfy the definition of condensation.
+Therefore, this mapping also satisfies
+the definition of condensation.
 
 \begin{definition}
   Given oriented graph \(G\) as the uncondensed graph of
@@ -46,11 +46,13 @@ Therefore, this mapping also satisfy the definition of condensation.
 
 A component of vertex \(a\) is a set of vertices
 that are condensed into the same vertex as \(a\).
-For example, the component of vertex \(a\) in oriented graph \(G\)
-identity condensation is a set that only contains \(a\) itself,
+For example, the component of vertex \(a\)
+in oriented graph \(G\) with identity condensation
+is a set that only contains \(a\) itself,
 and the component of a vertex \(a\) in oriented graph \(G\)
-is set of all the vertices,
-because every vertex in \(G\) are all mapped onto a single vertex,
+with the trivial condensation is set of all the vertices,
+because all vertices in \(G\) are mapped onto a
+single vertex in \(H\),
 therefore all the vertices in \(G\) are
 condensed into the same vertex as \(a\).
 
@@ -118,34 +120,36 @@ The component of \(a\) is \(A\),
 the component of \(d\) is \(B\),
 and the component of \(c\) is also \(B\),
 because both \(c\) and \(d\) are mapped into vertex
-\(B'\) in oriented graph \(G\).
+\(B'\) in oriented graph \(H\).
 
-We proof couple theorem to help the understanding of
-condensation and components:
+We proof several theorems involving condensation and components
+to help us with our goal of identifying kings in
+quasi-transitive oriented graphs.
 
 \begin{theorem}\label{the: condensation component partition}
   Given any oriented graph \(G\) and condensation \(f\),
-  distinct components in \(G\) partitions \(V(G)\).
+  distinct components in \(G\) partition \(V(G)\).
 \end{theorem}
 
 \begin{proof}
-  Prove distinct components disjoint:
-  take any two vertices \(a, b \in V(G)\),
-  find component of \(a\): \(A\),
-  and component of \(b\): \(B\).
-  Assume there exists \(v \in A\) and \(v \in B\).
-  Therefore \(f(v) = f(a)\), and \(f(v) = f(b)\),
+  Prove distinct component disjoint:
+  Assume there exists two vertex \(a\) and \(b\),
+  such that the component of \(a\) is \(A\);
+  component of \(b\) is \(B\),
+  and \(A \neq B\); \(A \cap B \neq \emptyset \).
+  Therefore, there exists \(v \in A \cap B\).
+  By definition of components,
+  \(f(v) = f(a)\), and \(f(v) = f(b)\),
   therefore \(f(b) = f(a)\),
   and \(B
   = \set{x \in V(G) \mid f(x) = f(b)}
   = \set{x \in V(G) \mid f(x) = f(a)}
   = A\).
-  Therefore, \(A\) and \(B\) are not distinct.
-  Contradiction.
+   \(A = B\), contradiction.
 
-  Prove every vertex are in a component:
+  Prove every vertex is in a component:
   for every vertex \(v \in V(G)\),
-  \(v\) is in the component of \(v\) by definition.
+  \(v\) is in the component of \(v\) because \(f(v) = f(v)\).
 \end{proof}
 
 \begin{lemma}\label{the: vertex force image beating}
@@ -209,8 +213,8 @@ condensation and components:
   Thus, for every vertex \(a' \in A\),
   and every vertex \(b' \in B\),
   because \(f(a') = f(a)\) and \(f(b') = f(b)\),
-  and \(f(a)\) ties \(f(b)\), therefore \(f(a')\) ties \(f(b')\),
-  then \(a'\) ties \(b'\).
+  and \(f(a)\) ties \(f(b)\), therefore \(f(a')\) ties \(f(b')\).
+  By the definition of condensation, \(a'\) ties \(b'\).
   Therefore, \(A\) ties \(B\).
 
   Given vertex \(a \in A\) beats vertex \(b \in B\).
@@ -219,8 +223,8 @@ condensation and components:
   Thus for every vertex \(a' \in A\),
   and every vertex \(b' \in B\),
   because \(f(a') = f(a)\) and \(f(b') = f(b)\),
-  and \(f(a) \to f(b)\), therefore \(f(a') \to f(b')\),
-  then \(a' \to b'\).
+  and \(f(a) \to f(b)\), therefore \(f(a') \to f(b')\).
+  By the definition of condensation, \(a' \to b'\).
   Therefore, \(A\) ties \(B\).
 \end{proof}
 
@@ -243,21 +247,21 @@ condensation and components:
   if \(a\) ties \(b\), then \(A\) ties \(B\).
 \end{proof}
 
-We first see \cref{fig: behaves like a vertex example},
+In \cref{fig: behaves like a vertex example},
 we show an example of a set of vertices \(\set{b, c, d}\)
-behaves like the vertex \(v\).
+that behaves like the vertex \(v\).
 We then try to visualize \cref{the: components are vertex in condensation},
 with the help of \cref{fig: condensation example},
 we find out that graph condensation just takes the idea
 in \cref{fig: behaves like a vertex example}
-to the next level: all the components behaves likes a vertex.
-A condensation is just to find out those sets of vertices
+to the next level: all the components behave like vertices.
+A condensation looks for those sets of vertices
 that behave like a single vertex (components),
-and then condense them into a single vertex.
+and then condenses them into a single vertex.
 
 \begin{figure}
   \centering
-  \begin{subfigure}[b]{0.45\linewidth}
+  \begin{subfigure}[b]{0.4\linewidth}
     \centering
     \tikz\graph[layered layout, math nodes, level sep=1cm] {
       a -> {b, c, d};
@@ -269,7 +273,7 @@ and then condense them into a single vertex.
       or is beaten by them.}
     \label{fig: behaves like a vertex example: uncondensed} % chktex 24
   \end{subfigure}
-  \begin{subfigure}[b]{0.45\linewidth}
+  \begin{subfigure}[b]{0.4\linewidth}
     \centering
     \tikz\graph[layered layout, math nodes, level sep=1cm] {
       a -> v;
@@ -278,15 +282,15 @@ and then condense them into a single vertex.
     };
     \caption{vertices \(\set{b, c, d}\) in %chktex 44
       \cref{fig: behaves like a vertex example: uncondensed}
-     behaves exactly like \(v\) in this graph}
+     behaves exactly like \(v\) in this graph.}
   \end{subfigure}
   \caption{\(\set{b, c, d}\) behaves like a vertex.}  %chktex 44
   \label{fig: behaves like a vertex example}  % chktex 24
 \end{figure}
 
-Notice although we can define identity condensation
-and trivial condensation on all the oriented graphs,
-not all the oriented graphs have other condensations
+Notice that all oriented graph have the
+identity condensation and trivial condensation,
+but some oriented graphs may not have other condensations
 defined on them.
 
 \begin{figure}
@@ -295,33 +299,31 @@ defined on them.
       a -> b -> c -> a;
   };
   \caption{an oriented graph with only
-    identity condensation and trivial condensation}
+    identity condensation and trivial condensation.}
   \label{fig: no condensation example} % chktex 24
 \end{figure}
 
-For example, graph in \cref{fig: no condensation example}
-cannot have any condensation defined on them
+For example, the graph in \cref{fig: no condensation example}
+cannot have any condensation defined on it
 except for identity condensation and trivial condensation,
-because we cannot find any components that is not the whole
+because we cannot find any component that is not the whole
 graph or a single vertex.
-For example, if we find a set \(\set{a, c}\),
-vertex \(b\) both beats a vertex in the set (\(b\) beats \(a\)),
-and are beaten by a vertex in the set (\(c\) is beaten by\(b\)).
+For example, let's look at set \(\set{a, c}\).
+Vertex \(b\) beats a vertex in the set (\(b\) beats \(a\)),
+and is beaten by a vertex in the set (\(c\) is beaten by \(b\)).
 Therefore the set \(\set{a, c}\) is not a component.
 
 Condensation is a relatively strong transformation,
 because it preserves many properties of the graph.
-We will only prove some theorems that will be useful
-in later sections.
+We will prove some theorems that will be useful
+in later sections, when looking for kings
 
 \begin{lemma}\label{the: shortest path different components lemma}
-  Given a condensation \(f: G \to H\),
-  for all \(a_0, a_n \in V(G)\),
-  such that \(a_0\) and \(a_n\) are in two distinct components,
-  and the shortest path from \(a_0\) to \(a_n\)
-  is \(P: a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\).
-  Then vertices \(a_0, a_1, \ldots, a_{n-1}, a_n\)
-  are all in different components.
+  Let \(f: G \to H\) be a condensation of oriented graph \(G\)
+  and let \(a_0, a_n\) be two vertices in \(G\) from different
+  components. If \(P: a_0 \to a_1 \to \cdots \to a_n\) is a shortest
+  path from \(a_0\) to \(a_n\), then vertices
+  \(a_0, a_1, \ldots, a_n\) are all in different components.
 \end{lemma}
 
 \begin{figure}
@@ -347,17 +349,20 @@ in later sections.
         \(a_{p-1} \to a_q\).}
     \end{subfigure}
 
-  \caption{the path took a ``detour'' at \(a_p\).}
+  \caption{the path took a ``detour'' at \(a_{p-1}\).}  %chktex 44
   \label{fig: same component the not the shortest path}  % chktex 24
 \end{figure}
 
 \begin{proof}
-  Take the first \(a_p\) such that
-  there exists \(a_q\) are in the same component \(C\) as \(a_p\)
-  where \(p < q \leq n\).
+  Suppose not. Take the the smallest \(p\) such that
+  there exists \(a_p\) and \(a_q (p < q \leq n)\)
+  are in the same component \(C\).
 
-  We then show that \(a_{p-1} \in C\):
-  assume \(a_{p-1} \notin C\), then because \(a_{p-1} \to a_p\)
+  Since \(a_p\) is the first vertex in the \(P\)
+  that belongs to the same component as another vertex in \(P\).
+  \(a_{p-1}\) cannot be in the same component as \(a_p\),
+  then \(a_{p-1} \notin C\).
+  Because \(a_{p-1} \to a_p\)
   and \cref{the: vertex force beating relation in condensation},
   \(a_{p-1} \to C\).
   Thus \(a_{p-1} \to a_q\), and path
