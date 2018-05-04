@@ -401,18 +401,20 @@ in later sections, when looking for kings
   Prove \((\Leftarrow )\):
   Suppose \(P_H\) is a shortest path in \(H\) but \(P_G\) is
   not a shortest path in \(G\)
+  Then there exists a shorter path \(P_G'\) in \(G\)
+  from \(a_0\) to \(a_n\):
+  \(a_0 \to b_1 \to b_2 \to \cdots \to b_{m-1} \to b_m \to a_n\), \(m < n-1\).
   Because of \cref{the: shortest path different components lemma},
   \(a_0, b_1, b_2, \ldots, b_m, a_n\)
   are all in different components.
   Then by \cref{the: vertex force image beating},
   \(f(a_0) \to f(b_1) \to f(b_2) \to \cdots \to f(b_m) \to f(a_n)\)
-  exists and is  shorter than
-  \(P_H\), a contradiction.
+  exists and is shorter than \(P_H\), contradiction.
 \end{proof}
 
 \begin{corollary}\label{the: condensation preserves beating in distinct components}
-  Let \(f: G \to H\) be a condensation from oriented graphs.
-  For all \(a_0, a_n \in G\),
+  Let \(f: G \to H\) be a condensation,
+  for all \(a_0, a_n \in G\),
   such that \(a_0\) and \(a_n\) are in two distinct components,
   \(a_0\) beats \(a_n\) by \(n\) steps in \(G\) if and only if
   \(f(a_0)\) beats \(f(a_n)\) by \(n\) steps in \(H\).
@@ -438,8 +440,8 @@ in later sections, when looking for kings
   Denote the induced subgraph of \(C\) as \(G_c\).
 
   \((\Rightarrow )\):
-  Suppose \(k\) is a king in \(G\). Then it beats every vertex in \(V(G)\)
-  by 1 or 2 steps.
+  Suppose \(k\) is a king in \(G\).
+  Then \(k\) beats every vertex in \(V(G)\) by 1 or 2 steps.
   In particular, \(k\) beats every vertex outside of \(C\) by
   1 or 2 steps.
   Hence, by \cref{the: condensation preserves beating in distinct components},
@@ -454,8 +456,9 @@ in later sections, when looking for kings
       \(k\) beats \(v\) by 1 step in \(G_c\).
     \item Case 2: \(k\) beats \(v\) by 2 steps, then
       there exists \(a \in V(G)\) such that \(k \to a \to v\) in \(G\).
-      \(a \in C\), because of
-      \cref{the: vertex force beating relation in condensation}.
+      because \(v, k \in C\) and
+      \cref{the: vertex force beating relation in condensation},
+      \(a \in C\) (if \(a \notin C\) will cause a contradiction).
       Therefore, \(k\) beats \(v\) by 2 steps in \(G_c\).
   \end{itemize}
   Thus, \(k\) is a king in \(G_c\),
