@@ -1,21 +1,68 @@
 \chapter{Further Problems}
 
-The existence of a \((n, k, t)\) digraph.
+In \cref{chap: semi-complete digraph} and \cref{chap: general oriented graph},
+we see that because of the addition of two types of ties,
+we can construct many more \((n, k)\) semi-complete digraphs
+or \((n, k)\) oriented graphs than \((n, k)\) tournaments.
+Then what can we construct if we limit the number of ties
+or double ties?
+
 \begin{definition}
-  a \((n, k, t)\) digraph is a digraph with \(n\) chickens, \(k\) kings and \(t\) ties.
+  a \((n, k, t)\) digraph is a digraph with \(n\) vertices,
+  \(k\) kings and \(t\) ties (or double ties).
 \end{definition}
 
+In \cref{chap: semi-complete digraph}, and \cref{chap: general oriented graph},
+we explore the construction of \((n, k)\) semi-complete digraphs
+and \((n, k)\) oriented graphs with 1 tie.
+In other word, we have solved the problem of constructing
+\((n, k, 1)\) oriented graph and semi-complete digraphs.
+What happens with \(t\) gets larger?
 
+In \cref{sec:kings}, we showed that there exists king with very
+low out-degrees.
 What is the property of a king with very low out-degree?
+What is the property of a king with only out-degree 1?
+what is the property of a king that has the lowest out-degree
+in the graph?
+What is the property of a king that has the lowest out-degrees
+among all of the kings in the graph?
+
+In \cref{sec: quasi-transitive king},
+we have showed that king has very rich structures.
+However, \cref{the: king partitions in quasi-transitive}
+and \cref{the: D S of king adjacent in quasi-transitive}
+are not used in this thesis.
+Can we use these 2 property to deduce any property
+of quasi-transitive oriented graph with kings?
+A interesting path is that
+\cref{the: D S of king adjacent in quasi-transitive}
+implies in a quasi-transitive oriented graph with king \(k\),
+all the tie components are either the subset of \(D_k\) or \(S_k\).
+
+\begin{definition}
+  A infinite graph is a graph with infinite number of vertices.
+\end{definition}
 
 Can we extend these result to infinite graph?
+Can we keep the definition of tie components when
+we expand the context to infinite graph?
 
+In \cref{sec: graph condensation},
+we showed that graph condensation is a very strong transformation
+and many graph only have identity condensation
+and trivial condensation defined on it.
 How hard is a condensation?
 How many graph only have identity condensation
 and trivial condensation on them?
 
-quasi-transitive oriented graph is strong
-iff its underlying tournament is strong.
-What does this imply?
-~\cite{bang-jensen_kings_1998}
-~\cite{bangjensen_quasitransitive_1995}
+In~\cite{bang-jensen_kings_1998}
+and~\cite{bangjensen_quasitransitive_1995},
+the author uses the idea of strong digraph and strong components
+to deduce the property of quasi-transitive oriented graph.
+We can show that quasi-transitive oriented graph is strong
+if and only if its underlying tournament is strong
+(\cref{the: shortest path different components lemma} will be useful).
+Can we combine our results with the result
+in~\cite{bang-jensen_kings_1998} and~\cite{bangjensen_quasitransitive_1995}?
+
