@@ -377,55 +377,50 @@ in later sections, when looking for kings
   Given a condensation \(f: G \to H\),
   for any \(a_0, a_n \in V(G)\),
   such that \(a_0\) and \(a_n\) are in two distinct components.
-  The shortest path from \(a_0\) to \(a_n\) is
-  \(a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\) in \(G\)
-  if and only if the shortest path from \(f(a_0)\) to \(f(a_n)\) is
+  A shortest path from \(a_0\) to \(a_n\) is
+  \(P_G: a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\) in \(G\)
+  if and only if a shortest path from \(P_H: f(a_0)\) to \(f(a_n)\) is
   \(f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\)
   in \(H\).
 \end{theorem}
 
 \begin{proof}
-  Prove \(\Rightarrow \):
-  assume \(P: f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\)
-  is not the shortest path,
-  then there exists another path \(P'\)
+  Prove \((\Rightarrow )\):
+  Suppose \(P_G\) is a shortest path but \(P_H\) is not a
+  shortest path in \(H\).
+  Then there exists a shorter path \(P_H'\) in \(H\)
   from \(f(a_0)\) to \(f(a_n)\): \(f(a_0)
     \to f(b_1) \to f(b_2) \to \cdots \to f(b_{m-1}) \to f(b_m)
-    \to f(a_n)\).
+    \to f(a_n)\) \(m < n-1\).
   Because \(a_0\) and \(a_n\) are in distinct components,
-  then the path \(P'\) does not have length 0.
-  If \(P'\) is shorter than \(P\), the path
-  \(a_0 \to b_1 \to b_2 \to \cdots \to b_{m-1} \to b_m \to a_n\)
-  exists (by definition of condensation) and will be shorter than
-  \(a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\).
-  Since \(a_0 \to a_1 \to \cdots \to a_{n-1} \to a_n\)
-  is the shortest path from \(a_0\) to \(a_n\),
-  contradiction.
+  the path \(P_H'\) does not have length 0.
+  The path \(a_0 \to b_1 \to b_2 \to \cdots \to b_{m-1} \to b_m \to a_n\)
+  exists (by definition of condensation) and is shorter than
+  \(P_G\), a contradiction.
 
-  Prove \(\Leftarrow \):
-  assume the shortest path is
-  \(a_0 \to b_1 \to b_2 \to \cdots \to b_m \to a_n\).
+  Prove \((\Leftarrow )\):
+  Suppose \(P_H\) is a shortest path in \(H\) but \(P_G\) is
+  not a shortest path in \(G\)
   Because of \cref{the: shortest path different components lemma},
-  \(\set{a_0, b_1, b_2, \ldots, b_m, a_n}\)
+  \(\a_0, b_1, b_2, \ldots, b_m, a_n\)
   are all in different components.
   Then by \cref{the: vertex force image beating},
   \(f(a_0) \to f(b_1) \to f(b_2) \to \cdots \to f(b_m) \to f(a_n)\)
-  exists and will be shorter than
-  \(f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\).
-  Because \(f(a_0) \to f(a_1) \to \cdots \to f(a_{n-1}) \to f(a_n)\)
-  is the shortest path, contradiction.
+  exists and is  shorter than
+  \(P_H\), a contradiction.
 \end{proof}
 
 \begin{corollary}\label{the: condensation preserves beating in distinct components}
-  Given a condensation \(f: G \to H\),
-  for all \(a_0, a_n \in G\),
+  Let \(f: G \to H\) be a condensation from oriented graphs.
+  For all \(a_0, a_n \in G\),
   such that \(a_0\) and \(a_n\) are in two distinct components,
   \(a_0\) beats \(a_n\) by \(n\) steps in \(G\) if and only if
-  \(f(a_0)\) beats \(f(a_n)\) by \(n\) steps in \(H\)
+  \(f(a_0)\) beats \(f(a_n)\) by \(n\) steps in \(H\).
 \end{corollary}
 
 \begin{proof}
-  Result of \cref{the: condensation preserves shortest path}.
+  Result of \cref{the: condensation preserves shortest path}
+  and definition of ``beats by n steps''.
 \end{proof}
 
 \begin{corollary}\label{the: condensation preserves king}
@@ -442,37 +437,41 @@ in later sections, when looking for kings
   Denote component of \(k\) as \(C\).
   Denote the induced subgraph of \(C\) as \(G_c\).
 
-  Prove \(\Rightarrow \):
-  If \(k\) is a king, then it beats every vertex in \(V(G)\)
+  \((\Rightarrow )\):
+  Suppose \(k\) is a king in \(G\). Then it beats every vertex in \(V(G)\)
   by 1 or 2 steps.
-  First, if \(k\) beats every vertex outside of \(C\) by
-  1 or 2 steps,
-  because of \cref{the: condensation preserves beating in distinct components},
-  then \(f(k)\) beats every vertex in \(H\) in 1 or 2 steps,
-  therefore \(f(k)\) is a king in \(H\).
-  Then if \(k\) beats every vertex \(v \in C\)
-  in 1 or 2 steps in \(G\), we split into 2 cases:
+  In particular, \(k\) beats every vertex outside of \(C\) by
+  1 or 2 steps.
+  Hence, by \cref{the: condensation preserves beating in distinct components},
+  \(f(k)\) beats every vertex in \(H\) by 1 or 2 steps,
+  Therefore \(f(k)\) is a king in \(H\).
+
+  We know \(k\) beats every vertex in \(C\) by 1 or 2 steps in \(G\).
+  Let \(v \in C\) and \(v \neq k\).
+  We need to show \(k\) beats every vertex in \(G\) by 1 or 2 steps in \(G_C\).
   \begin{itemize}
-    \item if \(k\) beats \(v\) by 1 step, then
+    \item Case 1: \(k\) beats \(v\) by 1 step, then
       \(k\) beats \(v\) by 1 step in \(G_c\).
-    \item if \(k\) beats \(v\) by 2 steps, then
-      there exists \(a\) such that \(k \to a \to v\).
+    \item Case 2: \(k\) beats \(v\) by 2 steps, then
+      there exists \(a \in V(G)\) such that \(k \to a \to v\) in \(G\).
       \(a \in C\), because of
       \cref{the: vertex force beating relation in condensation}.
       Therefore, \(k\) beats \(v\) by 2 steps in \(G_c\).
   \end{itemize}
-  Then \(k\) is a king in \(G_c\),
+  Thus, \(k\) is a king in \(G_c\),
   and \(f(k)\) is a king in \(H\).
 
-  Prove \(\Leftarrow \):
-  If \(f(k)\) is a king in \(H\),
-  then \(f(k)\) beats every other vertex \(f(v)\) in \(H\),
-  then \(k\) beats every other vertex that is not in \(C\)
+  Prove \((\Leftarrow )\):
+  Suppose \(f(k)\) is a king in \(H\),
+  and \(k\) is a king in \(G_C\).
+  Since \(f(k)\) is a king in \(H\) by 1 or 2 steps,
+  \(f(k)\) beats every other vertex \(f(v)\) in \(H\).
+  Thus, \(k\) beats every other vertex that is not in \(C\)
   by 1 or 2 steps, by \cref{the: condensation preserves beating in distinct components}.
-  If \(k\) is a king in \(G_c\),
-  then \(k\) beats every vertex in \(C\) by 1 or 2 steps.
+  Since \(k\) is a king in \(G_c\),
+  \(k\) beats every vertex in \(C\) by 1 or 2 steps.
   Therefore, \(k\) beats every vertex in \(V(G)\) by 1 or 2 steps,
-  then \(k\) is a king in \(G\).
+  so \(k\) is a king in \(G\).
 \end{proof}
 
 Although condensation is a very strong transformation,
@@ -494,21 +493,21 @@ in the same components are lost.
       {a_1, a_2} -> c_1;
       c_1 -> d_1;
       b_1 -> b_2;
-      / [label=left:\(a\), draw] // {a_1, a_2};
-      / [label=left:\(b\), draw] // {b_1, b_2};
-      / [label=right:\(c\), draw] // {c_1};
-      / [label=right:\(d\), draw] // {d_1};
+      / [label=left:\(A\), draw] // {a_1, a_2};
+      / [label=left:\(B\), draw] // {b_1, b_2};
+      / [label=right:\(C\), draw] // {c_1};
+      / [label=right:\(D\), draw] // {d_1};
     };
     \label{fig: condensation lost information: uncondensed}  % chktex 24
-    \caption{the uncondensed graph.}
+    \caption{the uncondensed oriented graph \(G\).}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
   \centering
     \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
-      a -> b -> {c, d};
-      a -> c -> d;
+      A' -> B' -> {C', D'};
+      A' -> C' -> D';
     };
-    \caption{the condensed graph.}
+    \caption{the condensed graph \(H\).}
     \label{fig: condensation lost information: condensed}  % chktex 24
   \end{subfigure}
   \caption{information lost during condensation.}
@@ -516,32 +515,32 @@ in the same components are lost.
 \end{figure}
 
 In \cref{fig: condensation lost information},
-we show an example of condensation,
-where the vertices \(a_1, a_2\) are condensed into \(a\),
-\(b_1, b_2\) are condensed into \(b\),
-\(c_1\) is condensed into \(c\),
-and \(d_1\) is condensed into \(d\).
+we show an example of a condensation,
+where the vertices \(a_1, a_2\) are condensed into \(A'\);
+\(b_1, b_2\) are condensed into \(B'\);
+\(c_1\) is condensed into \(C'\);
+and \(d_1\) is condensed into \(D\).
 If we just look at the condensed graph,
-we noticed that we cannot recreate the beating relationship
-of \(a_1\) and \(a_2\),
+we notice that we cannot recreate the beating relationship
+between \(a_1\) and \(a_2\),
 therefore the information about the beating relationship
 is lost.
 This fact is true for all the vertices in the same component.
 Another example in this graph is that
 we cannot know the beating relationship between \(b_1\) and \(b_2\)
-just by the uncondensed graph.
+just by the condensed graph.
 
-Notice the beating relationship between components
-are not lost.
+Notice that the beating relationship between components
+is not lost.
 For example, if we want to know the beating relationship
 between \(b_1\) and \(a_2\),
-we first observed that \(a \to b\) in the condensed graph,
+we first observe that \(A' \to B'\) in the condensed graph,
 then by definition of a condensation,
-\(a_2\) have to beat \(b_1\) in the uncondensed graph.
+\(a_2\) has to beat \(b_1\) in the uncondensed graph.
 Another example is that we can know that \(a_1\) ties \(d_1\)
-because \(a\) ties \(d\) in the condensed graph.
+because \(A'\) ties \(D'\) in the condensed graph.
 
-Therefore, a ``efficient condensation'' should keep as many
+Therefore, an ``efficient condensation'' should keep as many
 vertices as possible.
 One of the most ``efficient'' condensation is the
 identity condensation, because it does not lose any information
@@ -550,9 +549,9 @@ However, identity condensation also do not mutate the graph
 at all, therefore it is not very practical.
 
 \begin{definition}
-  Given a set of condensation \(F = \set{f_0, f_1, \ldots, f_n}\)
+  Given a set of condensations \(F = \set{f_0, f_1, \ldots, f_n}\)
   where \(f_k: G_k \to H_k\)
-  and all the \(V(G_k)\) are of the same size for \(0 \leq k \leq n\),
+  and all the \(V(G_k)\) are equal for \(0 \leq k \leq n\),
   an \keyword{efficient condensation} \(f: G \to H\) in \(F\)
   is a condensation such that
   \(H\) has largest vertex set in
@@ -566,5 +565,8 @@ One example of efficient condensation is
 given a graph \(G\) and all the condensation defined on \(G\),
 that is  \(\set{f_0, f_1, \ldots, f_n}\) where \(f_k: G \to H_k\).
 Then the identity condensation,
-is an efficient condensation in this set,
+is the only efficient condensation in this set,
 since it keeps all the vertices.
+
+Later, we will restrict the types of graphs \(H\) can be.
+In so doing, the identity condensation will no longer be allowed.
