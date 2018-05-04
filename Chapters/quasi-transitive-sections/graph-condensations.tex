@@ -79,6 +79,7 @@ condensed into the same vertex as \(a\).
     \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
       a; b; c; d; e; f; j;
       d -> e --[dashed] c;
+      c -> d;
       a -> b;
       / [label = left:\(A\), draw, circle] // {a, b};
       / [label = left:\(B\), draw] // {d, e, c};
@@ -94,7 +95,8 @@ condensed into the same vertex as \(a\).
       B [draw, circle, minimum size=1.75cm] ->
       C [draw, circle, minimum size=1cm] ->
       D [draw, circle, minimum size=1cm];
-      A -> D -> B
+      A -> D -> B;  % chktex 13
+      A -> C;  % chktex 13
     };
     \caption{find the relationship between components.}
   \end{subfigure}
@@ -103,6 +105,7 @@ condensed into the same vertex as \(a\).
     \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
       A' --[dashed] B' -> C' -> D';
       A' -> D' -> B';
+      A' -> C';
     };
     \caption{condensed graph \(H\).}
   \end{subfigure}

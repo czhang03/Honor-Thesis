@@ -326,7 +326,8 @@ and try to understand it visually.
     \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
       A [draw, circle, minimum size=1.5cm] -> B [draw, circle, minimum size=1.75cm]
       -> C [draw, circle, minimum size=1cm] -> D [draw, circle, minimum size=1cm];
-      A -> D -> B
+      A -> D -> B;  % chktex 13
+      A -> C;  % chktex 13
     };
     \caption{components beat each other.}
   \end{subfigure}
@@ -335,6 +336,7 @@ and try to understand it visually.
     \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
       A' -> B' -> C' -> D';
       A' -> D' -> B';
+      A' -> C';
     };
     \caption{components are just like vertices.}
   \end{subfigure}
