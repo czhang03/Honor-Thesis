@@ -125,8 +125,7 @@ not just in quasi-transitive oriented graphs.
   Therefore there is no tie path between \(v\) and \(a\),
   thus \(v\) does not tie \(a'\).
 
-  Therefore, \(v\) is adjacent to every vertex in \(C(a)\);
-  \(v\) is adjacent to \(C(a)\).
+  Therefore, \(v\) is adjacent to every vertex in \(C(a)\).
 \end{proof}
 
 Our previous results that ties ``transmit'' arrow directions
@@ -274,13 +273,16 @@ we prove the following theorem:
   Then because of \cref{the: component and a single point},
   \(a' \to C(b)\) or \(C(b) \to a'\).
 
-  Case 1, \(a' \to C(b)\): take any element \(b' \in C(b)\).
-  By \cref{the: vertex force component beating}, \(C(a) \to b'\).
-  Therefore \(C(a)\) beats every vertex in \(C(b)\),
-  then \(C(a) \to C(b)\).
-
-  Case 2, \(C(b) \to a'\):
-  by the same reasoning, \(C(b) \to C(a)\).
+  \begin{itemize}
+    \item
+      Case 1, \(a' \to C(b)\): take any element \(b' \in C(b)\).
+      By \cref{the: vertex force component beating}, \(C(a) \to b'\).
+      Therefore \(C(a)\) beats every vertex in \(C(b)\),
+      then \(C(a) \to C(b)\).
+    \item
+      Case 2, \(C(b) \to a'\):
+      by the same reasoning, \(C(b) \to C(a)\).
+  \end{itemize}
 \end{proof}
 
 After several pages of theorems,
