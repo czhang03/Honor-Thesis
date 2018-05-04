@@ -17,7 +17,7 @@ have self-loops (a vertex beats itself)
 and double ties.
 
 \begin{theorem}\label{the: emperor then only king in oriented graph}
-  If there is an emperor \(k\) in an oriented graph,
+  If there is an emperor \(k\) in an oriented graph \(G\),
   then \(k\) is the only king in the graph.
 \end{theorem}
 \begin{proof}
@@ -25,10 +25,9 @@ and double ties.
   therefore it is a king.
 
   Because there is no double ties in oriented graph,
-  if for every vertex \(k \to v\),
-  then \(v\) does not beat \(k\).
-  Therefore no vertex can beat \(k\),
-  then no vertex can beat \(k\) in one or two steps.
+  if \(k\) is an emperor,
+  then no vertex in \(G\) can beats \(k\),
+  hence no vertex can beat \(k\) in one or two steps.
   Therefore, \(k\) is the only king in the graph.
 \end{proof}
 
@@ -41,7 +40,7 @@ and double ties.
 \begin{proof}
   A vertex with out-degree \(n-1\) needs to beat every vertex
   in the graph except itself.
-  Therefore That vertex is an emperor,
+  Therefore that vertex is an emperor,
   and because of \cref{the: emperor then only king in oriented graph},
   there will be only one king in this graph.
 \end{proof}
@@ -55,18 +54,21 @@ and double ties.
 \begin{proof}
   Need to show that for every king \(k\) in \(G\),
   \(k\) is also a king in \(G'\).
+  We can see that for every pair of vertices \(a, b\)
+  if \(a \to b\) in \(G\), then \(a \to b\) in \(G'\),
+  since we are not removing any edges.
 
-  If \(k\) beats a vertex \(v\) by one step in \(G\),
-  then \(k\) beats vertex \(v\) by one step in \(G'\),
-  because if edge \((k, v)\) in \(G\) then
-  edge \((k, v)\) in \(G'\).
-
-  If \(k\) beats a vertex \(v\) by 2 steps in \(G\),
-  then exists vertex \(a\) such that
-  \(k \to a \to v\) in \(G'\).
-  By previous reasoning, \(k \to a \to v\) in \(G\),
-  then \(k \to a \to v\) in \(G'\)
-  and \(k\) beats \(v\) by 2 steps in \(G'\).
+  \begin{itemize}
+    \item
+      If \(k\) beats a vertex \(v\) by one step in \(G\),
+      then \(k \to v\) in \(G\),
+      therefore \(k \to v\) in \(G'\)
+    \item
+      If \(k\) beats a vertex \(v\) by 2 steps in \(G\),
+      then exists vertex \(a\) such that
+      \(k \to a \to v\) in \(G\), then \(k \to a \to v\) in \(G'\)
+      and \(k\) beats \(v\) by 2 steps in \(G'\).
+  \end{itemize}
 
   Therefore, \(k\) is also a king in \(G'\),
   then every king in \(G\) is preserved in \(G'\).
@@ -184,19 +186,27 @@ and double ties.
   There does not exist a \((4,4)\) oriented graph.
 \end{lemma}
 \begin{proof}
-  Assume there exists a \((4, 4)\) oriented graph,
-  then according to \cref{the: add edge only add king},
-  we can keep adding edge until every edge is adjacent
-  and still remain 4 vertices and 4 kings.
-  Then there exists a \((4,4)\) tournament.
+  Assume there exists a \((4, 4)\) oriented graph.
+  When we add edges to this \((4, 4)\) oriented graph:
+  \begin{itemize}
+    \item
+      the number of kings cannot increase,
+      since a graph cannot have more kings than vertices.
+    \item
+      the number of kings cannot decrease,
+      because of \cref{the: add edge only add king}
+  \end{itemize}
+  Then we can keep adding edges until
+  every pair of vertices are adjacent
+  and get a \((4,4)\) tournament.
   By \cref{the: (n k) tournament exists},
   there do not exists \((4,4)\) tournaments.
 
   Therefore, there cannot exists \((4,4)\) oriented graph.
 \end{proof}
 
-After investigating what kinds of oriented graph do not exist,
-we then move on to all the possible oriented graph that
+After investigating what kinds of oriented graphs do not exist,
+we then move on to all the possible oriented graphs that
 we can construct.
 
 \begin{lemma}\label{the: (n 2) oriented graph}
@@ -232,8 +242,8 @@ we can construct.
 
 \begin{proof}
   For a oriented graph with \(n\) vertices with no edge,
-  every vertex cannot beat any other vertex,
-  therefore, the graph has 0 kings,
+  every vertex cannot beat any other vertex.
+  Therefore, the graph has 0 kings
   and the graph is a \((n, 0)\) oriented graph.
 \end{proof}
 
@@ -269,7 +279,8 @@ ties more ``efficiently''.
 The construction method in the proof of
 \cref{the: (n 2) oriented graph} is very inefficient.
 
-Here we present a better way to construct these oriented graphs.
+Here we present a ``better'' way to construct
+these oriented graphs that only uses one tie.
 
 \begin{lemma}\label{the: (n 2) with one tie}
   There exists an \((n, 2)\) oriented graph
@@ -327,7 +338,8 @@ Here we present a better way to construct these oriented graphs.
     \label{fig: (2 0) oriented graph with one tie}  % chktex 24
   \end{figure}
   Then, in \cref{fig: (2 0) oriented graph with one tie}
-  we show that \((2, 0)\) oriented graph with one tie exists.
+  we show that \((2, 0)\) oriented graph with one tie exists:
+  it is just 2 vertices and no edge between them.
 
   \begin{figure}
   \centering
@@ -339,22 +351,22 @@ Here we present a better way to construct these oriented graphs.
     \label{fig: (n+1 0) oriented graph with one tie}  % chktex 24
   \end{figure}
   In \cref{fig: (n+1 0) oriented graph with one tie},
-  we give a way to construction of an \((n+1, 0)\) oriented graph
-  given an \((n, 0)\) oriented graph.
+  we give a way to construct an \((n+1, 0)\) oriented graph
+  from an \((n, 0)\) oriented graph.
   We denote the \((n, 0)\) oriented graph as \(G\).
 
   We need to show the resulting graph
   in \cref{fig: (n+1 0) oriented graph with one tie}
   has no king:
   first, \(s\) cannot be a king,
-  because it does not beat any vertex;
-  any vertex \(v \in V(G)\) cannot be a king too.
+  because it does not beat any vertex.
+  We then show any vertex \(v \in V(G)\) is not a king.
   Because \(v\) is not a king in \(G\),
   there exists a vertex \(v' \in V(G)\)
   such that \(v\) cannot beat it in 1 or 2 steps in \(G\).
   Then \(v\) still cannot beats \(v'\) in this graph,
   because \(s\) is the only added vertex,
-  and \(v \to s \to v'\) do not exists.
+  and the path \(v \to s \to v'\) do not exists.
 \end{proof}
 
 With \cref{the: (n 2) with one tie} and
@@ -378,6 +390,6 @@ we can prove the following theorem.
 \end{proof}
 
 in other words,
-\cref{the: (n k) oriented graph with one tie},
+\cref{the: (n k) oriented graph with one tie}
 states that for all \((n, k)\) oriented graphs
 that exists, they can be constructed with only one tie.
