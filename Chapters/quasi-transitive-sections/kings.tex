@@ -3,11 +3,12 @@
 The definition of king states that it can beat every vertex
 by one or two steps,
 and the definition of quasi-transitive oriented graph states that
-if a vertex beats another vertex by two steps,
-then they are adjacent.
+if there exists a path of length two (implies beats by 1 or 2 steps)
+from one vertex to another vertex, then they are adjacent.
 
-After a brief looking that we can came up with the following
-lemma:
+Both definitions are related to ``beats by 1 or 2 steps'',
+therefore kings in quasi-transitive oriented graphs
+have nice properties.
 
 \begin{lemma}\label{the: king adjacent}
   In a quasi-transitive oriented graph,
@@ -17,14 +18,16 @@ lemma:
 \begin{proof}
   Given a king \(k\), and another vertex \(v\),
   then there are two possibilities:
-
-  Case 1, \(k\) beats \(v\) by one step:
-  therefore \(k \to v\), \(k\) and \(v\) are adjacent.
-
-  Case 2, \(k\) beats \(v\) by two steps:
-  there exists vertex \(a\), such that \(k \to a \to v\).
-  Then by definition of quasi-transitive oriented graph,
-  \(k\) needs to be adjacent to \(v\)
+  \begin{itemize}
+    \item
+      Case 1, \(k\) beats \(v\) by one step:
+      therefore \(k \to v\), \(k\) and \(v\) are adjacent.
+    \item
+      Case 2, \(k\) beats \(v\) by two steps:
+      there exists vertex \(a\), such that \(k \to a \to v\).
+      Then by definition of quasi-transitive oriented graph,
+      \(k\) needs to be adjacent to \(v\)
+  \end{itemize}
 \end{proof}
 
 \begin{lemma}
@@ -35,7 +38,7 @@ lemma:
 
 \begin{proof}
   Proof disjoint: pretty obvious.
-  \(D_k, S_k\) disjoint because we are working in oriented graph.
+  \(D_k, S_k\) disjoint because we are working in an oriented graph.
   \(D_k, S_k\) disjoint with \(\set{k}\)
   because a vertex cannot beat itself.
 
@@ -80,10 +83,14 @@ lemma:
 See \cref{fig: king in quasi-transitive},
 this figure shows the rich structure of a king
 in quasi-transitive oriented graph.
-We were able to almost see the partition structure mentioned in
-\cref{chap: semi-complete digraph}, and \cref{the: graph partition lemma}.
+We were able to see a similar partition structure mentioned in
+\cref{chap: semi-complete digraph},
+and \cref{the: graph partition lemma}
+(the partition structure in \cref{fig: king in quasi-transitive}
+is the same as \(\set{\set{v}, D_v, S_v}\)
+for any vertex \(v\) in a tournament~\cite{maurer_king_1980}).
 
-The vertices in \(D_k\) cannot tie with anything outside of \(D_k\),
+\(D_k\) cannot tie with anything outside of \(D_k\),
 and similarly for \(S_k\).
 If there is a king in a quasi-transitive oriented graph,
 then this graph becomes ``very connected'',
@@ -100,7 +107,8 @@ with the property of tie (tie component).
   graph if and only if
   \begin{itemize}
     \item \(k\) is in a trivial tie component.
-    \item \(set{k}\) is a king in the underlying tournament.
+    \item the result of \(k\) after tie component condensation
+    is a king in the underlying tournament.
   \end{itemize}
 \end{theorem}
 
@@ -109,8 +117,13 @@ with the property of tie (tie component).
   \(k\) is a king if and only if
   \begin{itemize}
     \item \(k\) is a king in the induced subgraph of its tie component.
-    \item \(k\) is a king in the underlying tournament.
+    \item the result of \(k\) after tie component condensation
+    is a king in the underlying tournament.
   \end{itemize}
+
+  So we need to show \(k\) is a king in
+  induced subgraph of its tie component
+  if and only if \(k\) is in a trivial tie component.
 
   Suppose \(k\) is a king in the induced graph of
   its tie component,
@@ -206,15 +219,19 @@ with a certain number of kings.
 
 For example, if we want to construct a quasi-transitive
 oriented graph with \(k\) kings,
-we first start with a quasi-transitive graph with \(n\) kings,
-where \(n > k\),
-and then we change \(n - 2\) vertices into
+we first start with a quasi-transitive graph with \(k'\) kings,
+where \(k' > k\),
+and then we change \(k' - k\) kings into
 ``non-trivial tie components''.
+This method enables us to construct
+a quasi-transitive oriented graphs
+with arbitrary number of kings.
 See \cref{fig: quasi-transitive 2 kings},
 we start with a tournament with 3 kings \(\set{a, b, c}\),
 then we change the king \(b\) into a non-trivial tie component
 \(\set{b_1, b_2}\).
-Then the only kings left are \(a\) and \(c\).
+Then the only kings left are \(a\) and \(c\),
+and we get a quasi-transitive oriented graph with 2 kings.
 
 This way of constructing quasi-transitive oriented graphs
 is very useful,
@@ -236,6 +253,11 @@ properties of kings in quasi-transitive oriented graphs.
   if and only if \(k\) is the only king in digraph \(G\),
   and \(k\) is not an emperor.
 \end{definition}
+
+By \cref{the: one king iff emperor},
+\cref{the: if only king then emperor},
+a great king does not exists in semi-complete digraphs and
+tournaments.
 
 \begin{corollary}
   If there exists a great king in a
@@ -260,3 +282,7 @@ properties of kings in quasi-transitive oriented graphs.
   Therefore, \(G\) have at least 2 ties.
 \end{proof}
 
+\cref{the: king in quasi-transitive}
+provides us a way to detect, construct, and understand kings
+in quasi-transitive oriented graph using
+the properties and constructions of kings in tournaments.
