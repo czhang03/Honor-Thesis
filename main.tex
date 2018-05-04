@@ -65,8 +65,8 @@
 % Typically used in definitions.
 \NewDocumentCommand\keyword{mo}{%'mo' means #1 is 'm'andatory and #2 is 'o'ptional
   \IfNoValueTF{#2}%
-  {\boldmath\textbf{#1}\index{\MakeLowercase{#1}}}%
-  {\boldmath\textbf{#1}\index{\MakeLowercase{#2}}}%
+  {{\boldmath\textbf{#1}}\index{\MakeLowercase{#1}}}%
+  {{\boldmath\textbf{#1}}\index{\MakeLowercase{#2}}}%
 }
 
 %% Define the set notation
