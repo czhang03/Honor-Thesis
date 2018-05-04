@@ -5,19 +5,20 @@ of graph condensations.
 In this section, we will focus on a specific type of condensation
 mentioned in previous sections and
 \cref{fig: tie components condensation}.
+Recall that a tie component is a set of vertices
 
 \begin{definition}
   A \keyword{tie component condensation} is a
-  family of function \(f: Q \to T\),
+  function \(f: Q \to T\),
   where \(Q\) is a quasi-transitive oriented graph,
   \(T\) is a directed graph.
   And \(f\) maps \(V(Q)\) to \(V(T)\) surjectively,
   maps \(E(Q)\) to \(E(T)\) surjectively,
   such that:
   \begin{itemize}
-    \item if \(a, b \in V(Q)\) in the same tie component,
+    \item if \(a, b \in V(Q)\) are in the same tie component,
       then \(f(a) = f(b)\).
-    \item if \(a, b \in V(Q)\) in 2 distinct tie component
+    \item if \(a, b \in V(Q)\) are in 2 distinct tie components
       \(A, B\) respectively,
       then
       \begin{itemize}
@@ -30,11 +31,11 @@ mentioned in previous sections and
 \begin{corollary}\label{the: tie condensation are condensation}
   All tie component condensations are graph condensation,
   where the components of the uncondensed graphs
-  are the tie component of the uncondensed graphs.
+  are the tie components of the uncondensed graphs.
 \end{corollary}
 
 \begin{corollary}\label{the: tie condensation results in tournament}
-  for any tie component condensation \(f: Q \to T\),
+  For any tie component condensation \(f: Q \to T\),
   \(T\) will always be a tournament.
 \end{corollary}
 \begin{proof}
@@ -47,12 +48,12 @@ mentioned in previous sections and
 \cref{fig: tie components condensation} is a great example of
 tie component condensation.
 In this condensation, the function \(g\) maps \(a, b\) to \(A'\),
-maps \(c, d, e\) to \(B'\), and maps \(f\) to \(C'\),
-and \(j\) to \(D'\).
+maps \(c, d, e\) to \(B'\), maps \(f\) to \(C'\),
+and maps \(j\) to \(D'\).
 
-It is also helpful to note that the tie component \(C\) and \(D\)
+It is also helpful to note that the tie components \(C\) and \(D\)
 are trivial tie components,
-since they only contain vertex \(f\) and \(j\) respectively.
+since they only contain vertex \(g\) and \(j\) respectively.
 
 \begin{corollary}
   Given a quasi-transitive digraph \(Q\),
