@@ -19,6 +19,23 @@ In other word, we have solved the problem of constructing
 \((n, k, 1)\) oriented graph and semi-complete digraphs.
 What happens with \(t\) gets larger?
 
+One of the useful thing to note when approaching the
+problem of the existence of \((n, k, t)\) digraphs
+(or oriented graphs, semi-complete digraphs, etc.)
+in the end of \cref{sec: quasi-transitive king},
+we give a way to construct a quasi-transitive oriented graph
+with given number of kings.
+This way of constructing quasi-transitive oriented graphs
+may be very useful,
+since we can manipulate the number of ties in the graph
+without changing the number of vertices and kings.
+For a tie components with \(n\) vertices,
+the number of ties in the component can be any number
+between \(n - 1\)
+(ties forms a spanning tree of the component)
+and \(\frac{n(n+1)}{2}\)
+(there exists a tie between every two vertices).
+
 In \cref{sec:kings}, we showed that there exists king with very
 low out-degrees.
 What is the property of a king with very low out-degree?
@@ -48,21 +65,30 @@ Can we extend these result to infinite graph?
 Can we keep the definition of tie components when
 we expand the context to infinite graph?
 
+In~\cite{bang-jensen_kings_1998}
+and~\cite{bangjensen_quasitransitive_1995},
+the author uses the idea of strong digraph and strong components
+(see the definition of strong and strong components
+in~\cite{west_introduction_2001})
+to deduce the property of quasi-transitive oriented graph.
+We can show that given any \emph{non-trivial} condensation,
+the uncondensed graph is strong
+if and only if its underlying tournament is strong
+(\emph{spoiler alert!}:
+\cref{the: shortest path different components lemma} will be useful).
+Can we combine our results with the result
+in~\cite{bang-jensen_kings_1998} and~\cite{bangjensen_quasitransitive_1995}?
+
 In \cref{sec: graph condensation},
-we showed that graph condensation is a very strong transformation
+we showed that graph condensation is a very useful transformation.
 and many graph only have identity condensation
 and trivial condensation defined on it.
 How hard is a condensation?
 How many graph only have identity condensation
 and trivial condensation on them?
 
-In~\cite{bang-jensen_kings_1998}
-and~\cite{bangjensen_quasitransitive_1995},
-the author uses the idea of strong digraph and strong components
-to deduce the property of quasi-transitive oriented graph.
-We can show that quasi-transitive oriented graph is strong
-if and only if its underlying tournament is strong
-(\cref{the: shortest path different components lemma} will be useful).
-Can we combine our results with the result
-in~\cite{bang-jensen_kings_1998} and~\cite{bangjensen_quasitransitive_1995}?
-
+How useful is graph condensations?
+we have showed that they preserves the shortest path
+(\cref{the: condensation preserves shortest path}),
+and we can show that they preserves the strong property of the graph.
+What are other property that graph condensations preserves?
