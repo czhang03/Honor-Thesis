@@ -24,6 +24,7 @@ Recall that a tie component is a set of vertices
       \begin{itemize}
         \item \(f(a) \to f(b)\) if \(A \to B\).
         \item \(f(b) \to f(a)\) if \(B \to A\).
+        \item otherwise, tie condensation do not exists.
       \end{itemize}
   \end{itemize}
 \end{definition}
@@ -35,11 +36,17 @@ Recall that a tie component is a set of vertices
 \end{corollary}
 
 \begin{corollary}\label{the: tie condensation results in tournament}
-  For any tie component condensation \(f: Q \to T\),
-  \(T\) will always be a tournament.
+  For any quasi transitive orientated graph \(Q\),
+  tie component condensation \(f: Q \to T\) will always exists
+  and \(T\) will always be a tournament.
 \end{corollary}
 \begin{proof}
-  Because of \cref{the: tie component beats tie component},
+  By \cref{the: tie component beats tie component} and
+  the definition of tie component condensation,
+  tie component condensation always exists.
+
+  Also by \cref{the: tie component beats tie component} and
+  the definition of tie component condensation,
   for any two distinct vertices \(f(a), f(b) \in T\),
   either \(f(a) \to f(b)\) or \(f(b) \to f(a)\).
   Therefore, \(T\) is a tournament.
@@ -61,16 +68,11 @@ since they only contain vertex \(g\) and \(j\) respectively.
   \(f: Q \to T\)
 \end{corollary}
 \begin{proof}
-  Tie component condensation exists by definition,
-  tie component condensation unique
+  Tie component condensation exists by
+  \cref{the: tie condensation results in tournament};
+  tie component condensation is unique
   by \cref{the: tie components partition unique}.
 \end{proof}
-
-\begin{definition}
-  Given a quasi-transitive digraph \(Q\),
-  we call the tie component condensation \(f: Q \to T\)
-  the tie component condensation on \(Q\).
-\end{definition}
 
 \begin{definition}
   For a given quasi-transitive oriented graph \(Q\),
@@ -78,16 +80,17 @@ since they only contain vertex \(g\) and \(j\) respectively.
   the \keyword{underlying tournament} of \(Q\).
 \end{definition}
 
-It is very surprising that every
+It is a nice result that every
 quasi-transitive oriented graph
-can always be condensed into a tournament,
+can be condensed into a tournament,
 which is one of the most understood family of digraphs.
-But just to say that a condensation exists is not surprising enough,
+But just to say that a condensation to tournament exists
+is not helpful enough,
 since for every graph, there exists a trivial condensation,
-which also always result in a tournament
+which also produce a tournament with only one vertex
 (a single vertex is, by definition, a tournament).
-Therefore, we need to investigate the efficiency of the tie
-component condensation.
+Therefore, we need to investigate what we call
+the ``efficiency'' of the tie component condensation.
 
 \begin{definition}
   For two orientated graphs \(G, H\), such that
@@ -99,11 +102,11 @@ component condensation.
   then we say \(G, H\) has the same \keyword{tie structure}.
 \end{definition}
 
-Graph with same tie structure means
+Graphs with the same tie structure means
 that if we draw out all the ties from two graph,
 the graph formed by the ties are the same.
-In other words, these two graphs can only differ
-by the orientation of some of their edges.
+In other words, these two graphs are differ
+by the orientation of their edges, but not their ties.
 
 \begin{figure}
   \centering
@@ -141,8 +144,7 @@ by the orientation of some of their edges.
   \label{fig: same tie structure example}  % chktex 24
 \end{figure}
 
-See \cref{fig: same tie structure example},
-in \cref{fig: same tie structure example: G} and
+In \cref{fig: same tie structure example: G} and
 \cref{fig: same tie structure example: H},
 we show two graph \(G\) and \(H\) with the same tie structure,
 In \cref{fig: same tie structure example: tie},
@@ -172,7 +174,7 @@ the orientations of these two edges.
 \begin{theorem}\label{the: tie condensation effcient}
   Given a quasi-transitive graph \(Q\)
   and its tie component condensation \(f\),
-  consider the set of all the condensation \(f_k: G_k \to T_k\),
+  consider the set of all the condensations \(f_k: G_k \to T_k\),
   where \(G_k\) has the same tie structure as \(Q\)
   and \(T_k\) is a tournament:
   \(F = \{f_0, f_1, \ldots, f_{n-1}, f_n\} \).
@@ -197,19 +199,19 @@ the orientations of these two edges.
 
 \begin{proof}
   Because \(G_k\) are has the same tie structure as \(Q\),
-  therefore all the \(G_k\) has the same number of vertices.
+  all \(G_k\)'s have the same vertices.
 
-  if there exists another condensation \(f': G' \to T'\)
+  If there exists another condensation \(f': G' \to T'\)
   such that \(T'\) has more vertices than
-  the underlying tournament \(T\) of \(Q\).
-  Then there exists
-  two vertices \(a, b\) in the same component in \(Q\),
+  the underlying tournament \(T\) of \(Q\),
+  then there exists
+  two vertices \(a, b\) in the same tie component in \(Q\),
   and in different components in \(G'\),
-  because the number of component in the uncondensed graph
+  because the number of components in the uncondensed graph
   is the same as the number of vertices in the condensed
   graph.
 
-  Because \(a, b\) in the same component in \(Q\),
+  Because \(a, b\) are in the same component in \(Q\),
   there exists a tie path between \(a\) and \(b\) in \(Q\).
   By \cref{the: same tie structure same tie path},
   there exists a tie path between \(a\) and \(b\) in \(G'\).
@@ -231,14 +233,14 @@ the orientations of these two edges.
 
 \cref{the: tie condensation effcient} states that
 tie component condensation
-is not only the most efficient condensation to tournaments
+is not only a most efficient condensation to tournaments
 on any quasi-transitive orientated graph,
 tie component condensation
-is the most efficient in all the condensations defined on
-all orientated graphs with the same tie structure.
+is a most efficient in all the condensations to tournaments
+defined on all orientated graphs with the same tie structure.
 
 To put it in other way,
-for all the graph with the same tie structure,
-the quasi-transitive orientated graphs
+for all the orientated graphs with the same tie structure,
+quasi-transitive orientated graphs
 are the ones that can be condensed into tournaments
 most efficiently.
