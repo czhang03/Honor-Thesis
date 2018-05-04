@@ -350,11 +350,17 @@ See \cref{fig: tie path transmit arrow}.
   tie path \([a_0, a_1, \ldots, a_n]\).
   Because \(a_n\) ties \(a_{n+1}\), and
   \(v\) is adjacent to both of them.
-  Therefore,
-  if \(v \to {a_0, \ldots, a_n}\), then \(v \to a_{n+1}\),
-  then \(v\) beats the whole tie path;
-  otherwise \({a_0, \ldots, a_n} \to v\), then \(a_{n+1} \to v\),
-  then \(v\) is beaten by the whole tie path.
+  By \cref{the: arrow direction lemma}
+  \begin{itemize}
+    \item
+      Case 1, \(v \to \set{a_0, \ldots, a_n}\):
+      then \(v \to a_{n+1}\),
+      then \(v\) beats the whole tie path;
+    \item
+      Case 2, \(\set{a_0, \ldots, a_n} \to v\),
+      then \(a_{n+1} \to v\),
+      then \(v\) is beaten by the whole tie path.
+  \end{itemize}
   Therefore this lemma still holds for tie path of length \(n + 1\).
 \end{proof}
 
