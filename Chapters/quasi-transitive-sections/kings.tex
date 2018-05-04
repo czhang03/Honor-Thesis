@@ -1,8 +1,6 @@
 \section{Kings}
 
-Kings in quasi-transitive oriented graph have very nice property,
-because these two definitions are deeply connected.
-The definition of king states that it can beats every vertex
+The definition of king states that it can beat every vertex
 by one or two steps,
 and the definition of quasi-transitive oriented graph states that
 if a vertex beats another vertex by two steps,
@@ -13,7 +11,7 @@ lemma:
 
 \begin{lemma}\label{the: king adjacent}
   In a quasi-transitive oriented graph,
-  king is adjacent to every vertex.
+  a king is adjacent to every vertex.
 \end{lemma}
 
 \begin{proof}
@@ -24,7 +22,7 @@ lemma:
   therefore \(k \to v\), \(k\) and \(v\) are adjacent.
 
   Case 2, \(k\) beats \(v\) by two steps:
-  therefore exists vertex \(a\), such that \(k \to a \to v\).
+  there exists vertex \(a\), such that \(k \to a \to v\).
   Then by definition of quasi-transitive oriented graph,
   \(k\) needs to be adjacent to \(v\)
 \end{proof}
@@ -75,7 +73,7 @@ lemma:
       ""; % chktex 18
       D_k --[bend left] S_k;
   };
-  \caption{the rich structure of a king in quasi-transitive oriented graph.}
+  \caption{the rich structure of a king in a quasi-transitive oriented graph.}
   \label{fig: king in quasi-transitive}  % chktex 24
 \end{figure}
 
@@ -85,25 +83,24 @@ in quasi-transitive oriented graph.
 We were able to almost see the partition structure mentioned in
 \cref{chap: semi-complete digraph}, and \cref{the: graph partition lemma}.
 
-The vertex in \(D_k\) cannot ties everything out side of \(D_k\),
-and so is \(S_k\).
-Intuitively, if there is a king in quasi-transitive oriented graph,
+The vertices in \(D_k\) cannot tie with anything outside of \(D_k\),
+and similarly for \(S_k\).
+If there is a king in a quasi-transitive oriented graph,
 then this graph becomes ``very connected'',
 the only places ties can appear are inside the
-induced subgraph of \(D_k\) and \(S_k\).
+induced subgraphs of \(D_k\) and \(S_k\).
 
-Since we have deduced nice structure about ties
-in quasi-transitive oriented graph,
+Since we have deduced nice structures about ties
+in quasi-transitive oriented graphs,
 it is only logical to combine the property of king
 with the property of tie (tie component).
-Hence come the final theorem of this paper:
 
 \begin{theorem}\label{the: king in quasi-transitive}
-  A vertex \(k\) is a quasi-transitive oriented
+  A vertex \(k\) is a king in a quasi-transitive oriented
   graph if and only if
   \begin{itemize}
     \item \(k\) is in a trivial tie component.
-    \item \(k\) is a king in the underlying tournament.
+    \item \(set{k}\) is a king in the underlying tournament.
   \end{itemize}
 \end{theorem}
 
@@ -111,28 +108,26 @@ Hence come the final theorem of this paper:
   By \cref{the: condensation preserves king},
   \(k\) is a king if and only if
   \begin{itemize}
-    \item \(k\) is a king in the induced graph of its tie component.
+    \item \(k\) is a king in the induced subgraph of its tie component.
     \item \(k\) is a king in the underlying tournament.
   \end{itemize}
 
-  Show if \(k\) is a king in the induced graph of
+  Suppose \(k\) is a king in the induced graph of
   its tie component,
-  then it is in a trivial tie component:
-  because of \cref{the: king adjacent},
-  \(k\) is a king in its tie component only if
-  \(k\) does not tie with any other vertex
-  in its component.
-  If \(k\) is not in a trivial tie component,
-  it has to tie at least another vertex to have
-  a tie path going to other vertices.
+  and the fact that the induced subgraph is a quasi-transitive
+  oriented graph.
+  Because of \cref{the: king adjacent},
+  \(k\) is a king in its tie component implies
+  \(k\) is adjacent to all vertices in the tie component.
+  There can be no tie path in this tie component.
   Therefore \(k\) has to be in a trivial tie component.
 
-  Show if \(k\) is is in a trivial tie component,
-  then \(k\) in a king in the induced graph of
-  its tie component:
-  true by definition of king;
-  for every graph with one vertex,
-  that vertex is a king in the graph.
+  Suppose \(k\) is is in a trivial tie component,
+  then \(k\) is a king in the induced graph of
+  its tie component.
+ Recall that the definition of king says that
+  a digraph with one vertex,
+  that vertex is a king in the digraph.
 \end{proof}
 
 \begin{figure}
@@ -170,20 +165,20 @@ In \cref{fig: quasi-transitive king example},
 we show a quasi-transitive oriented graph \(G\)
 and its underlying tournament.
 In the underlying tournament the kings are
-\(a, b, c\), but only \(a_1\) can be a king,
+\(a, b, c\), but only \(a_1\) can be a king of \(G\),
 since vertices \(b\) and \(c\) do not correspond to
 trivial tie components.
-(tie component \(\set{b_1, b_2}\) are condensed into \(b\),
-and tie component \(\set{c_1, c_2}\) are condensed into \(c\)).
+(tie component \(\set{b_1, b_2}\) is condensed into \(b\),
+and tie component \(\set{c_1, c_2}\) is condensed into \(c\)).
 Notice, although vertex \(d_1\) is in a trivial tie component,
 \(d_1\) is not a king in \(G\),
 because in the underlying tournament, \(d\)
 (the image of \(d_1\) under tie condensation) is not a king.
 
-This theorem not only gives us an way to identify king
-in quasi-transitive oriented graph,
+This theorem not only gives us a way to identify kings
+in a quasi-transitive oriented graph,
 but it helps us to construct a quasi-transitive oriented graph
-with certain number of kings.
+with a certain number of kings.
 
 \begin{figure}
 \centering
@@ -237,8 +232,9 @@ is to use the properties of kings in tournaments to prove
 properties of kings in quasi-transitive oriented graphs.
 
 \begin{definition}
-  a \keyword{great king} \(k\) in a digraph \(G\),
-  is the only king in graph \(G\), and \(k\) is not an emperor.
+  \(k\) is a \keyword{great king} in a digraph \(G\),
+  if and only if \(k\) is the only king in digraph \(G\),
+  and \(k\) is not an emperor.
 \end{definition}
 
 \begin{corollary}
@@ -248,18 +244,18 @@ properties of kings in quasi-transitive oriented graphs.
 \end{corollary}
 
 \begin{proof}
-  Assume \(k\) is the great king in \(G\),
-  then there exists a vertex \(v \to k\).
-  denote the underlying tournament of \(G\) as \(T\),
+  Assume \(k\) is the great king in \(G\).
+  Then there exists a vertex  \(v\) such that \(v \to k\).
+  Denote the underlying tournament of \(G\) as \(T\),
   and the tie component condensation of \(G\) as \(f\).
 
   By \cref{the: vertex force image beating}, \(f(v) \to f(k)\).
   Therefore, by \cref{the: king in quasi-transitive}
   \(f(k)\) is a king, but not an emperor in \(T\).
-  Because of \cref{the: one king iff emperor} and
-  \cref{the: no 2 kings},
-  there exists at least 3 kings in \(T\),
-  because \(k\) is the only king in \(G\),
+  Because a tournament never has exactly 2 kings
+  and exactly 1 king must be an emperor,
+  there exists at least 3 kings in \(T\).
+  Because \(k\) is the only king in \(G\),
   there has to exist at least 2 non-trivial tie components.
   Therefore, \(G\) have at least 2 ties.
 \end{proof}
