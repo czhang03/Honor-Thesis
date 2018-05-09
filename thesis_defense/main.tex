@@ -1,0 +1,977 @@
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice.
+
+\documentclass{beamer}
+
+  % packages
+  \usepackage{bookmark}
+  \usepackage{tikz}
+  \usetikzlibrary[graphs, graphdrawing, graphs.standard, intersections]
+  \usegdlibrary{circular, layered, trees}
+  \usepackage[justification=centering, position=bottom]{subcaption}
+  % set the bibliography
+  \usepackage[style=authoryear]{biblatex}
+  \addbibresource{bibfile.bib}
+
+  % use section title as frame title
+  \addtobeamertemplate{frametitle}{
+  \let\insertframetitle\insertsectionhead}{}
+  \addtobeamertemplate{frametitle}{
+  \let\insertframesubtitle\insertsubsectionhead}{}
+  \makeatletter
+  \CheckCommand*\beamer@checkframetitle{\@ifnextchar\bgroup\beamer@inlineframetitle{}}
+  \renewcommand*\beamer@checkframetitle{\global\let\beamer@frametitle\relax\@ifnextchar\bgroup\beamer@inlineframetitle{}}  %chktex 21
+  \makeatother
+
+
+  % There are many different themes available for Beamer. A comprehensive
+  % list with examples is given here:
+  % http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+  % You can uncomment the themes below if you would like to use a different
+  % one:
+  %\usetheme{AnnArbor}
+  %\usetheme{Antibes}
+  %\usetheme{Bergen}
+  %\usetheme{Berkeley}
+  %\usetheme{Berlin}
+  %\usetheme{Boadilla}
+  %\usetheme{boxes}
+  %\usetheme{CambridgeUS}
+  %\usetheme{Copenhagen}
+  %\usetheme{Darmstadt}
+  \usetheme{default}
+  %\usetheme{Frankfurt}
+  %\usetheme{Goettingen}
+  %\usetheme{Hannover}
+  %\usetheme{Ilmenau}
+  %\usetheme{JuanLesPins}
+  %\usetheme{Luebeck}
+  %\usetheme{Madrid}
+  %\usetheme{Malmoe}
+  %\usetheme{Marburg}
+  %\usetheme{Montpellier}
+  %\usetheme{PaloAlto}
+  %\usetheme{Pittsburgh}
+  %\usetheme{Rochester}
+  %\usetheme{Singapore}
+  %\usetheme{Szeged}
+  %\usetheme{Warsaw}
+
+  \title{Kings in Generalized Tournaments}
+
+  % A subtitle is optional and this may be deleted
+  % \subtitle{}
+
+  \author{C. Zhang.}
+  % - Give the names in the same order as the appear in the paper.
+  % - Use the \inst{?} command only if the authors have different
+  %   affiliation.
+
+  \institute[Wheaton] % (optional, but mostly needed)
+  {
+  Department of Mathematics\\
+  Wheaton College Student
+  }
+  % - Use the \inst command only if there are several affiliations.
+  % - Keep it simple, no one is interested in your street address.
+
+  \date{Thesis Defense}
+  % - Either use conference name or its abbreviation.
+  % - Not really informative to the audience, more for people (including
+  %   yourself) who are reading the slides online
+
+  \subject{Kings in Generalized Tournaments}
+  % This is only inserted into the PDF information catalog. Can be left
+  % out.
+
+  % If you have a file called "university-logo-filename.xxx", where xxx
+  % is a graphic format that can be processed by latex or pdflatex,
+  % resp., then you can add a logo as follows:
+
+  % \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+  % \logo{\pgfuseimage{university-logo}}
+
+
+  % ============================================
+  % DOCUMENT START
+  % ============================================
+\begin{document}
+
+\begin{frame}
+  \titlepage{}
+\end{frame}
+
+\section{Background}
+
+\subsection{tournaments}
+
+\begin{frame}
+  \begin{definition}[\cite{maurer_king_1980}]
+    An \textbf{tournament} consists of a set of \textbf{vertices} \(V\),
+    and a set of \textbf{edges} \(E\) which consists of ordered pairs of vertices,
+    such that
+    \begin{itemize}
+      \item for all vertex \(a\), \((a, a) \notin E\).
+      \item for all vertices \(a, b\), \((a, b) \in E\) or \((b, a) \in E\),
+      but not both.
+    \end{itemize}
+  \end{definition}
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+    e -> {a, b};
+    b -> c -> d -> e;
+    a -> d -> b;
+    c -> a -> b;
+    e -> c
+    };
+    \caption{example of a tournament.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  If \((a, b)\) in edge set \(E\), we write it as \(a \to b\) or \(a\) beats \(b\).
+
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+    e -> {a, b};
+    b -> c -> d -> e;
+    a -> d -> b;
+    c -> a -> b;
+    e -> c
+    };
+    \caption{example of a tournament.}
+  \end{figure}
+\end{frame}
+
+\subsection{kings}
+
+\begin{frame}
+  \begin{definition}[\cite{maurer_king_1980}]
+    A \textbf{king} (or \textbf{2-king}) in a oriented graph is a vertex that can beat every vertex by at most 2 steps.
+  \end{definition}
+  \begin{figure}
+    \centering
+    \tikz\graph[layered layout, grow=right, sibling distance=2cm,level sep=0.75cm] {
+    k -> {a, b};
+    b -> c;
+    };
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  The kings in this graph are \(a, d, e\).
+
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+    e -> {a, b, c};
+    b -> c -> d -> e;
+    a -> {b, c, d};
+    b -> d;
+    };
+    \caption{example of a tournament.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  The kings in this graph are \(a, d, e\):
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.32\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.75cm] {
+      e, a, b, c, d;
+      a -> d -> e;
+      a -> {b, c};
+      };
+      \caption{\(a\) is a king.}
+    \end{subfigure}
+    \begin{subfigure}{0.32\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.75cm] {
+      e, a, b, c, d;
+      d -> e -> {a, b, c};
+      };
+      \caption{\(d\) is a king.}
+    \end{subfigure}
+    \begin{subfigure}{0.32\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.75cm] {
+      e -> {a, b, c};
+      c -> d;
+      };
+      \caption{\(e\) is a king.}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+
+\section{Generalization of Tournaments}
+
+\subsection{relation between three generalizations}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+
+      \begin{scope}[shift={(3cm,-5cm)}, fill opacity=0.5,
+        mytext/.style={text opacity=1, font=\large\bfseries}]
+
+        \draw[draw = black,name path=circle 1] (-1.5,0) circle (3);
+        \draw[draw = black,name path=circle 2] (1.5,0) circle (3);
+
+        \pgftransparencygroup
+        \clip (-1.5,0) circle (3);
+        \fill[gray] (1.5,0) circle (3);
+        \filldraw[draw, fill=gray, name intersections={of=circle 1 and circle 2}] (intersection-1) .. controls +(-4,1) and +(-4,-1) ..(intersection-2);
+        \endpgftransparencygroup
+
+        \node[mytext] at (-3.8,0) (B) {O};
+        \node[mytext] at (3.8,0) (C) {S};
+        \node[mytext] at (0,0) (D) {T};
+        \node[mytext] at (-2,1) (E) {Q};
+      \end{scope}
+    \end{tikzpicture}
+    \caption{the relationship between tournaments,
+    semi-complete digraphs, oriented graphs,
+    and quasi-transitive oriented graphs.}
+    \label{fig: generalized tournaments relationship}  % chktex 24
+  \end{figure}
+\end{frame}
+
+\section{Quasi-transitive Oriented Graph}
+
+\subsection{oriented graph}
+
+\begin{frame}
+  \begin{definition}
+    An \textbf{oriented graph} consists of a set of \textbf{vertices} \(V\),
+    and a set of \textbf{edges} \(E\) which consists of ordered pairs of vertices,
+    such that
+    \begin{itemize}
+      \item for all vertex \(a\), \((a, a) \notin E\).
+      \item for all vertices \( \{a, b\} \), if \(a\) beats \(b\),
+      then \(b\) does not beat \(a\).
+    \end{itemize}
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[layered layout, grow=right, sibling distance=2cm,level sep=0.75cm] {
+    {d, a}
+    -> b
+    -> c
+    -> a;
+    };
+    \caption{example of an oriented graph.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}
+    A vertex \(a\) is \textbf{adjacent} to vertex \(b\) if \(a \to b\) or \(b \to a\).
+  \end{definition}
+  \begin{definition}
+    There exists a \textbf{tie} between \(a\) and \(c\), if \(a\) is not adjacent to \(c\).
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[layered layout, math nodes, grow=right, sibling distance=2cm,level sep=0.75cm] {
+    {a, c}
+    -> [bend right] d
+    -> b
+    -> [bend right] {c, a};
+    };
+    \caption{another example of an oriented graph.}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  King in this graph is \(d, e\):
+
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1.75cm] {
+    e -> {a, b, c};
+    b -> c -> d -> e;
+    a -> d;
+    b -> a;
+    };
+    \caption{an example of kings.}
+  \end{figure}
+\end{frame}
+
+
+\subsection{definition}
+
+\begin{frame}
+  \begin{definition}[\cite{bangjensen_quasitransitive_1995}]
+    \textbf{Quasi-transitive} oriented graph is an oriented graph such that
+    if \(a \to b\) and \(b \to c\) then \(a\) and \(c\) are adjacent.
+  \end{definition}
+  \begin{figure}
+    \centering
+    \tikz\graph[layered layout, math nodes] {
+    a_1 -> b_1 -> c_1 -> a_1;
+    a_2 -> b_2 -> c_2;
+    a_2 -> c_2;
+    };
+    \caption{examples of quasi-transitive oriented graphs.}
+  \end{figure}
+\end{frame}
+
+\subsection{ties}
+
+\begin{frame}
+  \begin{lemma}
+    In Quasi-transitive oriented graphs, If vertex \(a\) ties with vertex \(b\),
+    then for any other vertex \(v\) that does not tie with \(a\) or \(b\),
+    \(v \to \{a, b\} \) or \( \{a, b\} \to v\)
+  \end{lemma}
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v <- {a, b};
+      a --[dashed] b;
+      };
+      \caption{\(v \to \{a, b\} \).}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v -> {a, b};
+      a --[dashed] b;
+      };
+      \caption{\( \{a, b\} \to v\).}
+    \end{subfigure}
+    \caption{an example where \(a\) ties with \(b\).}
+  \end{figure}
+\end{frame}
+
+\subsection{tie transmits arrows}
+\begin{frame}
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v --{a, b};
+      a --[dashed] b;
+      };
+      \caption{both \(a\) and \(b\) are adjacent to \(v\).}
+    \end{subfigure}
+    \begin{subfigure}{0.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v <- a;
+      v --b;
+      a --[dashed] b;
+      };
+      \caption{let \(a \to v\).}
+    \end{subfigure}
+    \begin{subfigure}{0.3\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v <- {a, b};
+      a --[dashed] b;
+      };
+      \caption{then \(b\) has to beat \(a\).}
+    \end{subfigure}
+    \caption{arrow direction transmitted from \(a\) to \(b\).}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v <- a;
+      };
+      \caption{starts with vertex \(a\).}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v <- {a, b};
+      a --[dashed] b;
+      };
+      \caption{add a vertex \(b\) that ties \(a\).}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v <- {a, b, c};
+      a --[dashed] b --[dashed] c;
+      };
+      \caption{add another vertex \(c\) ties \(b\).}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      v <- {a, b, c, d};
+      a --[dashed] b --[dashed] c --[dashed] d;
+      };
+      \caption{add another vertex \(d\) ties \(c\).}
+    \end{subfigure}
+    \caption{tie is transmitting the direction of arrow.}
+  \end{figure}
+\end{frame}
+
+\subsection{tie paths}
+
+\begin{frame}
+  \begin{definition}
+    In a digraph, a \textbf{tie path} from
+    vertex \(a_0\) to vertex \(a_n\),
+    or a tie path between vertices \(a_0\) and \(a_n\),
+    is a sequence of vertices
+    \([a_0, a_1, a_2, \ldots, a_{n-1}, a_n]\),
+    such that for all \(0 \leq k < n\), \(a_k\) ties \(a_{k + 1}\).
+    Note that all the \(a_i\)'s do not have to be distinct.
+  \end{definition}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[layered layout, grow=right, math nodes, sibling distance=0.75cm] {
+    a --[dashed] b --[dashed] c --[dashed] d
+    };
+    \caption{a tie path from \(a\) to \(b\).}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b -> c -> d -> e;
+      e -> {b, c};
+      };
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+      a -> b -> c -> d -> e;
+      b --[dashed] d --[dashed] a --[dashed] c;
+      a --[dashed] e;
+      e -> {b, c};
+      };
+    \end{subfigure}
+    \caption{tie path example.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{lemma}
+    In Quasi-transitive oriented graphs, If vertex \(a\) ties with vertex \(b\),
+    then for any other vertex \(v\) that does not tie with \(a\) or \(b\),
+    \(v \to \{a, b\} \) or \( \{a, b\} \to v\)
+  \end{lemma}
+
+  \begin{lemma}
+    For every tie path in a quasi-transitive oriented graph,
+    if vertex \(v\) is adjacent to all the vertices
+    on the tie path,
+    then \(v\) beats every vertex on the tie path,
+    or \(v\) is beaten by every vertex on the tie path.
+  \end{lemma}
+\end{frame}
+
+\begin{frame}
+  \begin{lemma}
+    For every tie path in a quasi-transitive oriented graph,
+    if vertex \(v\) is adjacent to all the vertices
+    on the tie path,
+    then \(v\) beats every vertex on the tie path,
+    or \(v\) is beaten by every vertex on the tie path.
+  \end{lemma}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.75cm] {
+      v <- {a, b, c, d};
+      a --[dashed] b --[dashed] c --[dashed] d
+      };
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.75cm] {
+      v -> {a, b, c, d};
+      a --[dashed] b --[dashed] c --[dashed] d
+      };
+    \end{subfigure}
+    \caption{a tie path from \(a\) to \(d\).}
+  \end{figure}
+\end{frame}
+
+\subsection{tie components}
+\begin{frame}
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      b <- a;
+      / [label = left:\(C\), draw] // {a};
+      };
+      \caption{\(a\) beats \(b\).}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a --[dashed] c;
+      {a, c} -> b;
+      / [label = left:\(C\), draw] // {a, c};
+      };
+      \caption{direction transmitted from \(a\) to \(c\).}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a --[dashed] c --[dashed] d;
+      ""; "";  % chktex 18
+      a -> b;
+      c -> b;
+      d -> b;
+      / [label = left:\(C\), draw] // {a, c, d};
+      };
+      \caption{transmitted from \(a\) to \(c\) to \(d\).}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a --[dashed] c --[dashed] d;
+      c --[dashed] e;
+      "";  % chktex 18
+      a -> b;
+      c -> b;
+      d -> b;
+      e -> b;
+      / [label = left:\(C\), draw] // {a, c, d, e};
+      };
+      \caption{transmitted from \(a\) to \(c\) to \(e\).}
+    \end{subfigure}
+    \caption{the arrow direction to \(b\) was transmitted in tie component \(C\).}
+    \label{fig: transmitting arrow direction in tie component}  % chktex 24
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}
+    In a digraph \(G\), a
+    \textbf{tie component of vertex \(a\)}:
+    \(C(a)\), all vertices \(v\)
+    such that there exists a tie path between \(a\) and \(v\).
+  \end{definition}
+
+  \begin{definition}
+    In a digraph \(G\), a tie component \(C(a)\)
+    is a \textbf{trivial tie component}
+    if \(C(a)\) only contains \(a\) itself
+    and no other vertex.
+  \end{definition}
+
+  \begin{corollary}\label{the: adjacent if not in component}
+    In a digraph, if vertex \(v\) is not in tie component \(C(a)\),
+    then \(v\) is adjacent to \(C(a)\).
+  \end{corollary}
+\end{frame}
+
+\begin{frame}
+
+  \begin{lemma}\label{the: component and a single point}
+    In a quasi-transitive oriented graph,
+    for any tie component \(C(a)\) and
+    any vertex \(v\) such that \(v \notin C(a)\),
+    then either \(C(a) \to v\) or \(v \to C(a)\).
+  \end{lemma}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.4\linewidth}
+      \centering
+      \tikz\graph[layered layout, grow=right, math nodes, level sep = 0.75cm] {
+      / [label=\(C(a)\), draw] // [simple necklace layout, node sep = 0.3cm]
+      {
+      a --[dashed] b --[dashed] {c, d};
+      } <- v;
+      };
+      \caption{\(v \to C(a)\).}
+    \end{subfigure}
+    \begin{subfigure}{0.4\linewidth}
+      \centering
+      \tikz\graph[layered layout, grow=right, math nodes, level sep = 0.75cm] {
+      / [label=\(C(a)\), draw] // [simple necklace layout, node sep = 0.3cm]
+      {
+      a --[dashed] b --[dashed] {c, d};
+      } -> v;
+      };
+      \caption{\(C(a) \to v\).}
+    \end{subfigure}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  Consider tie component \(C(v)\). Without loss of generosity, assume \(v \to C(a)\)
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, grow=right, math nodes, node sep = 0.75cm] {
+      v -> "C(a)" [draw, circle]; % chktex 36 % chktex 18
+      };
+      \caption{direction is \(v \to C(a)\).}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep = 0.75cm] {
+      v --[dashed] p;
+      {v, p} -> "C(a)" [draw, circle]; % chktex 36 % chktex 18
+      };
+      \caption{transmitted from \(v\) to \(p\).}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep = 0.75cm] {
+      v --[dashed] p;
+      v --[dashed] q;
+      {v, p, q} -> "C(a)" [draw, circle]; % chktex 36 % chktex 18
+      / [label=left:\(C(v)\), draw] // {v, p, q};
+      };
+      \caption{transmitted from \(v\) to \(q\).}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, grow=right, math nodes, node sep = 0.75cm] {
+      "C(v)" [draw, circle] -> "C(a)" [draw, circle]; % chktex 36 % chktex 18
+      };
+      \caption{\(C(v) \to C(a)\).}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\subsection{condensation to tournaments}
+
+\begin{frame}
+  \begin{theorem}\label{the: tie component beats tie component}
+    For any two distinct tie components \(C(v)\) and \(C(a)\)
+    in a quasi-transitive oriented graph,
+    \(C(v) \to C(a)\) or \(C(a) \to C(v)\).
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a; b;
+      a -> {c, d, e};
+      b -> {c, d, e};
+      {c, d, e} -> f;
+      {a, b} -> f;
+      j -> {c, d, e};
+      {a, b} -> j;
+      f -> j;
+      c -> d --[dashed] e --[dashed] c;
+      a --[dashed] b;
+      };
+      \caption{a quasi-transitive oriented graph.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.4cm] {
+      a; b; c; d; e; f; j;
+      d --[dashed] e --[dashed] c;
+      a --[dashed] b;
+      / [label = left:\(A\), draw, circle] // {a, b};
+      / [label = left:\(B\), draw] // {d, e, c};
+      / [label = right:\(C\), draw, circle] // {f};
+      / [label = right:\(D\), draw, circle] // {j};
+      };
+      \caption{find its tie components.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.4cm] {
+      A [draw, circle, minimum size=0.75cm] -> B [draw, circle, minimum size=0.9cm]
+      -> C [draw, circle, minimum size=0.5cm] -> D [draw, circle, minimum size=0.5cm];
+      A -> D -> B;  % chktex 13
+      A -> C;  % chktex 13
+      };
+      \caption{components beat each other.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      A' -> B' -> C' -> D';
+      A' -> D' -> B';
+      A' -> C';
+      };
+      \caption{components are just like vertices.}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}
+    A \textbf{tie component condensation} is a
+    function \(f: Q \to T\),
+    where \(Q\) is a quasi-transitive oriented graph,
+    \(T\) is a directed graph.
+    And \(f\) maps \(V(Q)\) to \(V(T)\) surjectively,
+    such that:
+    \begin{itemize}
+      \item if \(a, b \in V(Q)\) are in the same tie component,
+      then \(f(a) = f(b)\).
+      \item if \(a, b \in V(Q)\) are in 2 distinct tie components
+      \(A, B\) respectively,
+      then
+      \begin{itemize}
+        \item \(f(a) \to f(b)\) if \(A \to B\).
+        \item \(f(b) \to f(a)\) if \(B \to A\).
+        \item otherwise, tie condensation do not exists.
+      \end{itemize}
+    \end{itemize}
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item if \(a, b \in V(Q)\) are in the same tie component,
+    then \(f(a) = f(b)\).
+    \item if \(a, b \in V(Q)\) are in 2 distinct tie components
+    \(A, B\) respectively,
+    then
+    \begin{itemize}
+      \item \(f(a) \to f(b)\) if \(A \to B\).
+      \item \(f(b) \to f(a)\) if \(B \to A\).
+      \item otherwise, tie condensation do not exists.
+    \end{itemize}
+  \end{itemize}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a; b;
+      a -> {c, d, e};
+      b -> {c, d, e};
+      {c, d, e} -> f;
+      {a, b} -> f;
+      j -> {c, d, e};
+      {a, b} -> j;
+      f -> j;
+      c -> d --[dashed] e --[dashed] c;
+      a --[dashed] b;
+      };
+      \caption{before condensation.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      A' -> B' -> C' -> D';
+      A' -> D' -> B';
+      A' -> C';
+      };
+      \caption{after condensation.}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+    Tie component condensation of given
+    quasi-transitive oriented graph \(Q\)
+    will always result in a unique tournament \(T\),
+    where \(T\) is called the
+    \textbf{underlying tournament of \(Q\)}.
+  \end{theorem}
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a_0; a_1;
+      a_0 -> {b_0, b_1, b_2};
+      a_1 -> {b_0, b_1, b_2};
+      {b_0, b_1, b_2} -> c;
+      {a_0, a_1} -> d;
+      d -> {b_0, b_1, b_2};
+      {a_0, a_1} -> d;
+      c -> d;
+      b_0 -> b_1 --[dashed] b_2 --[dashed] b_0;
+      a_0 --[dashed] a_1;
+      };
+      \caption{quasi-transitive oriented graph \(Q\).}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      A' -> B' -> C' -> D';
+      A' -> D' -> B';
+      A' -> C';
+      };
+      \caption{underlying tournament of \(Q\).}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\subsection{graph condensation}
+
+\begin{frame}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a; b;
+      a --[dashed] {c, d, e};
+      b --[dashed] {c, d, e};
+      {c, d, e} -> f;
+      {a, b} -> f;
+      j -> {c, d, e};
+      {a, b} -> j;
+      f -> j;
+      c -> d -> e --[dashed] c;
+      a -> b;
+      };
+      \caption{an oriented graph \(G\).}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.4cm] {
+      a; b; c; d; e; f; j;
+      d -> e --[dashed] c;
+      c -> d;
+      a -> b;
+      / [label = left:\(A\), draw, circle] // {a, b};
+      / [label = left:\(B\), draw] // {d, e, c};
+      / [label = right:\(C\), draw, circle] // {f};
+      / [label = right:\(D\), draw, circle] // {j};
+      };
+      \caption{components of \(G\).}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.4cm] {
+      A [draw, circle, minimum size=0.75cm] --[dashed]
+      B [draw, circle, minimum size=0.9cm] ->
+      C [draw, circle, minimum size=0.5cm] ->
+      D [draw, circle, minimum size=0.5cm];
+      A -> D -> B;  % chktex 13
+      A -> C;  % chktex 13
+      };
+      \caption{relationship between components.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      A' --[dashed] B' -> C' -> D';
+      A' -> D' -> B';
+      A' -> C';
+      };
+      \caption{condensed graph \(H\).}
+    \end{subfigure}
+    \caption{an example of graph condensation.}
+    \label{fig: condensation example}  % chktex 24
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}\label{the: tie condensation effcient}
+    Given a quasi-transitive graph \(Q\)
+    and its tie component condensation \(f\),
+    consider the set of all the condensations \(f_k: G_k \to T_k\),
+    where \(G_k\) has the same tie structure as \(Q\)
+    and \(T_k\) is a tournament:
+    \(F = \{f_0, f_1, \ldots, f_{n-1}, f_n\} \).
+    \(f\) is an efficient condensation in \(F\).
+  \end{theorem}
+\end{frame}
+
+
+\subsection{property of kings}
+
+\begin{frame}
+  \begin{theorem}
+    If vertex \(k\) is a king in quasi-transitive oriented graph \(G\),
+    then \(k\) is adjacent to every other vertex in \(G\).
+  \end{theorem}
+
+  \begin{figure}
+    \centering
+    \tikz\graph[simple necklace layout, math nodes, node sep=1cm] {
+    D_k [draw, circle, minimum size=2cm] ->
+    k ->
+    S_k [draw, circle, minimum size=2cm];
+    ""; % chktex 18
+    D_k --[bend left] S_k;
+    };
+    \caption{the rich structure of a king in a quasi-transitive oriented graph.}
+    \label{fig: king in quasi-transitive}  % chktex 24
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}\label{the: king in quasi-transitive}
+    A vertex \(k\) is a king in a quasi-transitive oriented
+    graph if and only if
+    \begin{itemize}
+      \item \(k\) is in a trivial tie component.
+      \item the result of \(k\) after tie component condensation
+      is a king in the underlying tournament.
+    \end{itemize}
+  \end{theorem}
+\end{frame}
+
+\section{further problem}
+
+
+% =============================================
+% ENDING AND REFERENCE
+% =============================================
+\section{Thank You}
+
+\begin{frame}
+  \begin{itemize} \setlength\itemsep{2em}
+    \item Personal Email: zcsx.ok@outlook.com
+    \item Institution Email: zhang\_cheng@wheatoncollege.edu
+  \end{itemize}
+\end{frame}
+
+\section{References}
+
+\begin{frame}[allowframebreaks]
+  \printbibliography[heading=bibintoc]
+\end{frame}
+
+\end{document}
+
