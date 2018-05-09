@@ -392,7 +392,7 @@
       v <- {a, b};
       a --[dashed] b;
       };
-      \caption{then \(b\) has to beat \(a\).}
+      \caption{then \(b\) has to beat \(v\).}
     \end{subfigure}
     \caption{arrow direction transmitted from \(a\) to \(b\).}
   \end{figure}
@@ -616,6 +616,7 @@
       / [label=\(C(a)\), draw] // [simple necklace layout, node sep = 0.3cm]
       {
       a --[dashed] b --[dashed] {c, d};
+      d --[dashed] c;
       } <- v;
       };
       \caption{\(v \to C(a)\).}
@@ -626,6 +627,7 @@
       / [label=\(C(a)\), draw] // [simple necklace layout, node sep = 0.3cm]
       {
       a --[dashed] b --[dashed] {c, d};
+      d --[dashed] c;
       } -> v;
       };
       \caption{\(C(a) \to v\).}
