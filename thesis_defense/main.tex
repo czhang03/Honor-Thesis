@@ -885,6 +885,34 @@
       is a king in the underlying tournament.
     \end{itemize}
   \end{theorem}
+
+  \begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      a_0; a_1;
+      a_0 <- {b_0, b_1, b_2};
+      a_1 <- {b_0, b_1, b_2};
+      {b_0, b_1, b_2} -> c_0;
+      d_0 -> {b_0, b_1, b_2};
+      {a_0, a_1} -> d_0;
+      c_0 -> d_0;
+      b_0 -> b_1 --[dashed] b_2 --[dashed] b_0;
+      a_0 --[dashed] a_1;
+      };
+      \caption{quasi-transitive oriented graph \(Q\).}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\linewidth}
+      \centering
+      \tikz\graph[simple necklace layout, math nodes, node sep=0.5cm] {
+      A' <- B' -> C' -> D';
+      A' -> D' -> B';
+      A' -> C';
+      };
+      \caption{underlying tournament of \(Q\).}
+    \end{subfigure}
+  \end{figure}
 \end{frame}
 
 \section{further problem}
@@ -896,10 +924,6 @@
 \section{Thank You}
 
 \begin{frame}
-  \begin{itemize} \setlength\itemsep{2em}
-    \item Personal Email: zcsx.ok@outlook.com
-    \item Institution Email: zhang\_cheng@wheatoncollege.edu
-  \end{itemize}
 \end{frame}
 
 \section{References}
