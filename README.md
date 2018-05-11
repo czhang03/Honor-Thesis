@@ -3,7 +3,7 @@ My Honor Thesis in Graph Theory at [Wheaton College](https://wheatoncollege.edu/
 [Department of Mathematics](https://wheatoncollege.edu/academics/departments/mathematics-computer-science/),
 under supervising of [Professor Rochelle (Shelly) Leibowitz](https://wheatoncollege.edu/academics/faculty-directory/rochelle-shelly-leibowitz/).
 
-To view my thesis on GitHub click [here](https://github.com/chantisnake/Honor-Thesis/blob/master/main.pdf);
+To view my thesis on GitHub click [here](https://github.com/chantisnake/Honor-Thesis/blob/master/thesis/main.pdf);
 to download my thesis click [here](https://github.com/chantisnake/Honor-Thesis/raw/master/main.pdf)
 
 ## Compile
