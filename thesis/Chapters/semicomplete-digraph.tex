@@ -5,7 +5,7 @@
   In \cref{chap: background},
   we introduced one way to model ``tie'' as
   the non-adjacency between 2 vertices.
-  However, if we think of ``beating'' as a weak order
+  However, if we think of ``beating'' as a weak ordering
   (like ``subset'' relation),
   then we can define ``double tie'' to capture this idea:
 
@@ -26,7 +26,7 @@
     see \cref{fig:semi-complete digraph example}
   \end{definition}
 
-  This definition says, that a semi-complete digraph
+  This definition says that a semi-complete digraph
   is a digraph such that between each pair of vertices,
   there exists at least one edge between them.
 
@@ -53,15 +53,10 @@
   \end{definition}
 
   Tournaments are a special case of semi-complete digraphs.
-  In tournaments, for each pair of vertices \(a, b\)
-  \(a\) always strictly beats \(b\)
-  or \(b\) strictly beaten by \(b\).
+  In tournaments, for each pair of vertices \(\set{a, b}\),
+  \(a\) strictly beats \(b\) or \(b\) strictly beaten by \(b\).
   We can view a tournament as a semi-complete digraph
   that only has strict beatings; no double tie allowed.
-  In other words, tournaments is an oriented graph
-  that is also a semi-complete digraph,
-  hence the name ``semi-complete oriented graph''
-  (see \cref{def: tournaments})
 
   \begin{definition}
     In a semi-complete digraph,
@@ -80,10 +75,11 @@
 
   For vertex \(c\),
   \(DT_c\) (double tie set of \(c\)) is \(\set{a, d}\).
-  The set of vertices that strictly beat \(c\),
-  which can be expressed as \(D_c - DT_c\), is \(\set{b}\).
-  The set of vertices that are strictly beaten by \(c\),
-  which can be expressed as \(S_c - DT_c\), is \(\set{e}\).
+  The set of vertices that strictly beat \(c\) is \(\set{b}\),
+  which can be expressed as \(D_c - DT_c\).
+  The set of vertices that are strictly beaten by \(c\) is
+  \(\set{e}\),
+  which can be expressed as \(S_c - DT_c\).
 
 
 
@@ -95,7 +91,7 @@
 
 
   \begin{lemma}\label{the: graph partition lemma}
-    for every vertex \(v\) in any semi-complete digraph \(G\),
+    For every vertex \(v\) in any semi-complete digraph \(G\),
     \(\set{S_v - DT_v, DT_v, D_v - DT_v, \set{v}}\)
     forms a partition of \(G\).
   \end{lemma}
@@ -152,7 +148,7 @@
     \(d \in D_v - DT_v = V(G) - S_v - \set{v}\)
     that is not beaten by \(v\) by 1 or 2 steps.
     Therefore there cannot be any vertex in \(S_v\) that beats \(d\).
-    Because \(d\) is adjacent to every vertex in \(S_v\)
+    Because \(d\) is adjacent to every vertex in \(S_v\),
     \(d\) strictly dominates \(v\) and \(S_v\).
     Hence \(|S_d| \geq 1 + |S_v|\).
     Therefore \(|S_d| > |S_v|\),
@@ -235,9 +231,9 @@
     with only one king \(k\), and \(k\) is not an emperor.
 
     Then there exists \(v\) in the graph,
-    such that \(k\) does not beats \(v\).
+    such that \(k\) does not beat \(v\).
     Therefore, \(v \to k\), since there is no tie in the graph.
-    Therefore, \(k\) has an non-empty dominate set.
+    Therefore, \(k\) has a non-empty domiant set.
     Then by \cref{the: beaten by king theorem},
     \(k\) is beaten by another king.
     Therefore there exists more than one king. Contradiction.
@@ -255,7 +251,8 @@
   Notice, unlike in tournaments,
   the converse of \cref{the: if only king then emperor} is not true
   In \cref{fig:more than one emperors},
-  we show we can have more than one kings that are emperors.
+  we show we can have more than one king\
+  with some kings being emperors.
 
   \begin{theorem}\label{the: (n k) digraph exists}
     \((n, k)\) semi-complete digraphs
@@ -313,7 +310,7 @@
 
     Therefore, we can obtain
     any \((n, k)\) semi-complete digraph by:
-    start with a \((1,1)\) semi-complete digraph
+    starting with a \((1,1)\) semi-complete digraph,
     first add \(k - 1\) kings to
     get a \((k, k)\) semi-complete digraph;
     then add \(n - k\) non-king vertices
@@ -386,7 +383,7 @@
   we are creating \((i - 1)\) ties,
   so adding \(k\) kings would require a total of
   \(1 + 2 + \cdots + (k - 1)\) double ties.
-  The summation can be simplified to \(\frac{k(k-1)}{2}\).
+  The summation simplifies to \(\frac{k(k-1)}{2}\).
   Thus, the number of double ties blows up with
   the increase of \(k\) (number of kings).
 
@@ -414,7 +411,7 @@
   \end{proof}
 
   \begin{lemma}\label{the: (4 4) digraph exists with one tie}
-    there exists a \((4, 4)\) semi-complete digraph
+    There exists a \((4, 4)\) semi-complete digraph
     with only one double tie.
   \end{lemma}
 
