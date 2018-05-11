@@ -103,12 +103,15 @@
     \vfill
   \end{titlepage}
 
-  % The menu
-  \tableofcontents
-
-  %%% The chapters
+  \frontmatter
   \include{Chapters/abstract}
   \include{Chapters/acknowledgement}
+
+  % The toc
+  \tableofcontents{}
+
+  \mainmatter  % chktex 1
+  %%% The chapters
   \include{Chapters/introduction}
   \include{Chapters/background}
   \include{Chapters/semicomplete-digraph}
