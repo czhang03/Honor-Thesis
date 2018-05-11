@@ -53,6 +53,8 @@
   \begin{definition}
     For a given path \(P\), if the sequence has \(n + 1\) vertices,
     then we say the \keyword{length of path} \(P\) is \(n\).
+    A special case is a path consisting of one single vertex,
+    which is a path of length 0.
   \end{definition}
 
   The length of a path measures the number of edges on this path.
@@ -61,7 +63,7 @@
   And there are edges \((e, a), (a, b), (b, c)\) on this path,
   therefore the length of this path is 3.
   There is another path \(P' = e \to c\) goes from \(e\) to \(c\).
-  This path \(P'\) only has length \(1\).
+  This path \(P'\) has length \(1\).
   Therefore, path \(P'\) is shorter than path \(P\),
   and if we go through every possible path from \(e\) to \(c\),
   we can find out that \(P'\) is the \emph{shortest path}
@@ -204,7 +206,7 @@
 
   \begin{definition}
     The \keyword{submissive set} (\keyword{dominant set})
-    of a vertices \(v\) in graph \(G\) is the set of vertices in \(G\)
+    of a vertex \(v\) in graph \(G\) is the set of vertices in \(G\)
     that are beaten by \(v\) (beat \(v\)),
     formally it is \(\set{e \in V(G) \mid v \to e}\)
     (or \(\set{e \in V(G) \mid e \to v}|\)).
@@ -250,7 +252,7 @@
 
 
   \begin{definition}
-    A \keyword{induced subgraph} or \keyword{vertex-induced subgraph}
+    An \keyword{induced subgraph} or \keyword{vertex-induced subgraph}
     \(H\) of digraph \(G\) is a subgraph of \(G\) such that:
     for all pairs of vertices \(a, b \in V(H)\),
     if \((a, b) \in E(G)\), then \((a, b) \in E(H)\).
@@ -309,8 +311,8 @@
 
   For all the families of graphs discussed in this paper
   (oriented graph, semi-complete digraph,
-  tournament,quasi-transitive oriented graph),
-  induced subgraphs preserve the property of the original graphs.
+  tournament, quasi-transitive oriented graph),
+  induced subgraphs preserve the property of the original graph.
 
 \section{Oriented Graph and Tournament}
 
@@ -369,7 +371,7 @@
     \label{fig:tournament example} % chktex 24
   \end{figure}
 
-  We give a simple example of a tournament
+  We give an example of a tournament
   in \cref{fig:tournament example}.
   A tournament can be interpreted as,
   what we call in the real world, a round-robin tournament,
@@ -395,7 +397,7 @@
         a -> d;
         b -> a;
     };
-    \caption{an example of kings.}
+    \caption{an example with kings \(e\) and \(d\).}
     \label{fig:complicated king example} % chktex 24
   \end{figure}
 
@@ -432,7 +434,6 @@
       but \(b\) is not a king.
       Vertex \(d\) is more ``powerful'' than \(b\),
       even though \(d\) has smaller out-degree.
-      (trying to understand this phenomenon will be an interesting practice)
 
     \begin{itemize}
       \item
@@ -456,8 +457,8 @@
       \cref{fig:complicated king example} shows that
       a digraph may have more than one king.
       In fact,~\cite{maurer_king_1980} proved the probability
-      that every vertex in a random tournament is a king approaches 1
-      as the number of vertices in the graph approaches \(\infty \).
+      that every vertex in a tournament is a king approaches 1
+      as the number of vertices in the tournament approaches \(\infty \).
   \end{itemize}
 
   \begin{figure}
@@ -483,7 +484,7 @@
     \tikz\graph[tree layout, math nodes, grow=down, sibling distance=2cm,level sep=0.75cm] {
         e -> {s_1, s_2, s_3, "\ldots", s_n};  %chktex 18
     };
-    \caption{the vertex \(e\) is the emperor of this graph.}
+    \caption{vertex \(e\) is the emperor of this graph.}
     \label{fig: emperor example}  % chktex 24
   \end{figure}
 
