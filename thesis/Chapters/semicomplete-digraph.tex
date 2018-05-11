@@ -19,7 +19,7 @@
   round-robin tournament with double ties.
   This kind of graph is called ``semi-complete digraph''.
 
-  \begin{definition}\label{def: semi-compelete digraph}
+  \begin{definition}\label{def: semi-complete digraph}
     A \keyword{semi-complete digraph} is a digraph
     where every vertex is adjacent to every other vertex,
     but does not beat itself.
@@ -135,7 +135,7 @@
   the lack of this property in oriented graphs will make the
   structure of oriented graphs harder to work with.
 
-  \begin{theorem}\label{the: largest out-degree is a king in semi-compelete digraph}
+  \begin{theorem}\label{the: largest out-degree is a king in semi-complete digraph}
     All vertices with the maximum out-degree
     in a semi-complete digraph are kings.
   \end{theorem}
@@ -178,7 +178,7 @@
   In fact, in this graph,
   every vertex has the same out-degree 3,
   therefore all of the vertices have the maximum out-degree.
-  By \cref{the: largest out-degree is a king in semi-compelete digraph},
+  By \cref{the: largest out-degree is a king in semi-complete digraph},
   all vertices in this graph are kings.
 
   \begin{corollary}\label{the: existence theorem}
@@ -187,7 +187,7 @@
   \end{corollary}
 
   \begin{proof}
-    This corollary is a result of \cref{the: largest out-degree is a king in semi-compelete digraph}.
+    This corollary is a result of \cref{the: largest out-degree is a king in semi-complete digraph}.
     because out-degrees are non-negative integers,
     and \(V(G)\) is not empty.
     Thus there exists at least one vertex with maximum out degree.
@@ -312,7 +312,7 @@
     \end{itemize}
 
     Therefore, we can obtain
-    any \((n, k)\) semi-compelete digraph by:
+    any \((n, k)\) semi-complete digraph by:
     start with a \((1,1)\) semi-complete digraph
     first add \(k - 1\) kings to
     get a \((k, k)\) semi-complete digraph;
