@@ -24,7 +24,7 @@ Identity condensation \(i\) maps an oriented graph \(G\) to itself,
 such that \(i\) maps every vertex to itself,
 and \(f(a) \to f(b)\) if and only if \(a \to b\).
 The identity condensation preserves all the edges
-and ties, and do not change the graph at all.
+and ties, and does not change the graph at all.
 We can see that this map is a condensation by definition.
 
 Another example is trivial condensation \(t\),
@@ -50,7 +50,7 @@ For example, the component of vertex \(a\)
 in oriented graph \(G\) with identity condensation
 is a set that only contains \(a\) itself,
 and the component of a vertex \(a\) in oriented graph \(G\)
-with the trivial condensation is set of all the vertices,
+with the trivial condensation is the set of all the vertices,
 because all vertices in \(G\) are mapped onto a
 single vertex in \(H\),
 therefore all the vertices in \(G\) are
@@ -114,7 +114,7 @@ condensed into the same vertex as \(a\).
 \end{figure}
 
 In \cref{fig: condensation example},
-we show a general example of condensation.
+we show an example of a condensation.
 In this example,
 the distinct components in \(G\) are \(A\), \(B\), \(C\) and \(D\),
 and they are condensed into vertices
@@ -125,7 +125,7 @@ and the component of \(c\) is also \(B\),
 because both \(c\) and \(d\) are mapped into vertex
 \(B'\) in oriented graph \(H\).
 
-We proof several theorems involving condensation and components
+We prove several theorems involving condensation and components
 to help us with our goal of identifying kings in
 quasi-transitive oriented graphs.
 
@@ -135,7 +135,7 @@ quasi-transitive oriented graphs.
 \end{theorem}
 
 \begin{proof}
-  Prove distinct component disjoint:
+  We show distinct components disjoint:
   Assume there exists two vertex \(a\) and \(b\),
   such that the component of \(a\) is \(A\);
   component of \(b\) is \(B\),
@@ -150,7 +150,7 @@ quasi-transitive oriented graphs.
   = A\).
    \(A = B\), contradiction.
 
-  Prove every vertex is in a component:
+  We show every vertex is in a component:
   for every vertex \(v \in V(G)\),
   \(v\) is in the component of \(v\) because \(f(v) = f(v)\).
 \end{proof}
@@ -291,7 +291,7 @@ and then condenses them into a single vertex.
   \label{fig: behaves like a vertex example}  % chktex 24
 \end{figure}
 
-Notice that all oriented graph have the
+Notice that all oriented graphs have the
 identity condensation and trivial condensation,
 but some oriented graphs may not have other condensations
 defined on them.
@@ -358,10 +358,10 @@ in later sections, when looking for kings
 
 \begin{proof}
   Suppose not. Take the the smallest \(p\) such that
-  there exists \(a_p\) and \(a_q (p < q \leq n)\)
-  are in the same component \(C\).
+  there exist \(a_p\) and \(a_q (p < q \leq n)\)
+  in the same component \(C\).
 
-  Since \(a_p\) is the first vertex in the \(P\)
+  Since \(a_p\) is the first vertex in \(P\)
   that belongs to the same component as another vertex in \(P\).
   \(a_{p-1}\) cannot be in the same component as \(a_p\),
   then \(a_{p-1} \notin C\).
@@ -371,13 +371,13 @@ in later sections, when looking for kings
   Thus \(a_{p-1} \to a_q\), and path
   \(a_0 \to a_1 \to \cdots
   \to a_{p-2} \to a_{p-1} \to a_q \to a_{q+1} \to \cdots
-  \to a_{n-1} \to a_n\) exists and shorter than \(P\).
+  \to a_{n-1} \to a_n\) exists and is shorter than \(P\).
   See \cref{fig: same component the not the shortest path}.
   Contradiction.
 \end{proof}
 
 \begin{theorem}\label{the: condensation preserves shortest path}
-  Given a condensation \(f: G \to H\),
+  Given a condensation \(f: G \to H\), on oriented graph \(G\),
   for any \(a_0, a_n \in V(G)\),
   such that \(a_0\) and \(a_n\) are in two distinct components.
   A shortest path from \(a_0\) to \(a_n\) is
@@ -388,7 +388,7 @@ in later sections, when looking for kings
 \end{theorem}
 
 \begin{proof}
-  Prove \((\Rightarrow )\):
+  \((\Rightarrow )\):
   Suppose \(P_G\) is a shortest path but \(P_H\) is not a
   shortest path in \(H\).
   Then there exists a shorter path \(P_H'\) in \(H\)
@@ -401,7 +401,7 @@ in later sections, when looking for kings
   exists (by definition of condensation) and is shorter than
   \(P_G\), a contradiction.
 
-  Prove \((\Leftarrow )\):
+  \((\Leftarrow )\):
   Suppose \(P_H\) is a shortest path in \(H\) but \(P_G\) is
   not a shortest path in \(G\)
   Then there exists a shorter path \(P_G'\) in \(G\)
@@ -416,7 +416,7 @@ in later sections, when looking for kings
 \end{proof}
 
 \begin{corollary}\label{the: condensation preserves beating in distinct components}
-  Let \(f: G \to H\) be a condensation,
+  Let \(f: G \to H\) be a condensation of oriented graph \(G\),
   for all \(a_0, a_n \in G\),
   such that \(a_0\) and \(a_n\) are in two distinct components,
   \(a_0\) beats \(a_n\) by \(n\) steps in \(G\) if and only if
@@ -429,7 +429,7 @@ in later sections, when looking for kings
 \end{proof}
 
 \begin{corollary}\label{the: condensation preserves king}
-  Given a condensation \(f: G \to H\),
+  Given a condensation \(f: G \to H\) of oriented graph \(G\),
   vertex \(k\) is a king in \(G\) if and only if
   \begin{itemize}
     \item \(k\) is a king in the
@@ -461,17 +461,17 @@ in later sections, when looking for kings
       there exists \(a \in V(G)\) such that \(k \to a \to v\) in \(G\).
       because \(v, k \in C\) and
       \cref{the: vertex force beating relation in condensation},
-      \(a \in C\) (if \(a \notin C\) will cause a contradiction).
+      \(a \in C\) (\(a \notin C\) causes a contradiction).
       Therefore, \(k\) beats \(v\) by 2 steps in \(G_c\).
   \end{itemize}
   Thus, \(k\) is a king in \(G_c\),
   and \(f(k)\) is a king in \(H\).
 
-  Prove \((\Leftarrow )\):
+  \((\Leftarrow )\):
   Suppose \(f(k)\) is a king in \(H\),
   and \(k\) is a king in \(G_C\).
-  Since \(f(k)\) is a king in \(H\) by 1 or 2 steps,
-  \(f(k)\) beats every other vertex \(f(v)\) in \(H\).
+  Since \(f(k)\) is a king in \(H\),
+  \(f(k)\) beats every other vertex \(f(v)\) in \(H\) by 1 or 2 steps.
   Thus, \(k\) beats every other vertex that is not in \(C\)
   by 1 or 2 steps, by \cref{the: condensation preserves beating in distinct components}.
   Since \(k\) is a king in \(G_c\),
@@ -548,10 +548,10 @@ because \(A'\) ties \(D'\) in the condensed graph.
 
 Therefore, an ``efficient condensation'' should keep as many
 vertices as possible.
-One of the most ``efficient'' condensation is the
+One of the most ``efficient'' condensations is the
 identity condensation, because it does not lose any information
 about this graph.
-However, identity condensation also do not mutate the graph
+However, the identity condensation does not mutate the graph
 at all, therefore it is not very practical.
 
 \begin{definition}

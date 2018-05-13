@@ -33,17 +33,17 @@ have nice properties.
 \begin{lemma}\label{the: king partitions in quasi-transitive}
   In a quasi-transitive oriented graph,
   for any king \(k\), \(\set{D_k, S_k, \set{k}}\)
-  partitions the graph.
+  partition the vertices of the graph.
 \end{lemma}
 
 \begin{proof}
-  Proof disjoint: pretty obvious.
   \(D_k, S_k\) disjoint because we are working in an oriented graph.
   \(D_k, S_k\) disjoint with \(\set{k}\)
   because a vertex cannot beat itself.
+  Thus the three sets are disjoint.
 
-  Proof the union is the whole vertex set:
-  by \cref{the: king adjacent}
+  The union of the three sets is the whole vertex set;
+  by \cref{the: king adjacent}.
 \end{proof}
 
 \begin{lemma}\label{the: D S of king adjacent in quasi-transitive}
@@ -82,7 +82,7 @@ have nice properties.
 
 See \cref{fig: king in quasi-transitive},
 this figure shows the rich structure of a king
-in quasi-transitive oriented graph.
+in a quasi-transitive oriented graph.
 We were able to see a similar partition structure mentioned in
 \cref{chap: semi-complete digraph},
 and \cref{the: graph partition lemma}
@@ -107,8 +107,7 @@ with the property of tie (tie component).
   graph if and only if
   \begin{itemize}
     \item \(k\) is in a trivial tie component.
-    \item the result of \(k\) after tie component condensation
-    is a king in the underlying tournament.
+    \item \({k}\) is a king in the underlying tournament.
   \end{itemize}
 \end{theorem}
 
@@ -117,11 +116,11 @@ with the property of tie (tie component).
   \(k\) is a king if and only if
   \begin{itemize}
     \item \(k\) is a king in the induced subgraph of its tie component.
-    \item the result of \(k\) after tie component condensation
+    \item the tie component containing \(k\)
     is a king in the underlying tournament.
   \end{itemize}
 
-  So we need to show \(k\) is a king in
+  So we need to show \(k\) is a king in the
   induced subgraph of its tie component
   if and only if \(k\) is in a trivial tie component.
 
@@ -138,8 +137,8 @@ with the property of tie (tie component).
   Suppose \(k\) is is in a trivial tie component,
   then \(k\) is a king in the induced graph of
   its tie component.
- Recall that the definition of king says that
-  a digraph with one vertex,
+  Recall that the definition of king says that
+  in a digraph with one vertex,
   that vertex is a king in the digraph.
 \end{proof}
 
@@ -245,7 +244,7 @@ properties of kings in quasi-transitive oriented graphs.
 
 By \cref{the: one king iff emperor},
 \cref{the: if only king then emperor},
-a great king does not exists in semi-complete digraphs and
+a great king does not exist in semi-complete digraphs and
 tournaments.
 
 \begin{corollary}

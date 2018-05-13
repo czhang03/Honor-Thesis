@@ -8,69 +8,69 @@ Then what can we construct if we limit the number of ties
 or double ties?
 
 \begin{definition}
-  a \((n, k, t)\) digraph is a digraph with \(n\) vertices,
+  an \((n, k, t)\) digraph is a digraph with \(n\) vertices,
   \(k\) kings and \(t\) ties (or double ties).
 \end{definition}
 
 In \cref{chap: semi-complete digraph}, and \cref{chap: general oriented graph},
 we explore the construction of \((n, k)\) semi-complete digraphs
 and \((n, k)\) oriented graphs with 1 tie.
-In other word, we have solved the problem of constructing
-\((n, k, 1)\) oriented graph and semi-complete digraphs.
-What happens with \(t\) gets larger?
+In other words, we have solved the problem of constructing
+\((n, k, 1)\) oriented graphs and semi-complete digraphs.
+What happens when \(t\) gets larger?
 
-One of the useful thing to note when approaching the
+One of the useful things to note when approaching the
 problem of the existence of \((n, k, t)\) digraphs
-(or oriented graphs, semi-complete digraphs, etc.)
-in the end of \cref{sec: quasi-transitive king},
-we give a way to construct a quasi-transitive oriented graph
-with given number of kings.
+(or oriented graphs, semi-complete digraphs, etc.) 
+is the construction of a quasi-transitive oriented graph
+with given number of kings, which appears at the end of
+ \cref{sec: quasi-transitive king}.
 This way of constructing quasi-transitive oriented graphs
 may be very useful,
 since we can manipulate the number of ties in the graph
 without changing the number of vertices and kings.
-For a tie components with \(n\) vertices,
+For a tie component with \(n\) vertices,
 the number of ties in the component can be any number
 between \(n - 1\)
-(ties forms a spanning tree of the component)
+(ties form a spanning tree of the component)
 and \(\frac{n(n+1)}{2}\)
 (there exists a tie between every two vertices).
 
-In \cref{sec:kings}, we showed that there exists king with very
+In \cref{sec:kings}, we showed that there exist kings with very
 low out-degrees.
 What is the property of a king with very low out-degree?
 What is the property of a king with only out-degree 1?
-what is the property of a king that has the lowest out-degree
+What is the property of a king that has the lowest out-degree
 in the graph?
-What is the property of a king that has the lowest out-degrees
+What is the property of a king that has the lowest out-degree
 among all of the kings in the graph?
 
 In \cref{sec: quasi-transitive king},
-we have showed that king has very rich structures.
+we showed that a king has a very rich structure.
 However, \cref{the: king partitions in quasi-transitive}
 and \cref{the: D S of king adjacent in quasi-transitive}
 are not used in this thesis.
-Can we use these 2 property to deduce any property
-of quasi-transitive oriented graph with kings?
+Can we use these 2 properties to deduce any property
+of quasi-transitive oriented graphs with kings?
 A interesting path is that
 \cref{the: D S of king adjacent in quasi-transitive}
-implies in a quasi-transitive oriented graph with king \(k\),
-all the tie components are either the subset of \(D_k\) or \(S_k\).
+implies that in a quasi-transitive oriented graph with king \(k\),
+all the tie components are subsets of \(D_k\) or \(S_k\).
 
 \begin{definition}
-  A infinite graph is a graph with infinite number of vertices.
+  An infinite graph is a graph with an infinite number of vertices.
 \end{definition}
 
-Can we extend these result to infinite graph?
+Can we extend these result to an infinite graph?
 Can we keep the definition of tie components when
-we expand the context to infinite graph?
+we expand the context to infinite graphs?
 How will the property of infinite path
 and infinite tie path change the results in this thesis?
 
 In~\cite{bang-jensen_kings_1998}
 and~\cite{bangjensen_quasitransitive_1995},
 the author uses the idea of strong digraph and strong components
-(see the definition of strong and strong components
+(see the definition of strong digraph and strong components
 in~\cite{west_introduction_2001})
 to deduce the property of quasi-transitive oriented graph.
 We can show that given any \emph{non-trivial} condensation,
@@ -83,14 +83,13 @@ in~\cite{bang-jensen_kings_1998} and~\cite{bangjensen_quasitransitive_1995}?
 
 In \cref{sec: graph condensation},
 we showed that graph condensation is a very useful transformation.
-and many graph only have identity condensation
-and trivial condensation defined on it.
+and many graphs have only the identity condensation
+and the trivial condensation defined on it.
 How hard is a condensation?
-How many graph only have identity condensation
-and trivial condensation on them?
+How many graphs have only those two condensations on them? 
 
-How useful is graph condensations?
-we have showed that they preserves the shortest path
+How useful is graph condensation?
+We showed that they preserve the shortest path
 (\cref{the: condensation preserves shortest path}),
-and we can show that they preserves the strong property of the graph.
-What are other property that graph condensations preserves?
+and we can show that they preserve the ``strong'' property of the graph.
+What are other properties that graph condensations preserve?

@@ -2,14 +2,14 @@
 
 We continue to explore the relationship between tie paths and
 arrow direction transmitted by ties.
-We to define the following structure with
+We define the following structure with
 the intuition of ``path'' and ``connected component''
-in undirected graph~\cite{west_introduction_2001}.
+in an undirected graph~\cite{west_introduction_2001}.
 
 \begin{definition}
   In a digraph \(G\), a
-  \keyword{tie component of vertex \(a\)}[tie component of a vertex]:
-  \(C(a)\), all vertices \(v\)
+  \keyword{tie component of vertex \(a\)}[tie component of a vertex],
+  denoted \(C(a)\), is the set of vertices \(v\)
   such that there exists a tie path between \(a\) and \(v\).
 \end{definition}
 
@@ -76,9 +76,10 @@ not just in quasi-transitive oriented graphs.
 
 \begin{theorem}\label{the: tie path equivalence relation}
   For a digraph \(G\),
-  we define a relation \(\mathrel{R}\) on \(V(G)\) by
+  we define a relation \(\mathrel{R}\) on \(V(G)\)
   for vertices \(a, b \in V(G)\),
-  \(a\mathrel{R}b\) if there exists a tie path between \(a, b\).
+  \(a\mathrel{R}b\) if and only if
+  there exists a tie path between \(a\) and \(b\).
   \(\mathrel{R}\) is an equivalence relation.
 \end{theorem}
 
@@ -89,7 +90,7 @@ not just in quasi-transitive oriented graphs.
 
   Symmetry: if there exists a tie path from \(a_0\) to \(a_n\):
   \([a_0, a_1, a_2, \ldots, a_n]\),
-  then because tie do not have directions,
+  then because ties do not have directions,
   \([a_n, a_{n-1}, \ldots, a_1, a_0]\) is a tie path from
   \(a_n\) to \(a_0\).
 
@@ -97,7 +98,7 @@ not just in quasi-transitive oriented graphs.
 \end{proof}
 
 \begin{corollary}\label{the: tie component equivalence class}
-  For a digraph \(G\), tie component is an equivalence class
+  For a digraph \(G\), a tie component is an equivalence class
   on \(V(G)\).
 \end{corollary}
 \begin{proof}
@@ -112,7 +113,7 @@ not just in quasi-transitive oriented graphs.
 
 \begin{proof}
   By \cref{the: tie component equivalence class},
-  tie components form an equivalence class on \(V(G)\),
+  tie components form equivalence classes on \(V(G)\),
   and equivalence classes form a unique partition
   of the set \(V(G)\)~\cite{epp_discrete_2011}.
 \end{proof}
@@ -123,20 +124,19 @@ not just in quasi-transitive oriented graphs.
 \end{corollary}
 
 \begin{proof}
+  Suppose \(v\) is not in \(C(a)\).
   Because \(C(a)\) is an equivalence class on the relation
   \(\mathrel{R}\) such that
   \(a\mathrel{R}b\) if there exists a tie path between \(a\) and \(b\).
-  Because \(v\) not in the equivalence class \(C(a)\),
-  for every vertex \(a' \in C(a)\),
-  \(v\mathrel{R}a'\) is false~\cite{epp_discrete_2011}.
+  two equivalent class \(C(a)\) and \(C(v)\) disjoint~\cite{epp_discrete_2011}.
   Therefore there is no tie path between \(v\) and \(a\),
-  thus \(v\) does not tie \(a'\).
+  thus \(v\) does not tie any vertex in \(C(a)\).
 
   Therefore, \(v\) is adjacent to every vertex in \(C(a)\).
 \end{proof}
 
 Our previous results that ties ``transmit'' arrow directions
-in quasi-transitive oriented graph,
+in quasi-transitive oriented graphs,
 had us see that for a tie component \(C\)
 and a vertex \(v \notin C\), \(C \to v\) or \(v \to C\).
 See \cref{fig: transmitting arrow direction in tie component},
@@ -215,7 +215,7 @@ We then formalize and generalize this idea into two theorems:
   In a quasi-transitive oriented graph,
   for any tie component \(C(a)\),
   If there exists one vertex \(v \in C(a)\)
-  that beats (be beaten) a vertex \(v' \notin C(a)\).
+  that beats (is beaten by) a vertex \(v' \notin C(a)\).
   Then \(C(a) \to v'\) (\(v' \to C(a)\)).
   See \cref{fig: vertex force component beating}
 \end{corollary}
@@ -257,7 +257,7 @@ We then formalize and generalize this idea into two theorems:
   by \cref{the: component and a single point}.
 
   Case 1, \(v \to v'\): because \(v \in C(a)\),
-  then \(v'\) cannot beat all of \(C(a)\).
+  then \(v'\) cannot beat any vertex in \(C(a)\).
   Therefore \(C(a) \to v'\).
 
   Case 2, \(v' \to v\): because \(v \in C(a)\),
@@ -354,7 +354,7 @@ and try to understand it visually.
 \end{figure}
 
 See \cref{fig: tie components condensation}.
-For every quasi-transitive digraph,
+For every quasi-transitive oriented digraph,
 we can split it into tie components,
 and every tie component either beats another tie component
 or is beaten by another tie component.
