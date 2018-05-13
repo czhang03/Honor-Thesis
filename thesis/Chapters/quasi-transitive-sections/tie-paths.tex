@@ -20,7 +20,7 @@ vastly important in this chapter.
   Because \(G\) is a quasi-transitive oriented graph,
   if \(a \to v \to b\) or \(b \to v \to a\)
   then \(a, b\) have to be adjacent.
-  Therefore, only the possible beating relationships are
+  Therefore, the only possible beating relationships are
   \(\set{a, b} \to v\) or \(v \to \set{a, b}\).
 \end{proof}
 
@@ -72,9 +72,9 @@ Consider the set of vertices that are adjacent to both
 In this figure the set is
 \( \set{d_1, d_2, d_3, s_1, s_2, s_3, s_4} \).
 This set is partitioned into 2 parts:
-those vertices that dominates both \(a\) and \(b\)
+those vertices that dominate both \(a\) and \(b\):
 \(\set{d_1, d_2, d_3}\),
-and those vertices that are beaten by both \(a\) and \(b\)
+and those vertices that are beaten by both \(a\) and \(b\):
 \(\set{s_1, s_2, s_3, s_4}\)
 The behavior of \(\set{a, b}\) is somewhat like a vertex,
 see \cref{fig: arrow direction lemma: condensed}.
@@ -144,8 +144,7 @@ ties either \(a\) or \(b\) and is adjacent to \(v\)?
 \end{figure}
 
 In \cref{fig: add tie to arrow direction lemma: start}
-we add a vertex \(c\) that ties \(b\),
-but needs to be adjacent to \(v\)
+we add a vertex \(c\) that ties \(b\) and is adjacent to \(v\)
 (we use an edge without arrow to denote adjacency).
 Because \(b\), \(c\) are both adjacent to \(v\),
 and \(c\) ties \(b\),
@@ -154,9 +153,10 @@ However, in the graph, \(b \to v\), therefore \(c \to v\).
 Thus, we get \cref{fig: add tie to arrow direction lemma: finish}.
 
 We find out that because of the ties between \(a, b, c\),
-the arrow direction between \(v, a\) and \(v, b\),
-got ``transmitted'' to \(v, c\)
-via the \cref{the: arrow direction lemma}.
+the arrow direction between \(v\) and \(a\) and
+the arrow direction between \(v\) and \(b\),
+got ``transmitted'' to be the arrow direction between \(v\) and \(c\)
+via \cref{the: arrow direction lemma}.
 We formalize this ``arrow transmission'' idea:
 
 \begin{definition}
@@ -166,11 +166,13 @@ We formalize this ``arrow transmission'' idea:
   is a sequence of vertices
   \([a_0, a_1, a_2, \ldots, a_{n-1}, a_n]\),
   such that for all \(0 \leq k < n\), \(a_k\) ties \(a_{k + 1}\).
-  If there is \(n + 1\) vertices in that sequence,
+  If there are \(n + 1\) vertices in that sequence,
   we will say \keyword{the length of the tie path} is \(n\).
   Note that all the \(a_i\)'s do not have to be distinct.
 \end{definition}
 
+Notice that every vertex \(a\) has a tie path \([a]\)
+to itself with length 0.
 A tie path is similar to a path
 (called a ``walk'' in~\cite{west_introduction_2001})
 in an undirected graph;
@@ -198,7 +200,7 @@ See \cref{fig: tie path and path}.
   \label{fig: tie path and path}  % chktex 24
 \end{figure}
 
-Tie path are useful in analyzing quasi-transitive
+Tie paths are useful in analyzing quasi-transitive
 oriented graphs:
 
 \begin{lemma}\label{the: tie path connection lemma}
@@ -259,7 +261,7 @@ After looking at
 \cref{fig: add tie to arrow direction lemma},
 we can hypothesize that tie paths can transmit
 arrow directions across the whole path
-in quasi-transitive oriented graph.
+in quasi-transitive oriented graphs.
 See \cref{fig: tie path transmit arrow}.
 
 \begin{figure}
@@ -331,7 +333,7 @@ See \cref{fig: tie path transmit arrow}.
 
 \begin{proof}
   We can prove this lemma via induction,
-  follow the intuition in
+  following the construction in
   \cref{fig: add tie to arrow direction lemma}.
 
   Start with a tie path of length 1,
@@ -353,7 +355,7 @@ See \cref{fig: tie path transmit arrow}.
   By \cref{the: arrow direction lemma}
   \begin{itemize}
     \item
-      Case 1, \(v \to \set{a_0, \ldots, a_n}\):
+      Case 1, \(v \to \set{a_0, \ldots, a_n}\),
       then \(v \to a_{n+1}\),
       then \(v\) beats the whole tie path;
     \item
@@ -361,11 +363,10 @@ See \cref{fig: tie path transmit arrow}.
       then \(a_{n+1} \to v\),
       then \(v\) is beaten by the whole tie path.
   \end{itemize}
-  Therefore this lemma still holds for tie path of length \(n + 1\).
 \end{proof}
 
 \cref{the: tie transimission} generalizes
 \cref{the: arrow direction lemma},
 however, it is still far from elegant,
-because we still requires the vertex \(v\)
-to be adjacent to the whole tie path.
+because we still require that vertex \(v\)
+be adjacent to the whole tie path.
